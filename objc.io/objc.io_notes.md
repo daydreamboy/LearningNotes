@@ -78,3 +78,58 @@ Build target objcio
 2. 学习使用[ImageMagick](https://github.com/krzysztofzablocki/Bootstrap)给App Icon打水印
 
 
+### 2. [Concurrent Programming: API and Chanllenges](https://www.objc.io/issues/2-concurrency/concurrency-apis-and-pitfalls/)
+
+（1）GCD Thread Pool模式
+
+![GCD queue](images/GCD queue.png)
+
+* GCD内部维护线程池管理线程，按照queue模型使用线程
+* GCD默认提供5种队列：Main Queue、High/Default/Low Priority Queue、Background Priority Queue，Background Priority比Low Priority还低一些
+* 自定义queue有2种：串行（Serial）和并行（Concurrent），推荐使用Default Priority。
+
+（2）Operation Queues
+
+* Operation Queue是基于GCD的封装，提供一些API（`isExecuting`、`isFinished`）方便查询任务的状态
+* Operation Queue有2种类型：main queue和custom queue，main queue执行在main thread上，而custom queue执行在background thread
+
+（3）并发编程任务：资源共享（Sharing of Resources）
+
+* Race Condition
+
+资源共享涉及到Race Condition问题，一个典型的Race Condition例子，如下
+
+![Race Condition](images/Race Condition.png)
+
+
+* Mutual Exclusion
+
+互斥操作可以解决Race Condition问题，如下
+
+![Mutual Exclusion](images/Mutual Exclusion.png)
+
+Note：互斥操作一般可以使用Lock，加锁和解锁都一定开销，同时存在Lock Contention，即多个线程对同一个已经加过锁的锁尝试加锁，这时不同的Lock表现不同的系统开销。
+
+* Dead Lock
+
+互斥操作，也有缺陷，即存在死锁（Dead Lock）情况，如下
+
+![Dead Lock](images/Dead Lock.png)
+
+* Starvation
+
+使用Lock，也存在饿死（Starvation）情况，举个例子，共享资源有读和写两种锁：读锁存在的时候，不能加写锁；写锁存在的时候，不能加读锁。如果读锁一直存在，则写锁始终加不上，出现饿死情况。
+
+* Priority Inversion
+
+GCD提供有优先级的队列，但是优先级队列存在优先级反转（Priority Inversion）问题。举个例子，如下
+![Priority Inversion](images/Priority Inversion.png)
+
+上面这种情况，Medium priority thread优先High priority thread执行，即出现Priority Inversion。
+
+
+## TODO
+
+1. https://www.objc.io/issues/2-concurrency/common-background-practices/
+2. https://www.objc.io/issues/2-concurrency/low-level-concurrency-apis/
+
