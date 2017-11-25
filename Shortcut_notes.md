@@ -12,6 +12,8 @@
 
 ## Mac OS X
 
+1. 锁屏：`^ + ⌘ + q`（High Sierra 10.13+）
+
 ## Terminal
 
 
