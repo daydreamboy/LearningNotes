@@ -39,3 +39,8 @@ dyld: loaded: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulat
 
 ### [Text Programming Guide for iOS](https://developer.apple.com/library/content/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009542-CH1-SW1)
 
+### [Quartz 2D Programming Guide](https://developer.apple.com/library/content/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html)
+
+
+
+
