@@ -35,3 +35,11 @@
 |---------|------|
 | nm -nm helloworld.o | 查看.o文件中符号 |
 
+### 5. strings
+
+| example | task |
+|---------|------|
+| strings a.out | 查看可执行文件中可打印的字符串（例如__TEXT,__cstring中字符串） |
+
+
+

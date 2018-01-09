@@ -43,4 +43,9 @@ dyld: loaded: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulat
 
 ### [OS X Assembler Reference](https://developer.apple.com/library/content/documentation/DeveloperTools/Reference/Assembler/000-Introduction/introduction.html)
 
+### [Mach-O Programming Topics](https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/MachOTopics/0-Introduction/introduction.html)
+
+* https://www.slideshare.net/shoumikhin/macho-internals
+* http://www.blackhat.com/presentations/bh-dc-09/Iozzo/BlackHat-DC-09-Iozzo-Macho-on-the-fly.pdf
+* https://github.com/facebook/fishhook
 
