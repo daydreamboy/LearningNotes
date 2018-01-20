@@ -49,3 +49,5 @@ dyld: loaded: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulat
 * http://www.blackhat.com/presentations/bh-dc-09/Iozzo/BlackHat-DC-09-Iozzo-Macho-on-the-fly.pdf
 * https://github.com/facebook/fishhook
 
+### [Drawing and Printing Guide for iOS](https://developer.apple.com/library/content/documentation/2DDrawing/Conceptual/DrawingPrintingiOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010156-CH1-SW1)
+

@@ -41,5 +41,9 @@
 |---------|------|
 | strings a.out | 查看可执行文件中可打印的字符串（例如__TEXT,__cstring中字符串） |
 
+### 5. lipo
 
+| example | task |
+|---------|------|
+| lipo -info a.out | 查看可执行文件的架构 |
 
