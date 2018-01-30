@@ -11,6 +11,8 @@
 | clang helloworld.c -Wl,-sectcreate,__TEXT,__info_plist,./Info.plist -o a_with_InfoPlist.out | 添加__TEXT,__info_plist区 |
 | clang -c Foo.m | 生成.o文件 |
 | clang helloworld.o Foo.o -Wl,`xcrun --show-sdk-path`/System/Library/Frameworks/Foundation.framework/Foundation -o a_with_mutiple_files.out | 链接.o以及Foundation，生成可执行文件 |
+| clang -rewrite-objc Block1.m | 生成对应的.cpp文件 |
+
 
 ### 2. size
 
@@ -46,4 +48,4 @@
 | example | task |
 |---------|------|
 | lipo -info a.out | 查看可执行文件的架构 |
-
+| lipo -create -output libffi.a ./Debug-iphoneos/libffi.a ./Debug-iphonesimulator/libffi.a | 合并两个架构的二进制文件 |
