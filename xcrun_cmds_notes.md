@@ -36,6 +36,11 @@
 | example | task |
 |---------|------|
 | nm -nm helloworld.o | 查看.o文件中符号 |
+| nm -arch=arm64 -m DynamicLibrary \| grep dlsym | 查看二进制文件单个架构中的dlsym符号 |
+
+* -n，使用numeric顺序排序
+* -m，使用machO格式输出
+* -arch，指定架构，例如arm64、armv7
 
 ### 5. strings
 

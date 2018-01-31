@@ -9,6 +9,9 @@
 * `-n`，输出匹配位置所在文件中的行号
 * `-i`，忽略查找字符串的大写敏感
 * `-l`，输出匹配文件的相对路径，相对于指定路径
+* `-C<number>`[^3]，显示上下文line的个数
+* `-A<number>`[^3]，显示上文line的个数
+* `-B<number>`[^3]，显示下文line的个数
 
 ### 2. grep示例
 
@@ -50,3 +53,5 @@ References
 [^1]: [grep - How can I recursively search for directory names with a particular string where the string is only part of the directory name - Ask Ubuntu](https://askubuntu.com/questions/153144/how-can-i-recursively-search-for-directory-names-with-a-particular-string-where)
 
 [^2]: [rm - How to delete directories based on `find` output? - Unix & Linux Stack Exchange](https://unix.stackexchange.com/questions/89925/how-to-delete-directories-based-on-find-output)
+
+[^3]: https://unix.stackexchange.com/questions/66196/how-to-run-grep-and-show-x-number-of-lines-before-and-after-the-match
