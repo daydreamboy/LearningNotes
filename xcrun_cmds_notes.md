@@ -48,9 +48,18 @@
 |---------|------|
 | strings a.out | 查看可执行文件中可打印的字符串（例如__TEXT,__cstring中字符串） |
 
-### 5. lipo
+### 6. lipo
 
 | example | task |
 |---------|------|
 | lipo -info a.out | 查看可执行文件的架构 |
 | lipo -create -output libffi.a ./Debug-iphoneos/libffi.a ./Debug-iphonesimulator/libffi.a | 合并两个架构的二进制文件 |
+| lipo -thin arm64 <xxx> -output xxx_arm64 | 二进制文件分拆单个架构 |
+
+### 7. file
+
+| example | task |
+|---------|------|
+| file \<file\> | 查看文件的MachO格式 |
+| file -I \<file\> | 查看文件的mine类型 |
+
