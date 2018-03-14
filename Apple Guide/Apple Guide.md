@@ -53,3 +53,16 @@ dyld: loaded: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulat
 
 ### [Code Signing Guide](https://developer.apple.com/library/content/documentation/Security/Conceptual/CodeSigningGuide/Procedures/Procedures.html)
 
+### [iOS Debugging Magic](https://developer.apple.com/library/content/technotes/tn2239/_index.html)
+
+### [Debugging with Xcode](https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/debugging_with_xcode/chapters/about_debugging_w_xcode.html#//apple_ref/doc/uid/TP40015022-CH10-SW1)
+
+### [iOS ABI Function Call Guide](https://developer.apple.com/library/content/documentation/Xcode/Conceptual/iPhoneOSABIReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009020-SW1)
+
+### [Xcode Build System Guide](https://developer.apple.com/legacy/library/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/0-Introduction/introduction.html) (Retired)
+
+* 新的文档位置，[build settings reference](http://help.apple.com/xcode/mac/9.3/#/itcaec37c2a6)
+
+
+### [C++ Runtime Environment Programming Guide](https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/CppRuntimeEnv/CPPRuntimeEnv.html#//apple_ref/doc/uid/TP40001675-SW1)
+

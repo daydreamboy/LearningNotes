@@ -23,3 +23,11 @@
 2. 格式代码：`⇧ + ⎇ + f`
 
 ## Xcode
+
+1. 拷贝当前光标所在的符号名：`⌘ + ⇧ + ⎇ + ^ + c`
+
+
+
+References
+--
+https://mjtsai.com/blog/2016/08/16/xcodes-copy-qualified-symbol-name-command/

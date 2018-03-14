@@ -24,11 +24,11 @@
 
 | example | task |
 |---------|------|
-| otool -s __TEXT __text a.out  | 查看__TEXT,__text的二进制内容 |
-| otool -s __TEXT __cstring a.out  | 查看__TEXT,__cstring的二进制内容 |
-| otool -s __TEXT __text -v a.out | 查看__TEXT,__text的汇编代码 |
+| otool -s __TEXT __text a.out  | 查看\_\_TEXT,\_\_text的二进制内容 |
+| otool -s __TEXT __cstring a.out  | 查看\_\_TEXT,\_\_cstring的二进制内容 |
+| otool -s __TEXT __text -v a.out | 查看\_\_TEXT,\_\_text的汇编代码 |
 | otool -v -h a.out | 查看Mach Header |
-| otool -v -l a.out | 查看Load Commands |
+| otool -v -l a.out | 查看Load Commands（用于查看链接的动态库等） |
 | otool -v -L a.out | 查看链接的动态库 |
 
 ### 4. nm
@@ -41,6 +41,7 @@
 * -n，使用numeric顺序排序
 * -m，使用machO格式输出
 * -arch，指定架构，例如arm64、armv7
+* -j，只显示符号名，不显示地址和类型
 
 ### 5. strings
 
@@ -62,4 +63,57 @@
 |---------|------|
 | file \<file\> | 查看文件的MachO格式 |
 | file -I \<file\> | 查看文件的mine类型 |
+
+### 8. simctl
+
+| example | task |
+|---------|------|
+| simctl list | 查看所有模拟器 |
+| simctl delete unavailable | 删除当前无效的模拟器（可以节省磁盘空间） |
+
+### 9. ld
+
+| options | meaning | tips |
+|---------|---------|------|
+| -all_load | 装载静态库中所有内容 | 对应Xcode中的Other Linker Flags | 
+| -ObjC | 装载静态库中所有ObjC内容 | 对应Xcode中的Other Linker Flags | 
+| -force_load \<path\_to\_archive\> | 装载指定静态库 | 对应Xcode中的Other Linker Flags | 
+
+参考资料：man ld
+
+### 10. strip
+
+| example | task |
+|---------|------|
+| strip -x XXX.framework/XXX | 移除所有local符号，仅保留global符号 |
+
+参考资料：man strip
+
+### 11. dwarfdump
+
+| example | task |
+|---------|------|
+| dwarfdump -u \<mach-o file\> | 查看MachO文件的UUID (实际对应LC_UUID字段[1]) |
+| dwarfdump -u --arch=arm64 \<mach-o file\> | 查看MachO文件中特定架构的UUID |
+
+参考资料：man dwarfdump
+
+### 12. lldb
+
+| example | task |
+|---------|------|
+| lldb -n \<process name\> | 调试某个进程 |
+
+### 13. install\_name\_tool
+
+| example | task |
+|---------|------|
+| install\_name\_tool DeleteMe -change /System/Library/Frameworks/Social.framework/Social /System/Library/Frameworks/NotificationCenter.framework/NotificationCenter | 替换MachO文件中依赖的动态库LC字段。otool -L查看修改后的依赖库 |
+
+--
+注解：
+
+[1] LC_UUID，指的是MachO中Load Command UUID
+
+
 
