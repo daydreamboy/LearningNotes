@@ -66,3 +66,7 @@ dyld: loaded: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulat
 
 ### [C++ Runtime Environment Programming Guide](https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/CppRuntimeEnv/CPPRuntimeEnv.html#//apple_ref/doc/uid/TP40001675-SW1)
 
+### [Minimizing your app's Memory Footprint](https://developer.apple.com/library/content/technotes/tn2434/_index.html)
+
+* 
+
