@@ -48,6 +48,7 @@
 | example | task |
 |---------|------|
 | strings a.out | 查看可执行文件中可打印的字符串（例如__TEXT,__cstring中字符串） |
+| string -o a.out | -o显示字符串的文件偏移量，默认是十进制 |
 
 ### 6. lipo
 
