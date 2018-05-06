@@ -1,5 +1,19 @@
 ## xcrun命令
 
+1. clang
+2. size
+3. otool
+4. nm
+5. strings
+6. lipo
+7. file
+8. simctl
+9. ld
+10. strip
+11. dwarfdump
+12. lldb
+13. install\_name\_tool
+
 
 ### 1. clang
 
@@ -70,6 +84,7 @@
 | example | task |
 |---------|------|
 | simctl list | 查看所有模拟器 |
+| simctl list \| grep booted | 查看当前启动的模拟器 |
 | simctl delete unavailable | 删除当前无效的模拟器（可以节省磁盘空间） |
 
 ### 9. ld
