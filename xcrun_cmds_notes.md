@@ -70,7 +70,7 @@
 |---------|------|
 | lipo -info a.out | 查看可执行文件的架构 |
 | lipo -create -output libffi.a ./Debug-iphoneos/libffi.a ./Debug-iphonesimulator/libffi.a | 合并两个架构的二进制文件 |
-| lipo -thin arm64 <xxx> -output xxx_arm64 | 二进制文件分拆单个架构 |
+| lipo -thin arm64 \<xxx\> -output xxx_arm64 | 二进制文件分拆单个架构 |
 
 ### 7. file
 
