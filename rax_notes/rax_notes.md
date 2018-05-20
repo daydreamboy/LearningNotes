@@ -553,16 +553,31 @@ node.js的包管理器是npm，MacOS下可以使用brew安装，`brew install np
 
 ####（1）npm常用命令
 
-* npm help \<command\>
+#### 1) npm help
 
-查看某个command的帮助信息，例如`npm help install`
+格式：npm help \<command\>    
+说明：查看某个command的帮助信息，例如`npm help install`
 
-* npm install [options] \<package\>
+#### 2) npm install
 
-安装npm包，不带任何option，默认安装在当前node工程下面
+格式： npm install [options] \<package\>    
+说明：安装npm包，不带任何option，默认安装在当前node工程下面
 
 >
---save-dev，package.json中的devDependencies字段添加依赖
+--save-dev，package.json中的devDependencies字段添加依赖     
+--save/--save-prod，package.json中的dependencies字段添加依赖
+
+* 安装某个版本
+
+```
+$ npm install crypto-browserify@3.11.0 --save
+```
+
+#### 2) npm view
+
+* npm view crypto-browserify version
+
+查看某个npm包版本
 
 ### 8、rax编译常见报错
 
