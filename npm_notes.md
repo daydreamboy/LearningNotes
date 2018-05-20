@@ -39,6 +39,17 @@ added 1 package in 4.764s
 $ npm i express momemt lodash mongoose body-parser webpack
 ```
 
+* npm install \<package1\> --global，全局安装包。全局安装的包，可以使用改命令，而本地安装则使用不了该命令。
+
+```
+$ npm install uglify-js --global       
+/usr/local/bin/uglifyjs -> /usr/local/lib/node_modules/uglify-js/bin/uglifyjs
++ uglify-js@3.3.25
+added 3 packages in 2.293s
+$ which uglifyjs
+/usr/local/bin/uglifyjs
+```
+
 ### 2、uninstall
 
 格式：npm uninstall \<package\>   
@@ -78,6 +89,18 @@ $ npm la
     JavaScript's functional programming helper library.
     git://github.com/jashkenas/underscore.git
     http://underscorejs.org
+```
+
+* npm list --depth=0，列出第一层级的依赖包
+
+```
+$ npm list --depth=0 
+03_webpack@1.0.0 /Users/wesley_chen/GitHub_Projcets/HelloNodeJS/03_webpack
+├── jshint@2.9.5
+├── jshint-loader@0.8.4
+├── moment@2.22.1
+├── webpack@4.8.3
+└── webpack-cli@2.1.3
 ```
 
 ### 4、outdated
