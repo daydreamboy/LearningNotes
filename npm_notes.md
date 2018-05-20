@@ -6,6 +6,10 @@
 别名：npm i \<package\>    
 说明：安装npm包。-g选项，使用全局安装
 
+>
+--save-dev，package.json中的devDependencies字段添加依赖     
+--save/--save-prod，package.json中的dependencies字段添加依赖
+
 * npm install，安装包到本地
 
 ```
@@ -148,3 +152,101 @@ $ find . -name "node_modules" -type d -exec rm -rf '{}' +
 格式：npm help \<command\>    
 说明：查看某个command的帮助信息，例如`npm help install`
 
+### 9、config
+
+格式：npm config
+说明：查看npm配置，子命令有list、get、set等
+
+* npm config list
+
+```
+$ npm config list
+; cli configs
+metrics-registry = "https://registry.npmjs.org/"
+scope = ""
+user-agent = "npm/5.3.0 node/v8.4.0 darwin x64"
+
+; userconfig /Users/wesley_chen/.npmrc
+email = ""
+
+; builtin config undefined
+prefix = "/usr/local"
+
+; node bin location = /usr/local/Cellar/node/8.4.0/bin/node
+; cwd = /Users/wesley_chen/GitHub_Projcets/HelloNodeJS/03_webpack
+; HOME = /Users/wesley_chen
+; "npm config ls -l" to show all defaults.
+```
+
+* npm config get，查看某个项配置
+
+```
+$ npm config get prefix
+/usr/local
+```
+
+### 10、init
+
+格式：npm init    
+说明：创建一个package.json文件，该文件用于配置node工程
+
+* npm init
+
+```
+$ npm init
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help json` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install <pkg>` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+package name: (03_webpack) 
+version: (1.0.0) 
+description: 
+entry point: (index.js) 
+test command: 
+git repository: 
+keywords: 
+author: 
+license: (ISC) 
+About to write to /Users/wesley_chen/GitHub_Projcets/HelloNodeJS/03_webpack/package.json:
+
+{
+  "name": "03_webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+
+
+Is this ok? (yes)
+```
+
+* npm init --y，快速创建node工程，默认都是yes（y）
+
+```
+$ npm init --y
+Wrote to /Users/wesley_chen/GitHub_Projcets/HelloNodeJS/03_webpack/package.json:
+
+{
+  "name": "03_webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+```
