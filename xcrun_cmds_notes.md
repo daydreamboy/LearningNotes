@@ -39,8 +39,11 @@
 | example | task |
 |---------|------|
 | otool -s __TEXT __text a.out  | 查看\_\_TEXT,\_\_text的二进制内容 |
+| otool -t a.out  | -t和-s __TEXT __text等价 |
 | otool -s __TEXT __cstring a.out  | 查看\_\_TEXT,\_\_cstring的二进制内容 |
+| otool -s __TEXT __cstring -V a.out  | 查看\_\_TEXT,\_\_cstring的字符串内容 |
 | otool -s __TEXT __text -v a.out | 查看\_\_TEXT,\_\_text的汇编代码 |
+| otool -s __TEXT __text -V a.out<br/>otool -tV a.out | 查看\_\_TEXT,\_\_text的汇编代码，而且带注释 |
 | otool -v -h a.out | 查看Mach Header |
 | otool -v -l a.out | 查看Load Commands（用于查看链接的动态库等） |
 | otool -v -L a.out | 查看链接的动态库 |
@@ -62,7 +65,7 @@
 | example | task |
 |---------|------|
 | strings a.out | 查看可执行文件中可打印的字符串（例如__TEXT,__cstring中字符串） |
-| string -o a.out | -o显示字符串的文件偏移量，默认是十进制 |
+| strings -o a.out | -o显示字符串的文件偏移量，默认是十进制 |
 
 ### 6. lipo
 
