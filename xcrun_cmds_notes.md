@@ -13,6 +13,7 @@
 11. dwarfdump
 12. lldb
 13. install\_name\_tool
+14. momc
 
 
 ### 1. clang
@@ -22,7 +23,7 @@
 | clang -v | 查看版本 |
 | clang -E helloworld.c \| open -f | 生成预处理文件 |
 | clang -S -o - helloworld.c \| open -f | 生成汇编文件 |
-| clang helloworld.c -Wl,-sectcreate,__TEXT,__info_plist,./Info.plist -o a_with_InfoPlist.out | 添加__TEXT,__info_plist区 |
+| clang helloworld.c -Wl,-sectcreate,\_\_TEXT,\_\_info\_plist,./Info.plist -o a_with_InfoPlist.out | 添加\_\_TEXT,\_\_info\_plist区 |
 | clang -c Foo.m | 生成.o文件 |
 | clang helloworld.o Foo.o -Wl,`xcrun --show-sdk-path`/System/Library/Frameworks/Foundation.framework/Foundation -o a_with_mutiple_files.out | 链接.o以及Foundation，生成可执行文件 |
 | clang -rewrite-objc Block1.m | 生成对应的.cpp文件 |
@@ -38,12 +39,12 @@
 
 | example | task |
 |---------|------|
-| otool -s __TEXT __text a.out  | 查看\_\_TEXT,\_\_text的二进制内容 |
-| otool -t a.out  | -t和-s __TEXT __text等价 |
-| otool -s __TEXT __cstring a.out  | 查看\_\_TEXT,\_\_cstring的二进制内容 |
-| otool -s __TEXT __cstring -V a.out  | 查看\_\_TEXT,\_\_cstring的字符串内容 |
-| otool -s __TEXT __text -v a.out | 查看\_\_TEXT,\_\_text的汇编代码 |
-| otool -s __TEXT __text -V a.out<br/>otool -tV a.out | 查看\_\_TEXT,\_\_text的汇编代码，而且带注释 |
+| otool -s \_\_TEXT \_\_text a.out | 查看\_\_TEXT,\_\_text的二进制内容 |
+| otool -t a.out  | -t和-s \_\_TEXT \_\_text等价 |
+| otool -s \_\_TEXT \_\_cstring a.out | 查看\_\_TEXT,\_\_cstring的二进制内容 |
+| otool -s \_\_TEXT \_\_cstring -V a.out | 查看\_\_TEXT,\_\_cstring的字符串内容 |
+| otool -s \_\_TEXT \_\_text -v a.out | 查看\_\_TEXT,\_\_text的汇编代码 |
+| otool -s \_\_TEXT \_\_text -V a.out<br/>otool -tV a.out | 查看\_\_TEXT,\_\_text的汇编代码，而且带注释 |
 | otool -v -h a.out | 查看Mach Header |
 | otool -v -l a.out | 查看Load Commands（用于查看链接的动态库等） |
 | otool -v -L a.out | 查看链接的动态库 |
@@ -94,9 +95,9 @@
 
 | options | meaning | tips |
 |---------|---------|------|
-| -all_load | 装载静态库中所有内容 | 对应Xcode中的Other Linker Flags | 
-| -ObjC | 装载静态库中所有ObjC内容 | 对应Xcode中的Other Linker Flags | 
-| -force_load \<path\_to\_archive\> | 装载指定静态库 | 对应Xcode中的Other Linker Flags | 
+| -all_load | 装载静态库中所有内容 | 对应Xcode中的Other Linker Flags |
+| -ObjC | 装载静态库中所有ObjC内容 | 对应Xcode中的Other Linker Flags |
+| -force_load \<path\_to\_archive\> | 装载指定静态库 | 对应Xcode中的Other Linker Flags |
 
 参考资料：man ld
 
@@ -128,6 +129,15 @@
 | example | task |
 |---------|------|
 | install\_name\_tool DeleteMe -change /System/Library/Frameworks/Social.framework/Social /System/Library/Frameworks/NotificationCenter.framework/NotificationCenter | 替换MachO文件中依赖的动态库LC字段。otool -L查看修改后的依赖库 |
+
+### 14. momc
+
+| example                                                      | task |
+| ------------------------------------------------------------ | ---- |
+| $ xcrun momc <br/> usage: momc --sdkroot=<path> \[--appletvos-deployment-target\]\[--iphoneos-deployment-target\]\[--macosx-deployment-target\]\[--watchos-deployment-target\]\[--module \]\[--print-diagnostic-categories\]\[--no-warnings\]\[--no-inverse-relationship-warnings\]\[--no-max-property-count-warnings\]\[--no-delete-rule-warnings\]\[--dump-models\] source destination |      momc用法 |
+| $ /Applications/Xcode.app/Contents/Developer/usr/bin/momc --sdkroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk --iphonesimulator-deployment-target 8.0 ~/path/to/XXX.xcdatamodeld ~/ |  编译xcdatamodeld文件    |
+
+
 
 --
 注解：
