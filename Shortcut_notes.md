@@ -1,13 +1,12 @@
 # Shortcuts Notes
 
----
-
-## TOC
-
 * Mac OS X
-* Terminal
-* Visual Code
-* Xcode
+
+- Terminal
+- Visual Code
+- Xcode
+
+[TOC]
 
 
 ## Mac OS X
@@ -25,9 +24,13 @@
 ## Xcode
 
 1. 拷贝当前光标所在的符号名：`⌘ + ⇧ + ⎇ + ^ + c`
+2. Fix All Issues：`⌘ + ⎇ + ^ + f`
 
 
 
 References
 --
 https://mjtsai.com/blog/2016/08/16/xcodes-copy-qualified-symbol-name-command/
+
+
+
