@@ -1,6 +1,7 @@
 ## git手册
 
-1. stash
+[TOC]
+
 
 
 ----------------------
@@ -20,4 +21,19 @@ stash@{Tue Apr 3 19:17:27 2018}: On release/180427/master: temp3
 
 >
 --date=local，显示存储的时间
+
+
+
+### 2. git选项
+
+* --exec-path，输出git-core目录
+
+```
+$ git --exec-path
+/Applications/Xcode.app/Contents/Developer/usr/libexec/git-core
+```
+
+
+
+
 
