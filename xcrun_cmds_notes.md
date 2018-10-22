@@ -50,8 +50,14 @@
 | otool -s \_\_TEXT \_\_text -v a.out | 查看\_\_TEXT,\_\_text的汇编代码 |
 | otool -s \_\_TEXT \_\_text -V a.out<br/>otool -tV a.out | 查看\_\_TEXT,\_\_text的汇编代码，而且带注释 |
 | otool -v -h a.out | 查看Mach Header |
-| otool -v -l a.out | 查看Load Commands（用于查看链接的动态库等） |
+| otool -v -l a.out | 查看Load Commands（用于查看链接的动态库等），但是也总是显示Mach Header |
 | otool -v -L a.out | 查看链接的动态库 |
+| otool -o a.out | 查看Objective-C相关的metadata，一般有`__DATA,__objc_classlist`、`__DATA,__objc_classrefs`等 |
+|  |  |
+
+* -V，结合-t，可以反汇编text segment
+
+
 
 ### 4. nm
 
@@ -59,11 +65,64 @@
 |---------|------|
 | nm -nm helloworld.o | 查看.o文件中符号 |
 | nm -arch=arm64 -m DynamicLibrary \| grep dlsym | 查看二进制文件单个架构中的dlsym符号 |
+| nm -g a.out | 忽略所有本地符号（类型t），然后输出 |
 
 * -n，使用numeric顺序排序
 * -m，使用machO格式输出
 * -arch，指定架构，例如arm64、armv7
 * -j，只显示符号名，不显示地址和类型
+
+
+
+```
+0000000100001a90 t -[MyClass .cxx_destruct]
+    00000001000018c0 t -[MyClass initWithName:number:]
+    00000001000019c0 t -[MyClass name]
+    0000000100001a40 t -[MyClass number]
+    00000001000019f0 t -[MyClass setName:]
+    0000000100001a60 t -[MyClass setNumber:]
+    0000000100001ad0 T _MyFunction
+                     U _NSLog
+    0000000100002350 S _NXArgc
+    0000000100002358 S _NXArgv
+    0000000100002290 S _OBJC_CLASS_$_MyClass
+                     U _OBJC_CLASS_$_NSObject
+    00000001000022e0 S _OBJC_IVAR_$_MyClass._name
+    00000001000022e8 S _OBJC_IVAR_$_MyClass._number
+    00000001000022b8 S _OBJC_METACLASS_$_MyClass
+                     U _OBJC_METACLASS_$_NSObject
+                     U ___CFConstantStringClassReference
+    0000000100002368 S ___progname
+    0000000100000000 A __mh_execute_header
+                     U __objc_empty_cache
+                     U __objc_empty_vtable
+    0000000100002360 S _environ
+                     U _exit
+    0000000100001b70 T _main
+                     U _objc_autoreleasePoolPop
+                     U _objc_autoreleasePoolPush
+                     U _objc_autoreleaseReturnValue
+                     U _objc_getProperty
+                     U _objc_msgSend
+                     U _objc_msgSendSuper2
+                     U _objc_msgSend_fixup
+                     U _objc_release
+                     U _objc_retain
+                     U _objc_retainAutoreleasedReturnValue
+                     U _objc_setProperty
+                     U _objc_storeStrong
+    0000000100002000 s _pvars
+                     U dyld_stub_binder
+    0000000100001880 T start
+```
+
+第一列是符号的地址，第三列是符号的名称，第二列是符号的类型[^1]
+
+* T，符号在text section
+* t，符号在text section，但是对外不可见（not visible）
+* U，符号未定义（undefined），该符号在其他library中
+
+
 
 ### 5. strings
 
@@ -147,6 +206,12 @@
 注解：
 
 [1] LC_UUID，指的是MachO中Load Command UUID
+
+[^1]: https://www.mikeash.com/pyblog/friday-qa-2011-12-02-object-file-inspection-tools.html 
+
+
+
+
 
 
 
