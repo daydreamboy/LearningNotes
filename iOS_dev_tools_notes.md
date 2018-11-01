@@ -20,7 +20,7 @@ $ class-dump a.out
 
 
 
-### 2、otx
+### 2、otx[^2]
 
 安装方法：
 
@@ -35,4 +35,6 @@ $ class-dump a.out
 
 
 [^1]: https://stackoverflow.com/a/44063320 
+
+[^2]: http://otx.osxninja.com 
 

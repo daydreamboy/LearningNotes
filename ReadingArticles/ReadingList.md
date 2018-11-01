@@ -28,11 +28,19 @@
 
 
 
+#### 4. Object File Inspection Tools[^4]
+
+介绍class-dump和otx工具，以及nm和otool。简单介绍反汇编知识。
+
+
+
 [^1]: <https://www.mikeash.com/pyblog/tales-from-the-crash-mines-issue-1.html>
 [^2]: https://www.plausible.coop/blog/?p=176 
 [^3]: https://medium.com/@abhimuralidharan/universal-links-in-ios-79c4ee038272 
 
+[^4]: https://www.mikeash.com/pyblog/friday-qa-2011-12-02-object-file-inspection-tools.html
 
+ 
 
 
 
