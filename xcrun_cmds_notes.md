@@ -1,22 +1,5 @@
 ## xcrun命令
 
-1. clang
-2. size
-3. otool
-4. nm
-5. strings
-6. lipo
-7. file
-8. simctl
-9. ld
-10. strip
-11. dwarfdump
-12. lldb
-13. install\_name\_tool
-14. momc
-
-
-
 [TOC]
 
 
@@ -33,11 +16,14 @@
 | clang -rewrite-objc Block1.m | 生成对应的.cpp文件 |
 
 
+
 ### 2. size
 
 | example | task |
 |---------|------|
 | size -x -l -m a.out | 查看segment以及section的结构 |
+
+
 
 ### 3. otool
 
@@ -131,6 +117,8 @@
 | strings a.out | 查看可执行文件中可打印的字符串（例如__TEXT,__cstring中字符串） |
 | strings -o a.out | -o显示字符串的文件偏移量，默认是十进制 |
 
+
+
 ### 6. lipo
 
 | example | task |
@@ -139,12 +127,16 @@
 | lipo -create -output libffi.a ./Debug-iphoneos/libffi.a ./Debug-iphonesimulator/libffi.a | 合并两个架构的二进制文件 |
 | lipo -thin arm64 \<xxx\> -output xxx_arm64 | 二进制文件分拆单个架构 |
 
+
+
 ### 7. file
 
 | example | task |
 |---------|------|
 | file \<file\> | 查看文件的MachO格式 |
 | file -I \<file\> | 查看文件的mine类型 |
+
+
 
 ### 8. simctl
 
@@ -153,6 +145,8 @@
 | simctl list | 查看所有模拟器 |
 | simctl list \| grep booted | 查看当前启动的模拟器 |
 | simctl delete unavailable | 删除当前无效的模拟器（可以节省磁盘空间） |
+
+
 
 ### 9. ld
 
@@ -164,6 +158,8 @@
 
 参考资料：man ld
 
+
+
 ### 10. strip
 
 | example | task |
@@ -171,6 +167,8 @@
 | strip -x XXX.framework/XXX | 移除所有local符号，仅保留global符号 |
 
 参考资料：man strip
+
+
 
 ### 11. dwarfdump
 
@@ -181,11 +179,15 @@
 
 参考资料：man dwarfdump
 
+
+
 ### 12. lldb
 
 | example | task |
 |---------|------|
 | lldb -n \<process name\> | 调试某个进程 |
+
+
 
 ### 13. install\_name\_tool
 
@@ -193,12 +195,22 @@
 |---------|------|
 | install\_name\_tool DeleteMe -change /System/Library/Frameworks/Social.framework/Social /System/Library/Frameworks/NotificationCenter.framework/NotificationCenter | 替换MachO文件中依赖的动态库LC字段。otool -L查看修改后的依赖库 |
 
+
+
 ### 14. momc
 
 | example                                                      | task |
 | ------------------------------------------------------------ | ---- |
 | $ xcrun momc <br/> usage: momc --sdkroot=<path> \[--appletvos-deployment-target\]\[--iphoneos-deployment-target\]\[--macosx-deployment-target\]\[--watchos-deployment-target\]\[--module \]\[--print-diagnostic-categories\]\[--no-warnings\]\[--no-inverse-relationship-warnings\]\[--no-max-property-count-warnings\]\[--no-delete-rule-warnings\]\[--dump-models\] source destination |      momc用法 |
 | $ /Applications/Xcode.app/Contents/Developer/usr/bin/momc --sdkroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk --iphonesimulator-deployment-target 8.0 ~/path/to/XXX.xcdatamodeld ~/ |  编译xcdatamodeld文件    |
+
+
+
+### 15. c++filt
+
+| example                                                      | Task               |
+| ------------------------------------------------------------ | ------------------ |
+| $ c++filt __ZNSs6assignEPKcm <br/>std::string::assign(char const*, unsigned long) | demangle C++的符号 |
 
 
 

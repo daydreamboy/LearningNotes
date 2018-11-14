@@ -4,9 +4,10 @@
 
 ---
 
-#### 1、mikeash.com/ Tales From The Crash Mines/ Issue #1[^1]
+#### 1. mikeash.com/ Tales From The Crash Mines/ Issue #1[^1]
 
-比较详细地解释如何分析crash问题。
+* 比较详细地解释如何分析crash问题。
+* 没有找到第二篇了
 
 
 
@@ -34,13 +35,21 @@
 
 
 
+#### 5. Disassembling the Assembly系列
+
+* Disassembling the Assembly, Part 1[^5]
+  * 汇编一段简单的代码，分析其中main函数对应的汇编指令。
+  * 介绍一些Call Convention知识
+
+
+
 [^1]: <https://www.mikeash.com/pyblog/tales-from-the-crash-mines-issue-1.html>
 [^2]: https://www.plausible.coop/blog/?p=176 
 [^3]: https://medium.com/@abhimuralidharan/universal-links-in-ios-79c4ee038272 
 
 [^4]: https://www.mikeash.com/pyblog/friday-qa-2011-12-02-object-file-inspection-tools.html
 
- 
+[^5]: https://www.mikeash.com/pyblog/friday-qa-2011-12-16-disassembling-the-assembly-part-1.html
 
 
 
