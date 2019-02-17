@@ -1,5 +1,5 @@
 # MacOS Command Notes
---
+[TOC]
 
 ### 1. grep
 
@@ -32,7 +32,7 @@ find . -d -name "delete" -exec rm -r "{}" \;
 ```
 
 * 递归搜索某个文件夹下所有文件包含特定字符串   
- 
+
 ```
 grep -rni "string" *
 ```
@@ -46,6 +46,8 @@ i，大小写不敏感
 ```
 grep -rl matchstring somedir/ | xargs sed -i 's/string1/string2/g'
 ```
+
+
 
 ### 2. pgrep
 
@@ -70,6 +72,8 @@ $ pgrep -fl lldb
 98212 /Applications/Xcode-beta.app/Contents/Developer/usr/bin/lldb -n helloptrace -w
 ```
 
+
+
 ### 3. ps
 
 释义：process status    
@@ -92,7 +96,7 @@ $ pgrep -fl lldb
 $ ps -fp `pgrep -x debugserver`
   UID   PID  PPID   C STIME   TTY           TIME CMD
   501 34934 34933   0  9:12PM ttys053    0:00.20 /Applications/Xcode-beta.app/Contents/SharedFrameworks/LLDB.framework/Resources/debugserver --native-regs --setsid --reverse-connect 127.0.0.1:61096
-``` 
+```
 
 * ps -o field= \<PID\>，输出特定PID进程的某个指定field
 
@@ -105,6 +109,20 @@ $ ps -fp `pgrep -x debugserver`
 ```
 
 
+
+### 4. md5
+
+格式：md5 [-pqrtx] [-s string] [files ...]
+
+示例：
+
+```shell
+$ md5 -s hell
+MD5 ("hell") = 4229d691b07b13341da53f17ab9f2416
+```
+
+
+
 References
 --
 
@@ -113,3 +131,4 @@ References
 [^2]: [rm - How to delete directories based on `find` output? - Unix & Linux Stack Exchange](https://unix.stackexchange.com/questions/89925/how-to-delete-directories-based-on-find-output)
 
 [^3]: https://unix.stackexchange.com/questions/66196/how-to-run-grep-and-show-x-number-of-lines-before-and-after-the-match
+
