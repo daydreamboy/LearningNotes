@@ -1,11 +1,5 @@
 # Shortcuts Notes
 
-* Mac OS X
-
-- Terminal
-- Visual Code
-- Xcode
-
 [TOC]
 
 
@@ -13,13 +7,54 @@
 
 1. 锁屏：`^ + ⌘ + q`（High Sierra 10.13+）
 
+
+
 ## Terminal
+
+
 
 
 ## Visual Code
 
-1. 切换语言：`⌘ + k + m`
-2. 格式代码：`⇧ + ⎇ + f`
+1. 切换语言：`⌘ + k, m`（先按下⌘和k，然后按下m）
+2. 格式化代码：`⇧ + ⎇ + f`
+3. 打开命令提示 (Show All Commands)：`⌘ + ⇧ + p`
+4. 打开设置界面：` ⌘ + ,`
+
+
+
+### 配置Setting.json
+
+`⌘ + ⇧ + p`，输入Settings.json，可以打开VSCode配置文件。
+
+
+
+#### （1）设置文件后缀关联语法
+
+```json
+{
+    "files.associations": {
+        "*.podspec": "ruby",
+        "*.we": "vue"
+    }
+}
+```
+
+
+
+### Prettier插件
+
+#### （1）设置Vue语法格式化
+
+默认VSCode禁用了Vue的语法格式化[^2]。`⌘ + ⇧ + p`，输入Settings.json，增加下面字段以及值
+
+```json
+{
+    "prettier.disableLanguages": []
+}
+```
+
+
 
 ## Xcode
 
@@ -30,7 +65,6 @@
 
 References
 --
-https://mjtsai.com/blog/2016/08/16/xcodes-copy-qualified-symbol-name-command/
-
-
+[^1]:https://mjtsai.com/blog/2016/08/16/xcodes-copy-qualified-symbol-name-command/
+[^2]:https://stackoverflow.com/a/52595941
 
