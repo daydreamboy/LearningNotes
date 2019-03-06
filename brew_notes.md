@@ -1,6 +1,4 @@
-## brew使用手册
-
-TOC
+# brew使用手册
 
 [TOC]
 
@@ -12,7 +10,7 @@ TOC
 说明：列出当前版本的formula的安装位置    
 例子：    
 
-```
+```shell
 $ brew list chisel
 /usr/local/Cellar/chisel/1.6.0/libexec/commands/ (14 files)
 /usr/local/Cellar/chisel/1.6.0/libexec/ (7 files)
@@ -27,7 +25,7 @@ $ brew list chisel
 说明：列出formula的本地信息（安装版本等）
 例子：    
 
-```
+```shell
 $ brew info chisel
 chisel: stable 1.8.0 (bottled), HEAD
 Collection of LLDB commands to assist debugging iOS apps
@@ -49,13 +47,13 @@ Add the following line to ~/.lldbinit to load chisel when Xcode launches:
 
 
 
-### 3、swtich
+### 3、switch
 
 格式：**brew** **switch** \<formula\> \<version\>     
 说明：切换formula的版本[^1]
 例子：    
 
-```
+```shell
 $ brew switch chisel 1.6.0
 Cleaning /usr/local/Cellar/chisel/1.5.0
 Cleaning /usr/local/Cellar/chisel/1.8.0
@@ -69,6 +67,20 @@ $ brew list chisel
 
 
 
+### 4、upgrade
+
+格式：**brew upgrade** \<formula\>
+
+说明：升级formula的版本
+
+例子：
+
+```shell
+$ brew upgrade io
+```
+
+
+
 
 
 ## 首次安装
@@ -77,7 +89,7 @@ Homebrew是Mac OS X的命令行包管理工具，类似Ubuntu下apt、CentOS下�
 
 官方网址：<http://brew.sh/>，提供的安装命令（可能会有变化，以官方为准），如下 
 
-```
+```shell
 $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
@@ -85,8 +97,8 @@ $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/maste
 
 卸载命令，如下 
 
-```
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
+```shell
+$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
 ```
 
 
