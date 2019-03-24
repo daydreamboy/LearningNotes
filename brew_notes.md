@@ -105,7 +105,18 @@ $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/maste
 
 ## 基本概念
 
+官方文档上，给下面术语的归纳[^2]，如下
 
+| Term            | Description                                                  | Example                                                      |
+| --------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| **Formula**     | The package definition                                       | `/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/foo.rb` |
+| **Keg**         | The installation prefix of a **Formula**                     | `/usr/local/Cellar/foo/0.1`                                  |
+| **opt prefix**  | A symlink to the active version of a **Keg**                 | `/usr/local/opt/foo`                                         |
+| **Cellar**      | All **Kegs** are installed here                              | `/usr/local/Cellar`                                          |
+| **Tap**         | A Git repository of **Formulae** and/or commands             | `/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core`    |
+| **Bottle**      | Pre-built **Keg** used instead of building from source       | `qt-4.8.4.mavericks.bottle.tar.gz`                           |
+| **Cask**        | An [extension of Homebrew](https://github.com/Homebrew/homebrew-cask) to install macOS native apps | `/Applications/MacDown.app/Contents/SharedSupport/bin/macdown` |
+| **Brew Bundle** | An [extension of Homebrew](https://github.com/Homebrew/homebrew-bundle) to describe dependencies | `brew 'myservice', restart_service: true`                    |
 
 
 
@@ -134,3 +145,4 @@ Cellar安装位置：/usr/local/Cellar
 ## 参考资料
 
 [^1]: https://stackoverflow.com/a/17103753
+[^2]:https://docs.brew.sh/Formula-Cookbook
