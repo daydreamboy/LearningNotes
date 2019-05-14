@@ -1,9 +1,9 @@
-## xcrun命令
+# xcrun命令
 
 [TOC]
 
 
-### 1. clang
+## 1、clang
 
 | example | task |
 |---------|------|
@@ -17,7 +17,7 @@
 
 
 
-### 2. size
+## 2、size
 
 | example | task |
 |---------|------|
@@ -25,7 +25,7 @@
 
 
 
-### 3. otool
+## 3、otool
 
 | example | task |
 |---------|------|
@@ -45,7 +45,7 @@
 
 
 
-### 4. nm
+## 4、nm
 
 | example | task |
 |---------|------|
@@ -110,7 +110,7 @@
 
 
 
-### 5. strings
+## 5、strings
 
 | example | task |
 |---------|------|
@@ -119,7 +119,7 @@
 
 
 
-### 6. lipo
+## 6、lipo
 
 | example | task |
 |---------|------|
@@ -129,7 +129,7 @@
 
 
 
-### 7. file
+## 7、file
 
 | example | task |
 |---------|------|
@@ -138,7 +138,7 @@
 
 
 
-### 8. simctl
+## 8、simctl
 
 | example | task |
 |---------|------|
@@ -148,7 +148,7 @@
 
 
 
-### 9. ld
+## 9、ld
 
 | options | meaning | tips |
 |---------|---------|------|
@@ -160,7 +160,7 @@
 
 
 
-### 10. strip
+## 10、strip
 
 | example | task |
 |---------|------|
@@ -170,7 +170,7 @@
 
 
 
-### 11. dwarfdump
+## 11、dwarfdump
 
 | example | task |
 |---------|------|
@@ -181,7 +181,13 @@
 
 
 
-### 12. lldb
+说明
+
+> LC_UUID，指的是MachO中Load Command UUID
+
+
+
+## 12、lldb
 
 | example | task |
 |---------|------|
@@ -189,15 +195,15 @@
 
 
 
-### 13. install\_name\_tool
+## 13、install\_name\_tool
 
 | example | task |
 |---------|------|
-| install\_name\_tool DeleteMe -change /System/Library/Frameworks/Social.framework/Social /System/Library/Frameworks/NotificationCenter.framework/NotificationCenter | 替换MachO文件中依赖的动态库LC字段。otool -L查看修改后的依赖库 |
+| $ install\_name\_tool DeleteMe -change /System/Library/Frameworks/Social.framework/Social /System/Library/Frameworks/NotificationCenter.framework/NotificationCenter | 替换MachO文件中依赖的动态库LC字段。otool -L查看修改后的依赖库 |
 
 
 
-### 14. momc
+## 14、momc
 
 | example                                                      | task |
 | ------------------------------------------------------------ | ---- |
@@ -206,22 +212,31 @@
 
 
 
-### 15. c++filt
+## 15、c++filt
 
-| example                                                      | Task               |
+| Example                                                      | Task               |
 | ------------------------------------------------------------ | ------------------ |
 | $ c++filt __ZNSs6assignEPKcm <br/>std::string::assign(char const*, unsigned long) | demangle C++的符号 |
 
 
 
---
-注解：
+## 16、assetutil
 
-[1] LC_UUID，指的是MachO中Load Command UUID
+作用：查看Assets.car文件
+
+| Example                             | Task                               |
+| ----------------------------------- | ---------------------------------- |
+| $ xcrun assetutil --info Assets.car | 查看Assets.car的描述(JSON格式)[^2] |
+
+
+
+
+
+## References
 
 [^1]: https://www.mikeash.com/pyblog/friday-qa-2011-12-02-object-file-inspection-tools.html 
 
-
+[^2]:https://stackoverflow.com/a/44597439
 
 
 
