@@ -37,3 +37,13 @@ https://gems.ruby-china.com/
 
 ## 3、Ruby语法
 
+
+
+## 4、常用Gem
+
+
+
+| gem名称              | 作用                          |
+| -------------------- | ----------------------------- |
+| update_xcode_plugins | 安装Xcode Plugin后重签名Xcode |
+
