@@ -81,6 +81,20 @@ $ brew upgrade io
 
 
 
+### 5、install
+
+格式：**brew install** \<formula1formula2 ...\>
+
+说明：升级formula的版本
+
+例子：
+
+```shell
+$ brew install wget tree jq
+```
+
+
+
 
 
 ## 首次安装

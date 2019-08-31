@@ -63,8 +63,19 @@
 
 
 
+## Finder
+
+1. 显示隐藏文件[^3]：`⌘ + ⇧ + .`
+2. 拷贝当前选中文件夹/文件的绝对路径：`⌘ + ⎇ + c`
+
+
+
+
+
 References
 --
 [^1]:https://mjtsai.com/blog/2016/08/16/xcodes-copy-qualified-symbol-name-command/
 [^2]:https://stackoverflow.com/a/52595941
+
+[^3]:https://apple.stackexchange.com/questions/340542/show-hidden-files-on-mac-os-x-mojave-using-terminal
 
