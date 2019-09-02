@@ -106,6 +106,42 @@ $ git rev-parse --abbrev-ref HEAD
 
 ### 5. config
 
+格式：`git config [<options>]`
+
+说明：用于设置和查询git的配置
+
+git的config，分为下面三个级别[^4]
+
+* project，配置存放在git仓库`.git/config`文件中，配置仅对当前git仓库有效
+* global，配置存放在git仓库`~/.gitconfig`文件中，配置对当前用户的所有git仓库有效
+* system，配置存放在git仓库`/etc/gitconfig`文件中，配置对所有用户的所有git仓库有效
+
+
+
+访问project级别的config配置
+
+```shell
+$ cd <git repo>; git config user.name "John Doe" 
+或者
+$ git config --file path/to/<git repo>/.git/config user.name "John Doe" 
+```
+
+
+
+访问global级别的config配置
+
+```shell
+$ git config --global user.name "John Doe"
+```
+
+
+
+访问system级别的config配置
+
+```shell
+$ git config --system user.name "John Doe"
+```
+
 
 
 
@@ -116,3 +152,4 @@ $ git rev-parse --abbrev-ref HEAD
 [^2]:https://stackoverflow.com/a/12142066
 [^3]: https://stackoverflow.com/a/32540714
 
+[^4]: https://stackoverflow.com/a/16682441
