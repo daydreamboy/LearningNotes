@@ -13,7 +13,7 @@ Charles抓取https，必要步骤，如下
 
 * iOS真机设备安装根证书，`Charles > Help > SSL Proxying > Install Charles Root Certificate on a Mobile Device or Remote Browser`
   * 根据弹出提示框进行操作：配置代理、Safari访问chls.pro/ssl安装根证书
-  * iOS 10.3系统及以上，`Settings > General > About > Certificate Trust Settings`，打开刚才根证书的信任。（如果不信任，浏览器访问https网站会给出是否继续的提示、Charles抓https接口会失败）
+  * iOS 10.3系统及以上，`Settings > General > About > Certificate Trust Settings`，打开刚才根证书的信任[^1]。（如果不信任，浏览器访问https网站会给出是否继续的提示、Charles抓https接口会失败）
 
 
 
@@ -33,7 +33,9 @@ Charles抓取https，必要步骤，如下
 
 
 
+## References
 
+[^1]:https://stackoverflow.com/a/48891484
 
 
 
