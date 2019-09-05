@@ -154,6 +154,8 @@ Cellar安装位置：/usr/local/Cellar
 - tree，树形显示目录结构 
 - [jq](https://stedolan.github.io/jq/)，JSON解析命令行工具。使用教程 <https://stedolan.github.io/jq/tutorial/>
 
+* go2shell，在当前选中文件夹打开Terminal，`brew cask install go2shell`
+
 
 
 ## 参考资料
