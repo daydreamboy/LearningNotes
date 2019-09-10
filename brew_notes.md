@@ -155,6 +155,7 @@ Cellar安装位置：/usr/local/Cellar
 - [jq](https://stedolan.github.io/jq/)，JSON解析命令行工具。使用教程 <https://stedolan.github.io/jq/tutorial/>
 
 * go2shell，在当前选中文件夹打开Terminal，`brew cask install go2shell`
+* npm，开发Node.js
 
 
 
