@@ -45,17 +45,25 @@ stash@{Tue Apr 3 19:17:27 2018}: On release/180427/master: temp3
 
 ### 2. log
 
-格式：`git log \<subcommand\>`
+格式：`git log [<options>] [<revision range>] [[--] <path>...]`
 
 说明：查看log
 
 用例：
 
-#### （1）查看某个用户的log[^1]
+#### （1）查看某个或多个用户的log[^1]
 
 ```shell
 $ git log --author='<username>'
+$ git log --author='<username1>' --author='<username2>'
+$ git log --author='<email.username@company.com>'
 ```
+
+
+
+> --author参数，除了可以指定用户名，还可以指定用户的email
+
+
 
 
 
