@@ -156,6 +156,11 @@ Cellar安装位置：/usr/local/Cellar
 
 * go2shell，在当前选中文件夹打开Terminal，`brew cask install go2shell`
 * npm，开发Node.js
+* p7zip，7z格式压缩工具[^3]
+
+
+
+
 
 
 
@@ -163,3 +168,5 @@ Cellar安装位置：/usr/local/Cellar
 
 [^1]: https://stackoverflow.com/a/17103753
 [^2]:https://docs.brew.sh/Formula-Cookbook
+[^3]:https://superuser.com/a/667076
+
