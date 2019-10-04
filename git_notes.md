@@ -152,6 +152,20 @@ $ git config --system user.name "John Doe"
 
 
 
+### 6. clone
+
+
+
+如果git仓库包含submodule，clone时可以增加`--recursive`选项，将submodule同时clone下来。例如
+
+```shell
+$ git clone --recursive https://github.com/DeVaukz/MachO-Explorer
+```
+
+
+
+
+
 
 
 ## References
@@ -161,3 +175,4 @@ $ git config --system user.name "John Doe"
 [^3]: https://stackoverflow.com/a/32540714
 
 [^4]: https://stackoverflow.com/a/16682441
+

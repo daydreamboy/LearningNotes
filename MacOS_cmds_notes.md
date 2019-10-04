@@ -76,8 +76,10 @@ $ pgrep -fl lldb
 
 ### 3. ps
 
-释义：process status    
-说明：输出进程的状态    
+释义：process status
+
+说明：输出进程的状态
+
 示例：
 
 * ps，输出当前用户的所有进程信息
@@ -123,6 +125,42 @@ MD5 ("hell") = 4229d691b07b13341da53f17ab9f2416
 
 
 
+### 5. od
+
+释义：octal, decimal, hex, ASCII dump工具
+
+说明：按照某种进制输出数据
+
+
+
+按照一个字节单位，十六进制dump字符串，如下[^4]
+
+```shell
+$ echo -n "Hello" | od -t x1
+0000000    48  65  6c  6c  6f                                            
+0000005
+```
+
+> -n，让echo输出不要带自动换行
+>
+> `-t x1`是`--format=x1`的简写，x代表hexidecimal，而1代表1个字节为单位
+
+
+
+按照两个字节单位，十六进制dump字符串，如下
+
+```shell
+$ echo -n "Hello" | od -t x2
+0000000      6548    6c6c    006f                                        
+0000005
+```
+
+> 注意：上面使用little-endian方式，低地址放低位。因此，He输出为6548，先e（65）后H（48）
+
+
+
+
+
 References
 --
 
@@ -132,3 +170,4 @@ References
 
 [^3]: https://unix.stackexchange.com/questions/66196/how-to-run-grep-and-show-x-number-of-lines-before-and-after-the-match
 
+[^4]:https://stackoverflow.com/questions/6791798/convert-string-to-hexadecimal-on-command-line
