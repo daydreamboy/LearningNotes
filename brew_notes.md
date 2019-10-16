@@ -148,17 +148,19 @@ Cellar安装位置：/usr/local/Cellar
 
 ## 常用安装包
 
+
+
 - trash，将文件或文件夹移到废纸篓中 
 - wget，下载工具 
 - jdk安装，brew cask install java 
 - tree，树形显示目录结构 
 - [jq](https://stedolan.github.io/jq/)，JSON解析命令行工具。使用教程 <https://stedolan.github.io/jq/tutorial/>
 
-* go2shell，在当前选中文件夹打开Terminal，`brew cask install go2shell`
+* go2shell，在当前选中文件夹打开Terminal。安装方法：`brew cask install go2shell`
 * npm，开发Node.js
 * p7zip，7z格式压缩工具[^3]
 
-
+* Asset Catalog Tinkerer[^4]，查看Assets.car文件中的图片。安装方法：`asset-catalog-tinkerer`
 
 
 
@@ -169,4 +171,8 @@ Cellar安装位置：/usr/local/Cellar
 [^1]: https://stackoverflow.com/a/17103753
 [^2]:https://docs.brew.sh/Formula-Cookbook
 [^3]:https://superuser.com/a/667076
+
+[^4]:https://github.com/insidegui/AssetCatalogTinkerer
+
+
 

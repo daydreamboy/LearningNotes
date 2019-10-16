@@ -112,6 +112,18 @@ $ git rev-parse --abbrev-ref HEAD
 
 
 
+#### （2）查看当前commit[^6]
+
+```shell
+$ git rev-parse HEAD
+```
+
+
+
+
+
+
+
 ### 5. config
 
 格式：`git config [<options>]`
@@ -164,6 +176,26 @@ $ git clone --recursive https://github.com/DeVaukz/MachO-Explorer
 
 
 
+## 3、使用git hook
+
+​       git hook是在git执行特定命令或者过程中，允许执行用户的脚本。git hook的脚本，位于`.git/hooks`目录下面，一般会有`.sample`后缀的示例脚本。
+
+​       git hook的脚本，有特定的文件名，用于hook那个过程，同时脚本需要可执行权限。常用的hook名[^5]，如下
+
+| 脚本名                                                       | 作用 |
+| ------------------------------------------------------------ | ---- |
+| [applypatch-msg](https://github.com/git/git/blob/master/templates/hooks--applypatch-msg.sample) |      |
+| [pre-applypatch](https://github.com/git/git/blob/master/templates/hooks--pre-applypatch.sample) |      |
+| [post-applypatch](https://www.git-scm.com/docs/githooks#_post_applypatch) |      |
+|                                                              |      |
+|                                                              |      |
+|                                                              |      |
+|                                                              |      |
+|                                                              |      |
+|                                                              |      |
+
+
+
 
 
 
@@ -175,4 +207,11 @@ $ git clone --recursive https://github.com/DeVaukz/MachO-Explorer
 [^3]: https://stackoverflow.com/a/32540714
 
 [^4]: https://stackoverflow.com/a/16682441
+
+[^5]:https://githooks.com/
+[^6]:https://stackoverflow.com/a/3443485
+
+
+
+
 
