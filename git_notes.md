@@ -187,16 +187,26 @@ $ git clone --recursive https://github.com/DeVaukz/MachO-Explorer
 | [applypatch-msg](https://github.com/git/git/blob/master/templates/hooks--applypatch-msg.sample) |      |
 | [pre-applypatch](https://github.com/git/git/blob/master/templates/hooks--pre-applypatch.sample) |      |
 | [post-applypatch](https://www.git-scm.com/docs/githooks#_post_applypatch) |      |
-|                                                              |      |
-|                                                              |      |
-|                                                              |      |
-|                                                              |      |
-|                                                              |      |
-|                                                              |      |
+| [pre-commit](https://github.com/git/git/blob/master/templates/hooks--pre-commit.sample) |      |
+| [prepare-commit-msg](https://github.com/git/git/blob/master/templates/hooks--prepare-commit-msg.sample) |      |
+| [commit-msg](https://github.com/git/git/blob/master/templates/hooks--commit-msg.sample) |      |
+| [post-commit](https://www.git-scm.com/docs/githooks#_post_commit) |      |
+| [pre-rebase](https://github.com/git/git/blob/master/templates/hooks--pre-rebase.sample) |      |
+| [post-checkout](https://www.git-scm.com/docs/githooks#_post_checkout) |      |
+| [post-merge](https://www.git-scm.com/docs/githooks#_post_merge) |      |
+| [pre-receive](https://www.git-scm.com/docs/githooks#pre-receive) |      |
+| [update](https://github.com/git/git/blob/master/templates/hooks--update.sample) |      |
+| [post-receive](https://www.git-scm.com/docs/githooks#post-receive) |      |
+| [post-update](https://github.com/git/git/blob/master/templates/hooks--post-update.sample) |      |
+| [pre-auto-gc](https://www.git-scm.com/docs/githooks#_pre_auto_gc) |      |
+| [post-rewrite](https://www.git-scm.com/docs/githooks#_post_rewrite) |      |
+| [pre-push](https://www.git-scm.com/docs/githooks#_pre_push)  |      |
 
 
 
+// TODO
 
+https://stackoverflow.com/questions/3442874/in-git-how-can-i-write-the-current-commit-hash-to-a-file-in-the-same-commit
 
 
 
