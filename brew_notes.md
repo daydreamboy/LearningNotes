@@ -160,7 +160,7 @@ Cellar安装位置：/usr/local/Cellar
 * npm，开发Node.js
 * p7zip，7z格式压缩工具[^3]
 
-* Asset Catalog Tinkerer[^4]，查看Assets.car文件中的图片。安装方法：`asset-catalog-tinkerer`
+* Asset Catalog Tinkerer[^4]，查看Assets.car文件中的图片。安装方法：`brew cask install asset-catalog-tinkerer`
 
 
 
