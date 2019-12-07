@@ -159,8 +159,8 @@ Cellar安装位置：/usr/local/Cellar
 * go2shell，在当前选中文件夹打开Terminal。安装方法：`brew cask install go2shell`
 * npm，开发Node.js
 * p7zip，7z格式压缩工具[^3]
-
 * Asset Catalog Tinkerer[^4]，查看Assets.car文件中的图片。安装方法：`brew cask install asset-catalog-tinkerer`
+* Hex Fiend，二进制查看工具。安装方法：`brew cask install hex-fiend`
 
 
 
