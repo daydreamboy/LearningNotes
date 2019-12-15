@@ -10,7 +10,7 @@
 
 示例：
 
-```
+```shell
 $ git --exec-path
 /Applications/Xcode.app/Contents/Developer/usr/libexec/git-core
 ```
@@ -19,7 +19,22 @@ $ git --exec-path
 
 
 
-## 2、git命令
+## 2、git子命令
+
+
+
+一般情况下，git子命令都在git仓库中使用，但是不能`.git`文件夹下面使用，否则git子命令不能正常工作。
+
+举个例子，如下
+
+```shell
+$ cd .git
+➜  .git git:(master) git rev-parse --show-toplevel
+➜  .git git:(master) git status
+fatal: this operation must be run in a work tree
+```
+
+
 
 ### 1. stash
 
@@ -83,7 +98,7 @@ git diff [<options>] --no-index [--] <path> <path>
 
 用例：
 
-#### （1）查当前分支对应的远程分支是否文件改动（A/D/R）[^3]
+#### （1）查看当前分支对应的远程分支是否文件改动（A/D/R）[^3]
 
 ```shell
 $ git fetch
@@ -93,6 +108,48 @@ $ git diff --diff-filter=ADR --name-only master origin/master
 基于本地分支master，和远程master分支比较，查找出新增加文件（A）、删除文件（D）和重命名文件（R）
 
 > 需要提前fetch一下，获取远程分支的信息
+
+
+
+#### （2）查看Staged File列表[^7]
+
+Staged File列表，是指准备要提交的文件列表。
+
+使用下面命令，可以查看哪些要提交的文件
+
+```shell
+$ git diff --cached --name-status
+M       README.md
+A       WCMacroKit/test.h
+```
+
+
+
+#### diff选项
+
+```shell
+git diff --name-only
+path/to/modified/file
+path/to/renamed/file
+
+
+# list the names and change statuses:
+git diff --name-status
+M       path/to/modified/file
+R100    path/to/existing/file   path/to/renamed/file
+
+
+# list a diffstat-like output (+ed lines, -ed lines, file name):
+git diff --numstat
+1       0       path/to/modified/file
+0       0       path/to/{existing => renamed}/file
+```
+
+
+
+https://stackoverflow.com/a/21724628
+
+
 
 
 
@@ -119,6 +176,12 @@ $ git rev-parse HEAD
 ```
 
 
+
+#### （3）查看当前Git根目录路径[^8]
+
+```shell
+$ git rev-parse --show-toplevel
+```
 
 
 
@@ -221,7 +284,8 @@ https://stackoverflow.com/questions/3442874/in-git-how-can-i-write-the-current-c
 [^5]:https://githooks.com/
 [^6]:https://stackoverflow.com/a/3443485
 
-
+[^7]:https://stackoverflow.com/a/2413151
+[^8]:https://stackoverflow.com/a/957978
 
 
 
