@@ -1,7 +1,7 @@
 # MacOS Command Notes
 [TOC]
 
-### 1. grep
+## 1. grep
 
 格式：`grep [options] <pattern> <path/to/folder or file>`
 
@@ -13,43 +13,74 @@
 * `-A<number>`[^3]，显示上文line的个数
 * `-B<number>`[^3]，显示下文line的个数
 
+* `-e`，根据正则表达式匹配查找字符串。可以支持多个`-e`
+
+
+
 示例
 
-* 在文件中搜索指定文本
+* 在文件夹中搜索指定文本
 
-```
-grep -r 'pjson' /usr/local/Cellar/chisel/1.5.0/libexec/commands 
-```
-
-输出
-
+```shell
+$ grep -r 'pjson' /usr/local/Cellar/chisel/1.5.0/libexec/commands 
 /usr/local/Cellar/chisel/1.5.0/libexec/commands/FBPrintCommands.py:    return 'pjson'
+```
+
+
+
+* 同时搜索多个指定文本[^5]
+
+```shell
+$ cat 1.txt | grep -e foo -e bar 
+a bar
+a foo
+a football
+```
+
+或者使用简写形式
+
+```shell
+$ cat 1.txt | grep 'foo\|bar'
+a bar
+a foo
+a football
+```
+
+注意：`|`必须使用反斜杠进行转义，而不支持`*`，可以支持`.`、`+`匹配
+
+
 
 * 当前目录下递归搜索delete文件夹并删除它 [^1] [^2]
 
+```shell
+$ find . -d -name "delete" -exec rm -r "{}" \;
 ```
-find . -d -name "delete" -exec rm -r "{}" \;
-```
+
+
 
 * 递归搜索某个文件夹下所有文件包含特定字符串   
 
-```
-grep -rni "string" *
+```shell
+$ grep -rni "string" *
 ```
 >
 r，递归查找子文件夹    
 n，输出行号    
 i，大小写不敏感    
 
+
+
 * 在某个目录下，对所有文件的内容进行字符串替换
 
+```shell
+$ grep -rl matchstring somedir/ | xargs sed -i 's/string1/string2/g'
 ```
-grep -rl matchstring somedir/ | xargs sed -i 's/string1/string2/g'
-```
 
 
 
-### 2. pgrep
+
+
+## 2. pgrep
 
 释义：process grep    
 说明：在当前系统进程表中进行grep搜索   
@@ -74,7 +105,7 @@ $ pgrep -fl lldb
 
 
 
-### 3. ps
+## 3. ps
 
 释义：process status
 
@@ -112,7 +143,7 @@ $ ps -fp `pgrep -x debugserver`
 
 
 
-### 4. md5
+## 4. md5
 
 格式：md5 [-pqrtx] [-s string] [files ...]
 
@@ -125,7 +156,7 @@ MD5 ("hell") = 4229d691b07b13341da53f17ab9f2416
 
 
 
-### 5. od
+## 5. od
 
 释义：octal, decimal, hex, ASCII dump工具
 
@@ -171,3 +202,7 @@ References
 [^3]: https://unix.stackexchange.com/questions/66196/how-to-run-grep-and-show-x-number-of-lines-before-and-after-the-match
 
 [^4]:https://stackoverflow.com/questions/6791798/convert-string-to-hexadecimal-on-command-line
+[^5]:https://unix.stackexchange.com/a/37316
+
+
+
