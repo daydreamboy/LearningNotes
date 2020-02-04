@@ -190,6 +190,26 @@ $ echo -n "Hello" | od -t x2
 
 
 
+## 6. networksetup
+
+### （1）介绍
+
+networksetup是configuration tool for network settings in System Preferences.
+
+
+
+### （2）常用示例
+
+
+
+#### 清空DNS地址
+
+```shell
+$ networksetup -setdnsservers Wi-Fi Empty
+```
+
+
+
 
 
 References

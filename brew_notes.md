@@ -151,9 +151,27 @@ Cellar安装位置：/usr/local/Cellar
 
 
 - trash，将文件或文件夹移到废纸篓中 
+
 - wget，下载工具 
+
 - jdk安装，brew cask install java 
+
 - tree，树形显示目录结构 
+
+  - 使用示例
+
+  ```shell
+  $ tree . -L 2 -I node_modules
+  .
+  ├── assets
+  │   └── js
+  ├── dist
+  ├── index.html
+  ├── package-lock.json
+  ├── package.json
+  └── webpack.config.js
+  ```
+
 - [jq](https://stedolan.github.io/jq/)，JSON解析命令行工具。使用教程 <https://stedolan.github.io/jq/tutorial/>
 
 * go2shell，在当前选中文件夹打开Terminal。安装方法：`brew cask install go2shell`
