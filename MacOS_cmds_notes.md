@@ -210,6 +210,22 @@ $ networksetup -setdnsservers Wi-Fi Empty
 
 
 
+## 7. ssh
+
+
+
+### 登录root用户
+
+```shell
+$ ssh root@<ip address> -p <port>
+```
+
+说明
+
+> 1. 不指定`-p`，默认是22
+
+
+
 
 
 References
