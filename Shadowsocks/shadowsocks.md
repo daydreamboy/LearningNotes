@@ -67,7 +67,9 @@
 
 4. 如果Python版本的SS服务在启动，那么需要换成shadowsocks-libev版本的SS，并且使用aes-256-gcm加密方式。对应SS客户端的加密方式也需要使用aes-256-gcm。
 
+说明
 
+> 最新SS客户端（Mac），可以在[这里](https://github.com/shadowsocks/ShadowsocksX-NG)下载源码编译app
 
 
 
