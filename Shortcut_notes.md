@@ -71,6 +71,12 @@
 
 
 
+## WebStorm
+
+1. 定位当前文件所在位置：`⎇ + F1`，选择Project View
+
+
+
 
 
 References
@@ -79,4 +85,8 @@ References
 [^2]:https://stackoverflow.com/a/52595941
 
 [^3]:https://apple.stackexchange.com/questions/340542/show-hidden-files-on-mac-os-x-mojave-using-terminal
+
+[^4]:https://stackoverflow.com/questions/1086041/locate-current-file-in-intellij
+
+
 
