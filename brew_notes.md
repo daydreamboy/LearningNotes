@@ -148,37 +148,80 @@ Cellar安装位置：/usr/local/Cellar
 
 ## 常用安装包
 
+### trash
+
+将文件或文件夹移到废纸篓中 
 
 
-- trash，将文件或文件夹移到废纸篓中 
 
-- wget，下载工具 
+### wget
 
-- jdk安装，brew cask install java 
+下载工具 
 
-- tree，树形显示目录结构 
 
-  - 使用示例
 
-  ```shell
-  $ tree . -L 2 -I node_modules
-  .
-  ├── assets
-  │   └── js
-  ├── dist
-  ├── index.html
-  ├── package-lock.json
-  ├── package.json
-  └── webpack.config.js
-  ```
+### java
 
-- [jq](https://stedolan.github.io/jq/)，JSON解析命令行工具。使用教程 <https://stedolan.github.io/jq/tutorial/>
+jdk安装，brew cask install java 
 
-* go2shell，在当前选中文件夹打开Terminal。安装方法：`brew cask install go2shell`
-* npm，开发Node.js
-* p7zip，7z格式压缩工具[^3]
-* Asset Catalog Tinkerer[^4]，查看Assets.car文件中的图片。安装方法：`brew cask install asset-catalog-tinkerer`
-* Hex Fiend，二进制查看工具。安装方法：`brew cask install hex-fiend`
+
+
+### tree
+
+树形显示目录结构 
+
+使用示例
+
+```shell
+$ tree . -L 2 -I node_modules
+.
+├── assets
+│   └── js
+├── dist
+├── index.html
+├── package-lock.json
+├── package.json
+└── webpack.config.js
+```
+
+* -L，只显示两级
+* -I，忽略特定的文件夹
+
+
+
+### jq
+
+[jq](https://stedolan.github.io/jq/)，JSON解析命令行工具。使用教程 <https://stedolan.github.io/jq/tutorial/>
+
+
+
+### go2shell
+
+go2shell，在当前选中文件夹打开Terminal。安装方法：`brew cask install go2shell`
+
+
+
+### npm
+
+npm，开发Node.js
+
+
+
+### p7zip
+
+p7zip，7z格式压缩工具[^3]
+
+
+
+### Asset Catalog Tinkerer
+
+Asset Catalog Tinkerer[^4]，查看Assets.car文件中的图片。安装方法：`brew cask install asset-catalog-tinkerer`
+
+
+
+### Hex Fiend
+
+Hex Fiend，二进制查看工具。安装方法：`brew cask install hex-fiend`
 
 
 
