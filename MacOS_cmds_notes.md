@@ -226,6 +226,16 @@ $ ssh root@<ip address> -p <port>
 
 
 
+## 8.ffmpeg
+
+
+
+```shell
+ffmpeg -i "https://cdn3.lajiao-bo.com/20190912/awZxKqhT/index.m3u8" -bsf:a aac_adtstoasc -vcodec copy -c copy -crf 50 file.mp4
+```
+
+
+
 
 
 References

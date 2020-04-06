@@ -105,12 +105,25 @@ Quartz 2D使用Core Foundation的内存管理模型，也就是手动引用计�
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获取graphics context可以使用Quartz的函数或者Mac OS X中framework以及UIKit提供的高层API。根据输出设备的不同，获取graphics context的方式也不同。
 
-### 6.1 在iOS中获取Graphics Context
+### 6.1 在iOS中获取Graphics Context (View Context)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在iOS中可以通过实现UIView的drawRect:方法来完成绘制，在该方法中使用UIKit的`UIGraphicsGetCurrentContext`获取已经配置好的graphics context，该context采用UIKit的modified coordinate system，即原点在左上角。如果按照Quartz 2D的坐标系则需要将y轴翻转下。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在iOS中可以通过实现UIView的drawRect:方法来完成绘制，在该方法中使用UIKit的`UIGraphicsGetCurrentContext`获取已经配置好的graphics context，该context采用UIKit的modified coordinate system，即原点在左上角。如果需要将原点移动到view的左下角，则需要采用两个步骤：1. 将原点移动到(0, rect.size.height)；2. 将y轴从down翻转到up方向。
 
->
-当UIView显示时并且它的内容需要更新，则会调用drawRect:方法。在调用该方法前，UIView自动创建配置好的graphics context。
+```
+- (void)drawRect:(CGRect)rect {
+    CGContextRef viewContext = UIGraphicsGetCurrentContext();
+    
+    // Note: convert UIKit coordinate system into Quartz 2D coordinate system
+    // and move origin to view's bottom-left corner
+    CGContextTranslateCTM(viewContext, 0, rect.size.height);
+    CGContextScaleCTM(viewContext, 1, -1);
+    
+    // now viewContext use Quartz 2D coordinate system
+    // ...
+}
+```
+
+当UIView显示时并且它的内容需要更新，则会调用drawRect:方法。在调用该方法前，UIView自动创建配置好的view context。值得注意的是，view context有自己的大小，而且rect大小不一致。
 
 ### 6.2 在MacOS中创建window graphcis context
 
@@ -124,8 +137,8 @@ CGContextRef myContext = [[NSGraphicsContext currentContext] graphicsPort];
 
 Quartz 2D提供两种API用于创建PDF graphics context
 
-* CGPDFContextCreateWithURL，可以指定一个URL地址用于存放PDF
-* CGPDFContextCreate，没有指定URL地址，但可以指定data consumer，用于传递PDF数据
+* `CGPDFContextCreateWithURL`，可以指定一个URL地址用于存放PDF
+* `CGPDFContextCreate`，没有指定URL地址，但可以指定data consumer，用于传递PDF数据
 
 使用CGPDFContextCreateWithURL的例子，如下
 
@@ -181,7 +194,87 @@ CGContextRef MyPDFContextCreate (const CGRect *inMediaBox,
 }
 ```
 
+### 6.4 创建位图graphcis context
 
+在iOS中有两种方式可以创建一个位图graphcis context，如下
+
+* `UIGraphicsBeginImageContextWithOptions`，UIKit提供的函数，采用UIKit的左上角坐标系，它带三个参数
+	* size，位图context的大小
+	* opaque，是否不透明的。如果YES，则位图没有alpha通道；如果NO，则位图包含alpha通道
+	* scale，位图的缩放。如果设置0.0，则默认采用设备分辨率，例如2x、3x等
+	
+* `CGBitmapContextCreate`，CoreGraphics提供的函数，采用Quartz 2D的左下角坐标系，用起来比UIGraphicsBeginImageContextWithOptions要复杂一点。
+	* data，位图数据的buffer，大小至少是(bytesPerRow * height)个byte
+	* width，位图的宽度，单位像素
+	* height，位图的高度，单位像素
+	* bitsPerComponent，每个通道的比特数。例如RGB的每个通道是8个比特。
+	* bytesPerRow，位图每一行的字节数。一般来说，它的大小是(width * 4)个字节数，但是存在字节对齐，因此官方推荐bytesPerRow按照16 bytes对齐，这样性能是最优的。
+	* colorspace，位图的颜色空间，一般有Gray、RGB、CMYK或者NULL
+	* bitmapInfo，位图其他信息，CGBitmapInfo类型和CGImageAlphaInfo类型的组合。例如控制颜色通道的顺序，是ARGB，还是RGBA。
+
+> 
+使用UIGraphicsBeginImageContextWithOptions创建的位图，其格式是ARGB 32位。    
+如果opaque为YES，bitmapInfo是`kCGImageAlphaNoneSkipFirst | kCGBitmapByteOrder32Host`。    
+如果opaque为NO，bitmapInfo是`kCGImageAlphaPremultipliedFirst | kCGBitmapByteOrder32Host`。
+
+使用UIGraphicsBeginImageContextWithOptions的例子，如下
+
+```
+- (void)drawRect:(CGRect)rect {
+    CGContextRef viewContext = UIGraphicsGetCurrentContext();
+    
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0.0);
+    {
+        CGContextRef bitmapContext = UIGraphicsGetCurrentContext();
+        [self drawGraphicsInBitmapContext:bitmapContext viewContext:viewContext viewBoundingRect:rect];
+    }
+    UIGraphicsEndImageContext();
+}
+```
+
+使用CGBitmapContextCreate的例子，如下
+
+```
+CGContextRef MyBitmapContextCreate(int widthInPixel, int heightInPixel)
+{
+    CGContextRef context = NULL;
+    CGColorSpaceRef colorSpace;
+    void *bitmapData;
+    int bitmapByteCount;
+    int bitmapBytesPerRow;
+    
+    bitmapBytesPerRow = widthInPixel * 4;
+    bitmapByteCount = bitmapBytesPerRow * heightInPixel;
+    
+    colorSpace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
+    bitmapData = calloc(bitmapByteCount, sizeof(uint8_t));
+    
+    if (bitmapData == NULL) {
+        fprintf(stderr, "memory not allocated");
+        return NULL;
+    }
+    
+    context = CGBitmapContextCreate(bitmapData, widthInPixel, heightInPixel, 8, bitmapBytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast);
+    if (context == NULL) {
+        free(bitmapData);
+        fprintf(stderr, "context not created");
+        return NULL;
+    }
+    CGColorSpaceRelease(colorSpace);
+    
+    return context;
+}
+```
+
+## 7. Quartz 2D支持的像素格式
+
+![](images/Supported Pixel Formats.png)
+
+上面的几个缩写词
+
+* cs，color space
+* bpp，bits per pixel
+* bpc，bits per component
 
 ## TODO
 
