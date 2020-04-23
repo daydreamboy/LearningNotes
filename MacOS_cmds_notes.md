@@ -3,23 +3,75 @@
 
 ## 1. grep
 
-格式：`grep [options] <pattern> <path/to/folder or file>`
+### （1）语法格式
 
-* `-r`，递归查找子文件夹。默认只在指定文件夹下查找，而不在它的所有子文件夹下查找
-* `-n`，输出匹配位置所在文件中的行号
-* `-i`，忽略查找字符串的大写敏感
-* `-l`，输出匹配文件的相对路径，相对于指定路径
-* `-C<number>`[^3]，显示上下文line的个数
-* `-A<number>`[^3]，显示上文line的个数
-* `-B<number>`[^3]，显示下文line的个数
-
-* `-e`，根据正则表达式匹配查找字符串。可以支持多个`-e`
+```shell
+$ grep [options] <pattern> <path/to/folder or file>
+```
 
 
 
-示例
+### （2）常用选项
 
-* 在文件夹中搜索指定文本
+#### `-r`
+
+递归查找子文件夹。默认只在指定文件夹下查找，而不在它的所有子文件夹下查找
+
+
+
+#### `-n`
+
+输出匹配位置所在文件中的行号
+
+
+
+#### `-i`
+
+忽略查找字符串的大写敏感
+
+
+
+#### `-l`
+
+输出匹配文件的相对路径，相对于指定路径
+
+
+
+#### `-C<number>`[^3]
+
+显示上下文line的个数
+
+
+
+#### `-A<number>`[^3]
+
+显示上文line的个数
+
+
+
+#### `-B<number>`[^3]
+
+显示下文line的个数
+
+
+
+#### `-e`
+
+根据正则表达式匹配查找字符串。可以支持多个`-e`
+
+
+
+#### `-v`
+
+反向匹配。过滤显示不满足正则匹配的结果。
+
+
+
+### （3）常见用法
+
+#### 目录中递归进行文本匹配
+
+* 在某个文件夹下递归每个文件，并进行匹配
 
 ```shell
 $ grep -r 'pjson' /usr/local/Cellar/chisel/1.5.0/libexec/commands 
@@ -28,7 +80,21 @@ $ grep -r 'pjson' /usr/local/Cellar/chisel/1.5.0/libexec/commands
 
 
 
-* 同时搜索多个指定文本[^5]
+* 递归搜索当前文件夹下所有文件，并进行匹配
+
+```shell
+$ grep -rni "string" *
+```
+
+>r，递归查找子文件夹    
+>n，输出行号    
+>i，大小写不敏感    
+
+
+
+#### 指定多个pattern[^5]
+
+允许多个`-e`，用于指定多个pattern，使用逻辑或
 
 ```shell
 $ cat 1.txt | grep -e foo -e bar 
@@ -50,25 +116,7 @@ a football
 
 
 
-* 当前目录下递归搜索delete文件夹并删除它 [^1] [^2]
-
-```shell
-$ find . -d -name "delete" -exec rm -r "{}" \;
-```
-
-
-
-* 递归搜索某个文件夹下所有文件包含特定字符串   
-
-```shell
-$ grep -rni "string" *
-```
->
-r，递归查找子文件夹    
-n，输出行号    
-i，大小写不敏感    
-
-
+#### 匹配并替换文本
 
 * 在某个目录下，对所有文件的内容进行字符串替换
 
@@ -77,6 +125,16 @@ $ grep -rl matchstring somedir/ | xargs sed -i 's/string1/string2/g'
 ```
 
 
+
+#### 反向匹配
+
+* 查找不是当前分支的其他分支
+
+```shell
+$ git branch | grep -v \*
+```
+
+当前分支总是以`*`前缀，使用`-v`，用于过滤git branch输出每行没有带`*`的结果。
 
 
 
@@ -233,6 +291,22 @@ $ ssh root@<ip address> -p <port>
 ```shell
 ffmpeg -i "https://cdn3.lajiao-bo.com/20190912/awZxKqhT/index.m3u8" -bsf:a aac_adtstoasc -vcodec copy -c copy -crf 50 file.mp4
 ```
+
+
+
+## 9. find
+
+
+
+#### 搜索指定文件夹并删除
+
+当前目录下递归搜索delete文件夹并删除它 [^1] [^2]
+
+```shell
+$ find . -d -name "delete" -exec rm -r "{}" \;
+```
+
+
 
 
 

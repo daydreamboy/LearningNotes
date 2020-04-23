@@ -211,6 +211,14 @@ npm，开发Node.js
 
 p7zip，7z格式压缩工具[^3]
 
+使用示例
+
+```shell
+$ 7z a "iOS 13.4.simruntime".7z iOS\ 13.4.simruntime
+```
+
+
+
 
 
 ### Asset Catalog Tinkerer

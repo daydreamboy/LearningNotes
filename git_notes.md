@@ -273,6 +273,90 @@ https://stackoverflow.com/questions/3442874/in-git-how-can-i-write-the-current-c
 
 
 
+## 4、常用git alias
+
+### （1）配置.gitconfig文件
+
+在`~/.gitconfig`文件中，找到下面section进行配置[^9]
+
+```properties
+[alias]
+    <shortcut> = <actual command>
+    st = status
+    ci = commit -v
+```
+
+如果.gitconfig文件的格式有问题，执行git --version命名会报错，如下
+
+
+```shell
+$ git --version
+fatal: bad config line 15 in file /Users/wesley_chen/.gitconfig
+```
+
+
+
+由于.gitconfig有特定格式，可以使用git config --global命令进行添加别名。举个例子，如下
+
+```shell
+$ git config --global alias.removeLocalOtherBranch 'branch -d `git branch | grep -v '*' | xargs`'
+```
+
+
+
+
+
+
+
+### （2）常用git alias示例
+
+```properties
+[alias]
+    remove_local_other_branch = branch -d `git branch | grep -v \* | xargs`
+```
+
+
+
+* remove_local_other_branch，删除非当前分支的其他本地分支[^10]
+
+
+
+
+
+## 5、修改MacOS默认git[^11]
+
+MacOS自带git命令行工具，如下
+
+```shell
+$ git --version
+git version 2.24.1 (Apple Git-126)
+```
+
+
+
+可以使用brew安装git，并将git命令重新链接到新git工具
+
+```shell
+$ brew install git
+$ brew link --force git
+Warning: Already linked: /usr/local/Cellar/git/2.26.1
+To relink:
+  brew unlink git && brew link git
+```
+
+
+
+重启terminal，检查git版本，如下
+
+```shell
+$ git --version
+git version 2.26.1
+```
+
+
+
+
+
 ## References
 
 [^1]: https://stackoverflow.com/questions/4259996/how-can-i-view-a-git-log-of-just-one-users-commits 
@@ -287,5 +371,7 @@ https://stackoverflow.com/questions/3442874/in-git-how-can-i-write-the-current-c
 [^7]:https://stackoverflow.com/a/2413151
 [^8]:https://stackoverflow.com/a/957978
 
-
+[^9]:https://stackoverflow.com/questions/2553786/how-do-i-alias-commands-in-git
+[^10]:https://stackoverflow.com/questions/10610327/delete-all-local-git-branches
+[^11]:https://medium.com/@katopz/how-to-upgrade-git-ff00ea12be18
 
