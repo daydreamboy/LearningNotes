@@ -173,9 +173,6 @@ $ pgrep -fl lldb
 
 * ps，输出当前用户的所有进程信息
 
-* ps -a，输出所有用户的所有进程信息，但是忽略哪些没有controlling terminal的进程
-
-* ps -A，输出所有用户的所有进程信息，包括哪些没有controlling terminal的进程
 
 * ps -f，显示各个字段的信息（UID、PID、PPID等）
 
@@ -198,6 +195,22 @@ $ ps -fp `pgrep -x debugserver`
   UID   PID  PPID   C STIME   TTY           TIME CMD
   501 36553 36552   0 10:21AM ttys053    0:00.21 /Applications/Xcode-beta.app/Contents/SharedFrameworks/LLDB.framework/Resources/debugserver --native-regs --setsid --reverse-connect 127.0.0.1:62479
 ```
+
+
+
+### （2）常用选项
+
+#### `-e`
+
+和`-A`一样，打印非自己启动的进程
+
+
+
+#### `-a`
+
+打印自己启动的进程，以及非自己启动的进程
+
+
 
 
 

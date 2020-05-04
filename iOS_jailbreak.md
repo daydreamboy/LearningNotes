@@ -35,8 +35,15 @@
 我添加过的源，如下
 
 ```
-http://apt.abcydia.com(雷锋源）
+http://apt.abcydia.com (雷锋源）
+http://apt.itools.cn (用于安装iTools)
 ```
+
+
+
+
+
+
 
 
 
@@ -49,6 +56,43 @@ http://apt.abcydia.com(雷锋源）
 - IPA Installer
 - iOS Terminal
 - LocationFaker（需要购买，http://www.gottabemobile.com/2015/10/23/how-to-fake-your-location-on-iphone/）
+- [Flexible](http://cydia.saurik.com/package/com.shmoopillc.flexible/) (不推荐使用，换成Flipboard FLEX Loader)
+
+* [Flipboard FLEX Loader](https://github.com/XueshiQiao/FLEXLoader)
+* [Reveal Loader](https://github.com/heardrwt/RevealLoader)
+* [Filza File Manager](http://cydia.saurik.com/package/com.tigisoftware.filza/)
+* Filza File 文件管理器
+* [Cycript](https://cydia.saurik.com/package/cycript/)
+* Apple File Conduit 2
+
+
+
+### （1）Cydia Substrate
+
+
+
+### （2）Cycript
+
+Cycript是一个命令工具，支持在Console中执行Objective-C++和JavaScript语法的代码，其主页是http://www.cycript.org/
+
+
+
+#### 常见用法
+
+##### 注入进程
+
+```shell
+bash# cycript -p SpringBoard
+cy# <type your Objective-C++/JavaScript code>
+```
+
+
+
+### （3）Apple File Conduit 2
+
+Apple File Conduit 2解除系统文件夹的一些限制[^15]，安装后，iExplorer、iFunBox、爱思助手等Mac端软件，都可以访问系统根目录。
+
+
 
 
 
@@ -78,9 +122,25 @@ $ ipconfig getifaddr en0
 
 ## 6、桌面Terminal常用命令
 
-### （1）scp
+### （1）ssh
 
-文件拷贝到远端位置
+```shell
+$ ssh root@192.168.0.107
+```
+
+
+
+
+
+### （2）scp
+
+#### a. 拷贝文件到iOS设备
+
+打开MacOS的Terminal，输入scp命令
+
+
+
+* 拷贝文件到远端位置
 
 ```shell
 $ scp ~/file root@192.168.0.102:/var/mobile/somefolder
@@ -88,11 +148,27 @@ $ scp ~/file root@192.168.0.102:/var/mobile/somefolder
 
 
 
-目录拷贝到远端位置
+* 拷贝文件夹到远端位置
 
 ```shell
 $ scp -r ~/folder root@192.168.0.102:/var/mobile/somefolder
 ```
+
+
+
+#### b. 拷贝iOS设备的文件到本地
+
+System Preferences > Sharing > 勾选Remote Login，然后ssh远程登录到iOS设备，然后输入scp命令
+
+```shell
+# scp DingTalk wesley_chen@192.168.0.102:~/Downloads
+Password:
+DingTalk        100%  103MB   2.2MB/s   00:47
+```
+
+
+
+
 
 
 
@@ -116,15 +192,40 @@ Ark VPN 1.2.1.ipa                      100% 963KB 962.9KB/s  00:00
 
 ## 8、iOS文件系统[^5]
 
-1、系统app的bundle所在位置
+不同版本的iOS系统，它的文件系统位置可能不一样。
+
+
+
+### （1）iOS 9.3.5文件系统
+
+用户app bundle位置是，`/var/containers/Bundle/Application`
+
+```shell
+# pwd
+/var/containers/Bundle/Application
+# ls ./*
+./2E886E2E-F617-4530-ABF2-20F633194357:
+Phoenix.app/  iTunesArtwork  iTunesMetadata.plist
+...
+```
+
+
+
+
+
+### （1）系统app的bundle所在位置
 
 /Applications下的app是系统预装的，不属于沙盒环境
 
-2、用户app的bundle所在位置
+
+
+### （2）用户app的bundle所在位置
 
 /var/mobile/Applications下的app是从AppStore上下载安装的，属于沙盒环境
 
-3、用户app的沙盒
+
+
+### （3）用户app的沙盒
 
 /var/mobile/Containers/Bundle/Application是应用程序所在的位置，如下图
 
@@ -231,6 +332,198 @@ Note: On iPhone, Keychain rights depend on the provisioning profile used to sign
 
 
 
+### （2）app砸壳[^12]
+
+​         从App store下载到ipa文件都是经过Apple加密的，是没有办法重签名的。如果把这个加密去掉，则称为app砸壳。砸壳使用的工具是[dumpdecrypted](https://link.jianshu.com?t=https://github.com/stefanesser/dumpdecrypted)，原理就是让app预先加载一个dumpdecrypted.dylib，然后在程序运行时，将代码动态解密，最后在内存中dump出来整个程序。当然砸壳是需要在越狱环境下进行的[^13]。
+
+
+
+#### a. 检查是否已经砸壳
+
+以DingTalk 5.0.16.ipa为例，可以通过App Configurator2下载ipa文件。
+
+```shell
+$ file DingTalk
+DingTalk: Mach-O universal binary with 2 architectures: [arm_v7:Mach-O executable arm_v7] [arm64]
+DingTalk (for architecture armv7):	Mach-O executable arm_v7
+DingTalk (for architecture arm64):	Mach-O 64-bit executable arm64
+$ otool -l DingTalk | grep -B 2 cryptid
+     cryptoff 16384
+    cryptsize 73580544
+      cryptid 1
+--
+     cryptoff 16384
+    cryptsize 78233600
+      cryptid 1
+```
+
+cryptid值是1，说明两个架构都没有去掉加密。如果cryptid值是0，则说明已经砸壳过了。
+
+
+
+
+
+#### b. 编译dumpdecrypted源码
+
+[dumpdecryted工具](https://github.com/stefanesser/dumpdecrypted)，使用源码编译，生成dumpdecrypted.dylib文件。编译如下
+
+```shell
+$ make   
+`xcrun --sdk iphoneos --find gcc` -Os  -Wimplicit -isysroot `xcrun --sdk iphoneos --show-sdk-path` -F`xcrun --sdk iphoneos --show-sdk-path`/System/Library/Frameworks -F`xcrun --sdk iphoneos --show-sdk-path`/System/Library/PrivateFrameworks -arch armv7 -arch armv7s -arch arm64 -c -o dumpdecrypted.o dumpdecrypted.c 
+`xcrun --sdk iphoneos --find gcc` -Os  -Wimplicit -isysroot `xcrun --sdk iphoneos --show-sdk-path` -F`xcrun --sdk iphoneos --show-sdk-path`/System/Library/Frameworks -F`xcrun --sdk iphoneos --show-sdk-path`/System/Library/PrivateFrameworks -arch armv7 -arch armv7s -arch arm64 -dynamiclib -o dumpdecrypted.dylib dumpdecrypted.o
+ld: warning: directory not found for option '-F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.4.sdk/System/Library/PrivateFrameworks'
+ld: warning: directory not found for option '-F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.4.sdk/System/Library/PrivateFrameworks'
+ld: warning: directory not found for option '-F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.4.sdk/System/Library/PrivateFrameworks'
+$ file dumpdecrypted.dylib 
+dumpdecrypted.dylib: Mach-O universal binary with 3 architectures: [arm_v7:Mach-O dynamically linked shared library arm_v7] [arm_v7s:Mach-O dynamically linked shared library arm_v7s] [arm64:Mach-O 64-bit dynamically linked shared library arm64]
+dumpdecrypted.dylib (for architecture armv7):	Mach-O dynamically linked shared library arm_v7
+dumpdecrypted.dylib (for architecture armv7s):	Mach-O dynamically linked shared library arm_v7s
+dumpdecrypted.dylib (for architecture arm64):	Mach-O 64-bit dynamically linked shared library arm64
+```
+
+
+
+#### c. 对dumpdecrypted.dylib签名
+
+```shell
+$ security find-identity -v -p codesigning
+...
+$ codesign --force --verify --verbose --sign "iPhone Developer: xxx@yy.com (ZZZ)" dumpdecrypted.dylib
+dumpdecrypted.dylib: signed Mach-O universal (armv7 armv7s arm64) [dumpdecrypted]
+```
+
+
+
+#### d.使用dumpdecrypted.dylib
+
+* 查找目标app的沙盒目录
+
+启动目标app，然后执行ps命令，找到目标app的进程ID，如下
+
+```shell
+# ps -e | grep -i dingtalk
+ 4535 ??         0:22.91 /var/containers/Bundle/Application/E002E76D-66F6-4E37-BB26-37E568DEC8F4/DingTalk.app/DingTalk
+ 4591 ttys000    0:00.01 grep -i dingtalk
+# cycript -p 4790
+cy# [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask][0]
+#"file:///var/mobile/Containers/Data/Application/B4D9A9BF-DA64-4355-B005-EDBB0F6602F0/Documents/"
+Ctrl+d
+```
+
+这里使用到cycript命令行工具（可以使用Cydia安装Cycript），它允许注入某个app进程，然后交互式执行Objective-C代码。通过执行OC代码，可以拿到进程的Documents目录。
+
+
+
+* 拷贝dumpdecrypted.dylib到目标app的沙盒Document
+
+```shell
+$ scp dumpdecrypted.dylib root@192.168.0.107:/var/mobile/Containers/Data/Application/B4D9A9BF-DA64-4355-B005-EDBB0F6602F0/Documents
+root@192.168.0.107's password: 
+dumpdecrypted.dylib      100%  260KB 821.2KB/s   00:00
+```
+
+
+
+* 执行目标app
+
+```shell
+# ls -l dumpdecrypted.dylib 
+-rwxr-xr-x 1 root mobile 266272 May  4 23:43 dumpdecrypted.dylib
+# su mobile
+$ cd /var/mobile/Containers/Data/Application/B4D9A9BF-DA64-4355-B005-EDBB0F6602F0/Documents/
+$ DYLD_INSERT_LIBRARIES=dumpdecrypted.dylib /var/containers/Bundle/Application/E002E76D-66F6-4E37-BB26-37E568DEC8F4/DingTalk.app/DingTalk
+objc[4931]: Class XXX is implemented in both /private/var/containers/Bundle/Application/E002E76D-66F6-4E37-BB26-37E568DEC8F4/DingTalk.app/Frameworks/DTExtBasicFramework.framework/DTExtBasicFramework and /var/containers/Bundle/Application/E002E76D-66F6-4E37-BB26-37E568DEC8F4/DingTalk.app/DingTalk. One of the two will be used. Which one is undefined.
+...
+mach-o decryption dumper
+
+DISCLAIMER: This tool is only meant for security research purposes, not for application crackers.
+
+[+] detected 32bit ARM binary in memory.
+[+] offset to cryptid found: @0x13c60(from 0x13000) = c60
+[+] Found encrypted data at address 00004000 of length 73580544 bytes - type 1.
+[+] Opening /private/var/containers/Bundle/Application/E002E76D-66F6-4E37-BB26-37E568DEC8F4/DingTalk.app/DingTalk for reading.
+[+] Reading header
+[+] Detecting header type
+[+] Executable is a plain MACH-O image
+[+] Opening DingTalk.decrypted for writing.
+[+] Copying the not encrypted start of the file
+[+] Dumping the decrypted data into the file
+[+] Copying the not encrypted remainder of the file
+[+] Setting the LC_ENCRYPTION_INFO->cryptid to 0 at offset c60
+[+] Closing original file
+[+] Closing dump file
+```
+
+注意：一定要mobile用户执行app，使用root总是执行失败提示“Killed: 9”
+
+
+
+* 检查目标app.decrypted文件
+
+```shell
+$ ls -l DingTalk.decrypted
+-rw-r--r-- 1 mobile mobile 107507856 May  4 23:53 DingTalk.decrypted
+```
+
+
+
+#### e.使用dumpdecrypted.dylib通用方法[^14]
+
+上面这种方法，比较繁琐，而且实际上有些步骤不需要。这里介绍比较通用的方法。
+
+* 将dumpdecrypted.dylib拷贝到/usr/lib
+
+```shell
+$ scp dumpdecrypted.dylib root@192.168.0.107:/usr/lib
+```
+
+* 检查dumpdecrypted.dylib的可执行权限
+
+```shell
+# cd /usr/lib
+# ls -l dumpdecrypted.dylib 
+-rwxr-xr-x 1 root wheel 266272 May  4 23:50 dumpdecrypted.dylib
+```
+
+* 用户换成mobile
+
+```shell
+# su mobile
+```
+
+* cd到mobile用户的Documents目录
+
+```shell
+$ cd /var/mobile/Documents
+```
+
+> 实际上可以cd到mobile用户有写权限的任意目录。
+
+* 使用绝对路径执行app
+
+```shell
+$ DYLD_INSERT_LIBRARIES=/usr/lib/dumpdecrypted.dylib /var/containers/Bundle/Application/59CEB222-4C4D-4A34-BC0F-8D38B9E3853D/MyApp.app/MyApp
+```
+
+* 当前目录确认MyApp.decrypted文件，以及cryptid值
+
+```shell
+$ otool -l DingTalk.decrypted | grep cryptid
+      cryptid 0
+```
+
+
+
+
+
+## 附录
+
+### 1、常用助手网站
+
+爱思助手：https://www.i4.cn/
+
+
+
 
 
 
@@ -252,6 +545,14 @@ Note: On iPhone, Keychain rights depend on the provisioning profile used to sign
 [^10]:http://iphone.91.com/tutorial/syjc/140113/21645934.html
 
 [^11]:https://cydia-app.com/ios-10/
+[^12]:[http://www.veryitman.com/2018/06/07/iOS-%E9%80%86%E5%90%91-dumpdecrypted-%E7%A0%B8%E5%A3%B3%E8%AE%B0/](http://www.veryitman.com/2018/06/07/iOS-逆向-dumpdecrypted-砸壳记/)
+[^13]:https://www.jianshu.com/p/5d353d6db145
+[^14]:https://github.com/stefanesser/dumpdecrypted/issues/19#issuecomment-239705313
+[^15]:[http://www.veryitman.com/2018/05/13/iOS-%E9%80%86%E5%90%91-%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E5%92%8C%E7%BB%93%E6%9E%84/](http://www.veryitman.com/2018/05/13/iOS-逆向-查看系统文件目录和结构/)
+
+
+
+
 
 
 

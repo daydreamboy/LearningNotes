@@ -27,6 +27,8 @@
 
 ## 3、otool
 
+### （1）常见示例
+
 | example | task |
 |---------|------|
 | otool -s \_\_TEXT \_\_text a.out | 查看\_\_TEXT,\_\_text的二进制内容 |
@@ -39,13 +41,57 @@
 | otool -v -l a.out | 查看Load Commands（用于查看链接的动态库等），但是也总是显示Mach Header |
 | otool -v -L a.out | 查看链接的动态库 |
 | otool -o a.out | 查看Objective-C相关的metadata，一般有`__DATA,__objc_classlist`、`__DATA,__objc_classrefs`等 |
-|  |  |
 
-* -V，结合-t，可以反汇编text segment
+
+
+### （2）常用选项
+
+#### `-l`
+
+打印Load command
+
+```shell
+$ otool -l DingTalk | grep -A11 Load\ command\ 0
+Load command 0
+      cmd LC_SEGMENT
+  cmdsize 56
+  segname __PAGEZERO
+   vmaddr 0x00000000
+   vmsize 0x00004000
+  fileoff 0
+ filesize 0
+  maxprot 0x00000000
+ initprot 0x00000000
+   nsects 0
+    flags 0x0
+```
+
+
+
+#### `-V`
+
+一般配合其他选项使用。打印反汇编后operands。举个例子
+
+```shell
+$ otool -h DingTalk
+Mach header
+      magic cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags
+ 0xfeedface      12          9  0x00           2    91       9012 0x00210085
+$ otool -hV DingTalk
+Mach header
+      magic cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags
+   MH_MAGIC     ARM         V7  0x00     EXECUTE    91       9012   NOUNDEFS DYLDLINK TWOLEVEL BINDS_TO_WEAK PIE
+```
+
+> -V，结合-t，可以反汇编text segment
+
+
 
 
 
 ## 4、nm
+
+### （1）常见示例
 
 | example | task |
 |---------|------|
