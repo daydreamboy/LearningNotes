@@ -10,11 +10,23 @@
 
 1. Safari打开m.pandahelp.vip/regular，安装描述文件“Panda Helper Lite”，然后继续安装Panda Helper.app
 2. 打开Panda Helper.app，搜索Phoenix jailbreak tool，点击install，提示下载安装，完成后桌面多出Phoenix.app
-3. 打开Phoenix.app，点击“Prepare For Jailbreak”，一路点下去，出现提示“Device Supported”，选择“Use Provided Offsets”，继续点，最后系统重新，桌面出现Cydia.app，说明越狱OK。
+3. 打开Phoenix.app，点击“Prepare For Jailbreak”，一路点下去，出现提示“Device Supported”，选择“Use Provided Offsets”，继续点，最后系统重启，桌面出现Cydia.app，说明越狱OK。
 
 
 
-## 2、添加源
+## 2、iOS 10.3.3 jailbreak[^11]
+
+操作步骤
+
+1. Safari打开https://cydia-app.com/panda-helper/，点击“Download Link 1”或者“Download Link 2”，安装描述文件“Panda Helper Lite”，然后继续安装Panda Helper.app
+2. 打开Panda Helper.app，搜索h3lix，点击install，提示下载安装，完成后桌面多出h3lix.app
+3. 打开h3lix.app，点击“Jailbreak”，系统重启，桌面出现Cydia.app，说明越狱OK。
+
+
+
+
+
+## 3、添加源
 
 这里有一些推荐的源[^2]，按需添加，避免添加过多，可能导致系统不稳定
 
@@ -28,7 +40,7 @@ http://apt.abcydia.com(雷锋源）
 
 
 
-## 3、常用工具（通过Cydia安装）
+## 4、常用工具（通过Cydia安装）
 
 - Cydia Substrate
 - MobileTerminal（废弃，改用iOSTerminal）
@@ -40,7 +52,7 @@ http://apt.abcydia.com(雷锋源）
 
 
 
-## 4、iOS Terminal.app常用命令
+## 5、iOS Terminal.app常用命令
 
 ### （1）killall
 
@@ -64,7 +76,7 @@ $ ipconfig getifaddr en0
 
 
 
-## 5、桌面Terminal常用命令
+## 6、桌面Terminal常用命令
 
 ### （1）scp
 
@@ -84,7 +96,7 @@ $ scp -r ~/folder root@192.168.0.102:/var/mobile/somefolder
 
 
 
-## 6、通过SSH安装ipa文件[^3][^4]
+## 7、通过SSH安装ipa文件[^3][^4]
 
 1. 工具（通过Cydia安装，可能需要翻墙）
 
@@ -102,7 +114,7 @@ Ark VPN 1.2.1.ipa                      100% 963KB 962.9KB/s  00:00
 
 
 
-## 7、iOS文件系统[^5]
+## 8、iOS文件系统[^5]
 
 1、系统app的bundle所在位置
 
@@ -120,7 +132,7 @@ Ark VPN 1.2.1.ipa                      100% 963KB 962.9KB/s  00:00
 
 
 
-## 8、使用RevealApp[^7][^8][^9]
+## 9、使用RevealApp[^7][^8][^9]
 
 1、下载RevealApp客户端（适用于Mac），http://revealapp.com/
 
@@ -173,7 +185,7 @@ $ scp libReveal.dylib root@x.x.x.x:/Library/MobileSubstrate/DynamicLibraries
 
 
 
-## 9、iPod Touch显示电池百分比[^10]
+## 10、iPod Touch显示电池百分比[^10]
 
 iPod Touch系统本身没有显示电池百分比的开关，越狱后可以将百分比显示出来。步骤如下：
 
@@ -199,7 +211,7 @@ iPod Touch系统本身没有显示电池百分比的开关，越狱后可以将�
 
 
 
-## 10、分析Keychain
+## 11、分析Keychain
 
 Keychain是一个sqlite3数据库，位于/private/var/Keychains/keychain-2.db
 
@@ -211,7 +223,7 @@ Note: On iPhone, Keychain rights depend on the provisioning profile used to sign
 
 
 
-## 11、iOS越狱设备的补充知识
+## 12、iOS越狱设备的补充知识
 
 ### （1）iOS系统的用户
 
@@ -238,6 +250,10 @@ Note: On iPhone, Keychain rights depend on the provisioning profile used to sign
 [^8]:http://c.blog.sina.com.cn/profile.php?blogid=cb8a22ea89000gtw
 [^9]:http://blog.csdn.net/yiyaaixuexi/article/details/18220875
 [^10]:http://iphone.91.com/tutorial/syjc/140113/21645934.html
+
+[^11]:https://cydia-app.com/ios-10/
+
+
 
 
 
