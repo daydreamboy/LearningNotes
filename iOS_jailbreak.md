@@ -22,7 +22,9 @@
 2. 打开Panda Helper.app，搜索h3lix，点击install，提示下载安装，完成后桌面多出h3lix.app
 3. 打开h3lix.app，点击“Jailbreak”，系统重启，桌面出现Cydia.app，说明越狱OK。
 
+说明
 
+> 如果设备重启，会恢复到未越狱状态，Cydia等打开会闪退，需要重新打开h3lix.app再次越狱[^16]
 
 
 
@@ -124,11 +126,33 @@ $ ipconfig getifaddr en0
 
 ### （1）ssh
 
+#### a. 检查sshd进程是否在运行
+
+```shell
+$ ps -A | grep ssh
+4558 ??      0:00.00 (sshd)
+5547 ttys001 0:00.01 grep ssh
+```
+
+
+
+#### b. ssh登录
+
 ```shell
 $ ssh root@192.168.0.107
 ```
 
 
+
+#### c. 开启ssh的verbose模式
+
+```shell
+$ ssh -vv root@192.168.0.107
+```
+
+可以有多个`-v`，最大支持3个，即`-vvv`，方便显示调试信息，用于诊断连接过程
+
+iOS 
 
 
 
@@ -168,7 +192,31 @@ DingTalk        100%  103MB   2.2MB/s   00:47
 
 
 
+### （3）iproxy[^17]
 
+iproxy是usbmuxd工具自带的命令行工具。安装usbmuxd后，就可以使用iproxy
+
+```shell
+$ brew install usbmuxd
+```
+
+iproxy命令行工具，相当于在本地建立一个iOS设备的代理，好处是：iOS设备和Mac不需要用WiFi通信，即使iOS设备是飞行模式，也可以访问iOS设备。当然iOS设备也需要安装OpenSSH。
+
+建立USB连接的代理，如下
+
+```shell
+$ iproxy 5678 22
+waiting for connection
+```
+
+将iOS设备22端口映射成本地的5678端口。
+
+然后再用ssh登录本地的5678端口，如下
+
+```shell
+$ ssh -p 5678 root@127.0.0.1
+root@127.0.0.1's password:
+```
 
 
 
@@ -514,6 +562,18 @@ $ otool -l DingTalk.decrypted | grep cryptid
 
 
 
+## 13、使用class-dump
+
+[class-dump](https://github.com/nygard/class-dump)，是用于把Mach-O文件dump出对应的头文件。需要注意的是，加密过ipa包中Mach-O文件，class-dump是用不了的。经过砸壳后Mach-O文件，可以使用class-dump导出对应的头文件[^18]。
+
+```shell
+$ class-dump -H -o headers DingTalk.decrypted
+```
+
+
+
+对于Swift和OC混编的Mach-O文件，需要使用改进版的[class-dump](https://github.com/BlueCocoa/class-dump)。
+
 
 
 ## 附录
@@ -549,6 +609,14 @@ $ otool -l DingTalk.decrypted | grep cryptid
 [^13]:https://www.jianshu.com/p/5d353d6db145
 [^14]:https://github.com/stefanesser/dumpdecrypted/issues/19#issuecomment-239705313
 [^15]:[http://www.veryitman.com/2018/05/13/iOS-%E9%80%86%E5%90%91-%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E5%92%8C%E7%BB%93%E6%9E%84/](http://www.veryitman.com/2018/05/13/iOS-逆向-查看系统文件目录和结构/)
+
+[^16]:https://zhuanlan.zhihu.com/p/35900648
+[^17]:[http://www.veryitman.com/2018/05/12/iOS-%E9%80%86%E5%90%91-%E8%B6%8A%E7%8B%B1%E4%BD%BF%E7%94%A8-SSH/](http://www.veryitman.com/2018/05/12/iOS-逆向-越狱使用-SSH/)
+[^18]:[http://www.veryitman.com/2019/04/07/dumpdecrypted-%E7%A0%B8%E5%A3%B3%EF%BC%9A%E5%AF%BC%E5%87%BA%E5%A4%B4%E6%96%87%E4%BB%B6/](http://www.veryitman.com/2019/04/07/dumpdecrypted-砸壳：导出头文件/)
+
+
+
+
 
 
 

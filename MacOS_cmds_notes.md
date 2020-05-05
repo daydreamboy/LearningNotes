@@ -283,9 +283,32 @@ $ networksetup -setdnsservers Wi-Fi Empty
 
 ## 7. ssh
 
+### （1）语法格式
+
+```shell
+ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface] [-b bind_address] [-c cipher_spec] [-D [bind_address:]port] [-E log_file]
+         [-e escape_char] [-F configfile] [-I pkcs11] [-i identity_file] [-J destination] [-L address] [-l login_name]
+         [-m mac_spec] [-O ctl_cmd] [-o option] [-p port] [-Q query_option] [-R address] [-S ctl_path] [-W host:port]
+         [-w local_tun[:remote_tun]] destination [command]
+```
 
 
-### 登录root用户
+
+### （2）常用选项
+
+#### `-v`
+
+打开verbose模式，可以有多个`-v`，最大支持3个，即`-vvv`，方便显示调试信息，用于诊断连接过程
+
+```shell
+$ ssh -vv root@192.168.0.107
+```
+
+
+
+### （3）使用示例
+
+#### 登录root用户
 
 ```shell
 $ ssh root@<ip address> -p <port>
