@@ -576,6 +576,114 @@ $ class-dump -H -o headers DingTalk.decrypted
 
 
 
+## 14、自建ipa分发
+
+​       OTA 即 Over-the-Air，是 Apple在 iOS 4 中新加的一项技术，目的是让开发者能够脱离 Appstore，实现从 服务器下载并安装 iOS 应用。 用户只需要在 iOS 设备的浏览器中，打开itms-services://协议链接，就可以直接安装App[^19]。
+
+​      ipa可以通过OTA（Over the Air）方式来分发到用户，基本需要准备下面几个东西
+
+* ipa包
+  * 企业账号签名包，用户只需信任企业开发者就能安装
+  * ad hoc包,需要描述文件中包含的设备才能安装
+* 特定格式的manifest.plist文件
+* 两个png格式的icon文件，尺寸分别是57x57和512x512。可以通过[这个网站](https://appicon.co/)来快速生成icon
+
+* （可选）一个web页面提供下载按钮，下载地址指向manifest.plist文件
+
+
+
+### （1）文件存放平台
+
+​        如果没有服务端资源，上面4个文件，可以存放到github上面或者[码云](https://gitee.com/)上。国内访问github速度很慢，最好选择国内可以直链访问文件的服务平台。
+
+
+
+### （2）manifest.plist文件
+
+manifest.plist文件，基本格式，如下
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>assets</key>
+			<array>
+				<dict>
+					<key>kind</key>
+					<string>software-package</string>
+					<key>url</key>
+					<string>https://gitee.com/path/to/raw/master/YourAppName.ipa</string>
+				</dict>
+				<dict>
+					<key>kind</key>
+					<string>display-image</string>
+					<key>url</key>
+					<string>https://gitee.com/path/to/raw/master/57.png</string>
+				</dict>
+				<dict>
+					<key>kind</key>
+					<string>full-size-image</string>
+					<key>url</key>
+					<string>https://gitee.com/path/to/raw/master/512.png</string>
+				</dict>
+			</array>
+			<key>metadata</key>
+			<dict>
+				<key>bundle-identifier</key>
+				<string>com.mycompany.app</string>
+				<key>bundle-version</key>
+				<string>8.0.0.1</string>
+				<key>kind</key>
+				<string>software</string>
+				<key>title</key>
+				<string>YourAppName</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
+```
+
+
+
+| 字段              | 描述                          |
+| ----------------- | ----------------------------- |
+| software-package  | ipa 文件所在地址，必须是https |
+| display-image     | 图标缩略图，必须是https       |
+| full-size-image   | 图标全尺寸，必须是https       |
+| bundle-identifier | 包名 com.xxx.xx               |
+| bundle-version    | 版本 1.0.x                    |
+| title             | 应用名                        |
+
+​       当前ipa、两个icon文件上传到服务端后，拿到能直接访问的url，按照上面表格填入对应字段的值。注意一定要是https链接而且证书是有效的。
+
+
+
+### （3）itms-services://协议链接
+
+当manifest.plist文件修改完成后，得到指向这个文件的https链接。按照下面个itms-services://协议，得到最终提供app下载的链接，如下
+
+```http
+itms-services://?action=download-manifest&url=https://gitee.com/path/to/raw/master/manifest.plist
+```
+
+上面这个链接可以复制粘贴到Safari浏览器打开，或者作为超链接让用户点击下载。
+
+
+
+### （4）常用ipa分发平台
+
+* [蒲公英](https://www.pgyer.com/)
+* [fir.im](https://www.betaqr.com/)
+
+
+
+
+
 ## 附录
 
 ### 1、常用助手网站
@@ -613,6 +721,7 @@ $ class-dump -H -o headers DingTalk.decrypted
 [^16]:https://zhuanlan.zhihu.com/p/35900648
 [^17]:[http://www.veryitman.com/2018/05/12/iOS-%E9%80%86%E5%90%91-%E8%B6%8A%E7%8B%B1%E4%BD%BF%E7%94%A8-SSH/](http://www.veryitman.com/2018/05/12/iOS-逆向-越狱使用-SSH/)
 [^18]:[http://www.veryitman.com/2019/04/07/dumpdecrypted-%E7%A0%B8%E5%A3%B3%EF%BC%9A%E5%AF%BC%E5%87%BA%E5%A4%B4%E6%96%87%E4%BB%B6/](http://www.veryitman.com/2019/04/07/dumpdecrypted-砸壳：导出头文件/)
+[^19]:https://www.codercto.com/a/89344.html
 
 
 
