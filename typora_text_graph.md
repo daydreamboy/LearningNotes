@@ -10,6 +10,12 @@ Note right of Bob: Bob thinks
 Bob-->Alice: I am good thanks!
 ```
 
+插件：https://github.com/bramp/js-sequence-diagrams
+
+语法：https://bramp.github.io/js-sequence-diagrams/#syntax
+
+
+
 ## 2、流程图 (Flowcharts)
 
 ```flow
@@ -23,7 +29,15 @@ cond(yes)->e
 cond(no)->op
 ```
 
+插件：http://flowchart.js.org/
+
+
+
 ## 3、Mermaid
+
+Mermaid插件：https://mermaid-js.github.io/mermaid/#/
+
+
 
 ###（1）时序图 (Sequence Diagrams)
 
@@ -46,9 +60,10 @@ cond(no)->op
 ```mermaid
 graph LR
 A[Hard edge] -->B(Round edge)
-    B --> C{Decision}
-    C -->|One| D[Result one]
-    C -->|Two| E[Result two]
+B --> C{Decision}
+C -->|One| D[Result one]
+C -->|Two| E[Result two]
+E --> F[End]
 ```
 ###（3）甘特图 (Gantt Charts)
 
@@ -108,6 +123,93 @@ classDiagram
           +run()
       }
 ```
+
+语法：https://mermaid-js.github.io/mermaid/#/classDiagram
+
+
+
+#### a. 定义类
+
+有两种方式，定义类
+
+* 使用冒号`:`方式
+
+```text
+class BankAccount
+BankAccount : +String owner
+BankAccount : +BigDecimal balance
+BankAccount : +deposit(amount)
+BankAccount : +withdrawal(amount)
+```
+
+
+
+```mermaid
+classDiagram
+    class BankAccount
+    BankAccount : +String owner
+    BankAccount : +Bigdecimal balance
+    BankAccount : +deposit(amount) 
+    BankAccount : +withdrawl(amount)
+```
+
+* 使用大括号`{}`方式
+
+```text
+class BankAccount{
+  +String owner
+  +BigDecimal balance
+  +deposit(amount) bool
+  +withdrawl(amount)
+}
+```
+
+```mermaid
+classDiagram
+class BankAccount{
+  +String owner
+  +BigDecimal balance
+  +deposit(amount) bool
+  +withdrawl(amount)
+}
+```
+
+类图分为3个部分：
+
+* 顶部部分：类名
+* 中间部分：类的成员变量
+* 底部部分：类的方法，一般需要一对括号表示这是个方法，而不是成员变量
+
+
+
+#### b. 定义两个类的关系
+
+| Type  | Description   |
+| ----- | ------------- |
+| <\|-- | Inheritance   |
+| *--   | Composition   |
+| o--   | Aggregation   |
+| -->   | Association   |
+| --    | Link (Solid)  |
+| ..>   | Dependency    |
+| ..\|> | Realization   |
+| ..    | Link (Dashed) |
+
+```mermaid
+classDiagram
+classA --|> classB : Inheritance
+classC --* classD : Composition
+classE --o classF : Aggregation
+classG --> classH : Association
+classI -- classJ : Link(Solid)
+classK ..> classL : Dependency
+classM ..|> classN : Realization
+classO .. classP : Link(Dashed)
+```
+
+
+
+
 
 ###（5）状态图 (State Diagrams)
 
