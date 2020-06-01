@@ -177,8 +177,12 @@ class BankAccount{
 类图分为3个部分：
 
 * 顶部部分：类名
-* 中间部分：类的成员变量
-* 底部部分：类的方法，一般需要一对括号表示这是个方法，而不是成员变量
+* 中间部分：类的成员变量。语法结构：`<accessibility><ReturnType> propertyName`
+* 底部部分：类的方法，一般需要一对括号表示这是个方法，而不是成员变量。语法结构：`<accessibility> methodName(<parameter>) <ReturnType>`
+
+
+
+
 
 
 
@@ -206,6 +210,29 @@ classK ..> classL : Dependency
 classM ..|> classN : Realization
 classO .. classP : Link(Dashed)
 ```
+
+
+
+c. TODO
+
+UML Relationship
+1、http://umich.edu/~eecs381/handouts/UMLNotationSummary.pdf
+2、https://www.comp.nus.edu.sg/~cs2103/AY1516S1/files/UML%20reference%20sheet.pdf
+3、https://creately.com/blog/diagrams/class-diagram-relationships/
+
+4、https://www.guru99.com/uml-cheatsheet-reference-guide.html
+
+5、https://medium.com/@smagid_allThings/uml-class-diagrams-tutorial-step-by-step-520fd83b300b
+
+6、https://medium.com/@smagid_allThings/uml-class-diagram-example-fab6197200e6
+
+7、https://loufranco.com/wp-content/uploads/2012/11/cheatsheet.pdf
+
+
+
+
+
+
 
 
 
