@@ -233,6 +233,12 @@ Hex Fiend，二进制查看工具。安装方法：`brew cask install hex-fiend`
 
 
 
+### ascii
+
+ascii命令行工具[^5]，用于查看ASCII表
+
+
+
 
 
 ## 参考资料
@@ -242,6 +248,10 @@ Hex Fiend，二进制查看工具。安装方法：`brew cask install hex-fiend`
 [^3]:https://superuser.com/a/667076
 
 [^4]:https://github.com/insidegui/AssetCatalogTinkerer
+
+[^5]:http://macappstore.org/ascii/
+
+
 
 
 
