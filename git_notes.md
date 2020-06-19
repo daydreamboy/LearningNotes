@@ -275,7 +275,7 @@ https://stackoverflow.com/questions/3442874/in-git-how-can-i-write-the-current-c
 
 ## 4、常用git alias
 
-### （1）配置.gitconfig文件
+### 1. 配置.gitconfig文件
 
 在`~/.gitconfig`文件中，找到下面section进行配置[^9]
 
@@ -308,7 +308,7 @@ $ git config --global alias.removeLocalOtherBranch 'branch -d `git branch | grep
 
 
 
-### （2）常用git alias示例
+### 2. 常用git alias示例
 
 ```properties
 [alias]
@@ -323,7 +323,9 @@ $ git config --global alias.removeLocalOtherBranch 'branch -d `git branch | grep
 
 
 
-## 5、修改MacOS默认git[^11]
+## 5、Git使用Tips
+
+### 1. 修改MacOS默认git[^11]
 
 MacOS自带git命令行工具，如下
 
@@ -355,6 +357,28 @@ git version 2.26.1
 
 
 
+### 2. 查找被删除的文件
+
+​       Git仓库中有文件被其他人删除，但是自己需要找到这个文件。可以使用下面的命令[^12]来找到这个文件commit记录，一般来说，最近一个commit中，这个文件被删除掉了。
+
+```shell
+$ git log --full-history -- path/to/file
+```
+
+上面命令要求，输入准确的被删除文件的相对路径。但是时间久了，这个路径并不知道，只是知道文件名而已，因此这个命令不太管用。
+
+可以使用下面命令[^13]来进行搜索，被删除文件的commit记录，如下
+
+```shell
+$ git log --full-history -- "**/deleted_file_name.*"
+```
+
+说明
+
+> git log是否添加`--all`选项，SO评论[^13]中添加此选项，可以在其他分支进行搜索，但是实际上操作，发现搜索到的commit有些和删除的文件没有关系。而且最新的commit也不是删除文件的那个commit。
+
+
+
 
 
 ## References
@@ -374,4 +398,7 @@ git version 2.26.1
 [^9]:https://stackoverflow.com/questions/2553786/how-do-i-alias-commands-in-git
 [^10]:https://stackoverflow.com/questions/10610327/delete-all-local-git-branches
 [^11]:https://medium.com/@katopz/how-to-upgrade-git-ff00ea12be18
+
+[^12]:https://stackoverflow.com/questions/6839398/find-when-a-file-was-deleted-in-git
+[^13]:https://stackoverflow.com/a/7203551
 
