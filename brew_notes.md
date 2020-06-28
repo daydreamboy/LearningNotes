@@ -239,6 +239,12 @@ ascii命令行工具[^5]，用于查看ASCII表
 
 
 
+#### graphviz[^6]
+
+命令行绘图工具。安装方法：`brew install graphviz`
+
+
+
 
 
 ## 参考资料
@@ -250,6 +256,8 @@ ascii命令行工具[^5]，用于查看ASCII表
 [^4]:https://github.com/insidegui/AssetCatalogTinkerer
 
 [^5]:http://macappstore.org/ascii/
+
+[^6]:https://graphviz.org/
 
 
 
