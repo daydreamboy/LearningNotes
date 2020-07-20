@@ -152,6 +152,18 @@ Cellar安装位置：/usr/local/Cellar
 
 将文件或文件夹移到废纸篓中 
 
+```shell
+$ trash <file/folder>
+```
+
+
+
+删除当前目录下所有文件或目录
+
+```shell
+$ trash *
+```
+
 
 
 ### wget
