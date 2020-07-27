@@ -237,7 +237,7 @@ Mach header
 
 | example | task |
 |---------|------|
-| lldb -n \<process name\> | 调试某个进程 |
+| $ lldb -n \<process name\> | 调试某个进程 |
 
 
 
@@ -260,9 +260,10 @@ Mach header
 
 ## 15、c++filt
 
-| Example                                                      | Task               |
-| ------------------------------------------------------------ | ------------------ |
-| $ c++filt __ZNSs6assignEPKcm <br/>std::string::assign(char const*, unsigned long) | demangle C++的符号 |
+| Example                                                      | Task                                               |
+| ------------------------------------------------------------ | -------------------------------------------------- |
+| $ c++filt __ZNSs6assignEPKcm <br/>std::string::assign(char const*, unsigned long) | demangle C++的符号                                 |
+| $ xcrun c++filt -_ __ZNK7alibaba3ark17AIMRpcServiceImpl12GetUserAgentEv<br/>alibaba::ark::AIMRpcServiceImpl::GetUserAgent() const | 某些情况下，需要指定`-_`选项过滤符号中的下划线[^3] |
 
 
 
@@ -283,6 +284,8 @@ Mach header
 [^1]: https://www.mikeash.com/pyblog/friday-qa-2011-12-02-object-file-inspection-tools.html 
 
 [^2]:https://stackoverflow.com/a/44597439
+
+[^3]:https://stackoverflow.com/questions/42341626/my-cfilt-doesnt-seem-to-work-properly-no-output-changes
 
 
 
