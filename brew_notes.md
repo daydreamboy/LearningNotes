@@ -174,7 +174,41 @@ $ trash *
 
 ### java
 
-jdk安装，brew cask install java 
+jdk安装
+
+```shell
+$ brew cask install java
+$ brew cask install java8
+```
+
+
+
+不能安装Java8[^7]
+
+```shell
+$ brew cask install adoptopenjdk/openjdk/adoptopenjdk8
+```
+
+
+
+
+
+### jenv
+
+```shell
+$ brew install jenv
+```
+
+
+
+ ~/.zshrc文件，添加下面配置
+
+```shell
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+```
+
+
 
 
 
@@ -270,6 +304,8 @@ ascii命令行工具[^5]，用于查看ASCII表
 [^5]:http://macappstore.org/ascii/
 
 [^6]:https://graphviz.org/
+
+[^7]:https://stackoverflow.com/questions/55834845/unable-to-install-java8-with-homebrew
 
 
 
