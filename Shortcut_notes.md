@@ -5,7 +5,9 @@
 
 ## Mac OS X
 
-1. 锁屏：`^ + ⌘ + q`（High Sierra 10.13+）
+### 锁屏
+
+`^ + ⌘ + q`（High Sierra 10.13+）
 
 
 
@@ -16,11 +18,33 @@
 
 ## Visual Code
 
-1. 切换语言：`⌘ + k, m`（先按下⌘和k，然后按下m）
-2. 格式化代码：`⇧ + ⎇ + f`
-3. 打开命令提示 (Show All Commands)：`⌘ + ⇧ + p`
-4. 打开设置界面：` ⌘ + ,`
-5. 将选中文本压缩成一行：`^ + j`
+### 切换语言
+
+`⌘ + k, m`（先按下⌘和k，然后按下m）
+
+
+
+### 格式化代码
+
+`⇧ + ⎇ + f`
+
+
+
+### 打开命令提示 (Show All Commands)
+
+`⌘ + ⇧ + p`
+
+
+
+### 打开设置界面
+
+` ⌘ + ,`
+
+
+
+### 将选中文本压缩成一行
+
+`^ + j`
 
 
 
@@ -59,21 +83,45 @@
 
 ## Xcode
 
-1. 拷贝当前光标所在的符号名：`⌘ + ⇧ + ⎇ + ^ + c`
-2. Fix All Issues：`⌘ + ⎇ + ^ + f`
+### 拷贝当前光标所在的符号名
+
+`⌘ + ⇧ + ⎇ + ^ + c`
+
+
+
+### Fix All Issues
+
+`⌘ + ⎇ + ^ + f`
+
+
+
+### 方法添加documentation
+
+选中方法签名[^5]，`⌘ + ⎇ + /`
+
+
 
 
 
 ## Finder
 
-1. 显示隐藏文件[^3]：`⌘ + ⇧ + .`
-2. 拷贝当前选中文件夹/文件的绝对路径：`⌘ + ⎇ + c`
+### 显示隐藏文件[^3]
+
+`⌘ + ⇧ + .`
+
+
+
+### 拷贝当前选中文件夹/文件的绝对路径
+
+`⌘ + ⎇ + c`
 
 
 
 ## WebStorm
 
-1. 定位当前文件所在位置：`⎇ + F1`，选择Project View
+### 定位当前文件所在位置
+
+`⎇ + F1`，选择Project View
 
 
 
@@ -87,6 +135,8 @@ References
 [^3]:https://apple.stackexchange.com/questions/340542/show-hidden-files-on-mac-os-x-mojave-using-terminal
 
 [^4]:https://stackoverflow.com/questions/1086041/locate-current-file-in-intellij
+
+[^5]:https://stackoverflow.com/a/38071980
 
 
 
