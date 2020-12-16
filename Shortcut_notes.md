@@ -101,6 +101,12 @@
 
 
 
+### Find Call Hierarchy
+
+查看方法的调用者[^6]，`⌘ + ⇧ + ^ + h`
+
+
+
 
 
 ## Finder
@@ -137,6 +143,8 @@ References
 [^4]:https://stackoverflow.com/questions/1086041/locate-current-file-in-intellij
 
 [^5]:https://stackoverflow.com/a/38071980
+
+[^6]:https://stackoverflow.com/a/43607691
 
 
 
