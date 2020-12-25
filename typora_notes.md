@@ -1,8 +1,28 @@
-# Typora支持的图[^1]
+## 使用Typora
 
 [TOC]
 
-## 1、时序图 (Sequence Diagrams)
+
+
+## 1、特殊的格式化
+
+### （1）圆形框
+
+```
+<kbd>System Preferences</kbd>
+```
+
+
+
+Go to <kbd>System Preferences</kbd> > <kbd>Extensions</kbd> > <kbd>Xcode Source Editor</kbd> > select <kbd>LinesSorter</kbd>
+
+
+
+## 2、Typora支持的图[^1]
+
+
+
+### （1）时序图 (Sequence Diagrams)
 
 ```sequence
 Alice->Bob: Hello Bob, how are you?
@@ -16,7 +36,7 @@ Bob-->Alice: I am good thanks!
 
 
 
-## 2、流程图 (Flowcharts)
+### （2）流程图 (Flowcharts)
 
 ```flow
 st=>start: Start
@@ -33,13 +53,13 @@ cond(no)->op
 
 
 
-## 3、Mermaid
+### （3）Mermaid
 
 Mermaid插件：https://mermaid-js.github.io/mermaid/#/
 
 
 
-###（1）时序图 (Sequence Diagrams)
+####a. 时序图 (Sequence Diagrams)
 
 ```mermaid
 %% Example of sequence diagram
@@ -55,7 +75,7 @@ Mermaid插件：https://mermaid-js.github.io/mermaid/#/
     end
 ```
 
-###（2）流程图 (Flowcharts)
+####b. 流程图 (Flowcharts)
 
 ```mermaid
 graph LR
@@ -65,7 +85,7 @@ C -->|One| D[Result one]
 C -->|Two| E[Result two]
 E --> F[End]
 ```
-###（3）甘特图 (Gantt Charts)
+####c. 甘特图 (Gantt Charts)
 
 ```mermaid
 %% Example with selection of syntaxes
@@ -98,7 +118,7 @@ E --> F[End]
         Add another diagram to demo page    : 48h
 ```
 
-###（4）类图 (Class Diagrams)
+####d. 类图 (Class Diagrams)
 
 ```mermaid
 classDiagram
@@ -128,7 +148,7 @@ classDiagram
 
 
 
-#### a. 定义类
+##### d.1. 定义类
 
 有两种方式，定义类
 
@@ -184,9 +204,7 @@ class BankAccount{
 
 
 
-
-
-#### b. 定义两个类的关系
+##### d.2. 定义两个类的关系
 
 | Type  | Description   |
 | ----- | ------------- |
@@ -238,7 +256,7 @@ UML Relationship
 
 
 
-###（5）状态图 (State Diagrams)
+####e. 状态图 (State Diagrams)
 
 ```mermaid
 stateDiagram
@@ -251,7 +269,7 @@ stateDiagram
     Crash --> [*]
 ```
 
-###（6）饼状图 (Pie Charts)
+####f. 饼状图 (Pie Charts)
 
 ```mermaid
 pie
