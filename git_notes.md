@@ -379,6 +379,14 @@ $ git log --full-history -- "**/deleted_file_name.*"
 
 
 
+TODO
+
+core.sparsecheckout
+
+
+
+
+
 
 
 ## References

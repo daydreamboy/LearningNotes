@@ -172,6 +172,7 @@ Mach header
 | lipo -info a.out | 查看可执行文件的架构 |
 | lipo -create -output libffi.a ./Debug-iphoneos/libffi.a ./Debug-iphonesimulator/libffi.a | 合并两个架构的二进制文件 |
 | lipo -thin arm64 \<xxx\> -output xxx_arm64 | 二进制文件分拆单个架构 |
+| lipo -archs MyUniversalFramework | 查看二进制的架构 |
 
 
 
@@ -220,7 +221,7 @@ Mach header
 
 | example | task |
 |---------|------|
-| dwarfdump -u \<mach-o file\> | 查看MachO文件的UUID (实际对应LC_UUID字段[1]) |
+| dwarfdump -u \<mach-o file\><br/>dwarfdump --uuid \<path_to_dSYM><br/>dwarfdump --uuid \<path_to_dSYM\>/Contents/Resources/DWARF/\<BinaryName\>[^4] | 查看MachO文件的UUID (实际对应LC_UUID字段[1]) |
 | dwarfdump -u --arch=arm64 \<mach-o file\> | 查看MachO文件中特定架构的UUID |
 
 参考资料：man dwarfdump
@@ -230,6 +231,8 @@ Mach header
 说明
 
 > LC_UUID，指的是MachO中Load Command UUID
+
+
 
 
 
@@ -277,6 +280,18 @@ Mach header
 
 
 
+## 17、mdfind
+
+作用：mdfind是MacOS Spotlight的命令行工具。但是它能比较方便查询UUID对应的dSYM文件路径。
+
+| Example                                                      | Task                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| $ mdfind "com_apple_xcode_dsym_uuids == DD698BD4-71CE-3439-8BDF-BA96C0320562" | 查询UUID对应的dSYM文件路径[^4]。注意：UUID必须都是大写，而且满足8-4-4-4-12格式 |
+
+
+
+
+
 
 
 ## References
@@ -286,6 +301,8 @@ Mach header
 [^2]:https://stackoverflow.com/a/44597439
 
 [^3]:https://stackoverflow.com/questions/42341626/my-cfilt-doesnt-seem-to-work-properly-no-output-changes
+
+[^4]:https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs/adding_identifiable_symbol_names_to_a_crash_report
 
 
 
