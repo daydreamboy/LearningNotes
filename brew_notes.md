@@ -285,9 +285,17 @@ ascii命令行工具[^5]，用于查看ASCII表
 
 
 
-#### graphviz[^6]
+### graphviz[^6]
 
 命令行绘图工具。安装方法：`brew install graphviz`
+
+
+
+### iina
+
+视频播放工具，可以显示毫秒的进度[^8]。安装方法：`brew install --cask iina`
+
+
 
 
 
@@ -306,6 +314,8 @@ ascii命令行工具[^5]，用于查看ASCII表
 [^6]:https://graphviz.org/
 
 [^7]:https://stackoverflow.com/questions/55834845/unable-to-install-java8-with-homebrew
+
+[^8]:https://apple.stackexchange.com/questions/410865/are-there-video-players-that-display-milliseconds-on-mac
 
 
 
