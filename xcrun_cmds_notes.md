@@ -200,8 +200,10 @@ Mach header
 | options | meaning | tips |
 |---------|---------|------|
 | -all_load | 装载静态库中所有内容 | 对应Xcode中的Other Linker Flags |
-| -ObjC | 装载静态库中所有ObjC内容 | 对应Xcode中的Other Linker Flags |
-| -force_load \<path\_to\_archive\> | 装载指定静态库 | 对应Xcode中的Other Linker Flags |
+| -ObjC | 装载静态库中所有ObjC内容 | 同上 |
+| -force_load \<path\_to\_archive\> | 装载指定静态库 | 同上 |
+| -undefined dynamic_lookup | 链接时如果没有找到符号实现，则不报错符号找不到 | 同上 |
+| -Wl,-U,symbol_name[^5] | 同上，但是指定找不到符号，而不是全部符号 | 同上 |
 
 参考资料：man ld
 
@@ -303,6 +305,8 @@ Mach header
 [^3]:https://stackoverflow.com/questions/42341626/my-cfilt-doesnt-seem-to-work-properly-no-output-changes
 
 [^4]:https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs/adding_identifiable_symbol_names_to_a_crash_report
+
+[^5]:https://stackoverflow.com/questions/17281901/ignoring-an-undefined-symbol-in-a-dynamic-library-from-xcode
 
 
 
