@@ -31,7 +31,7 @@ IO的知识点，按照[官方Guide](https://iolanguage.org/guide/guide.html)来
 
 IO没有关键字或者语句，表达式（Expression）都是消息（Message）。BNF范式（Backus-Naur Form，巴科斯-诺尔范式）的定义，如下
 
-```
+```properties
 exp        ::= { message | terminator }
 message    ::= symbol [arguments]
 arguments  ::= "(" [exp [ { "," exp } ]] ")"
@@ -57,7 +57,7 @@ IO的消息（Message）相当于方法调用，所有语句都可以当成消�
 
 for接收四个参数，计数变量、计数变量起始值、计数变量终止值以及循环的body部分
 
-```
+```shell
 Io> for(i, 1, 3, i println)
 1
 2

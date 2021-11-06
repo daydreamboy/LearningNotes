@@ -18,6 +18,26 @@ Go to <kbd>System Preferences</kbd> > <kbd>Extensions</kbd> > <kbd>Xcode Source 
 
 
 
+### （2）图片对齐方式[^2]
+
+* 左对齐
+
+<img src="typora_notes_images/Objects managed by the navigation controller.png" style="float:left;" />
+
+
+
+* 右对齐
+
+<img src="typora_notes_images/Objects managed by the navigation controller.png" style="float:right;" />
+
+* 居中
+
+![](typora_notes_images/Objects managed by the navigation controller.png)
+
+
+
+
+
 ## 2、Typora支持的图[^1]
 
 
@@ -283,6 +303,8 @@ pie
 ## References
 
 [^1]:https://support.typora.io/Draw-Diagrams-With-Markdown/
+
+[^2]:https://stackoverflow.com/questions/255170/markdown-and-image-alignment
 
 
 
