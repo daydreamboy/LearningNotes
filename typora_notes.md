@@ -36,6 +36,40 @@ Go to <kbd>System Preferences</kbd> > <kbd>Extensions</kbd> > <kbd>Xcode Source 
 
 
 
+### （3）文本前景颜色
+
+#### a. 使用span标签
+
+<span style="color:blue">使用span的例子</span>
+
+
+
+#### b. 使用font标签
+
+<font color="red">使用font的例子</font>
+
+
+
+### （4）文本背景颜色
+
+#### a. 使用span标签
+
+<span style="background-color:blue; color:white;">使用span的例子</span>
+
+
+
+#### b. 使用div标签
+
+<div style="background-color: rgb(255, 0, 0); color: white">
+背景颜色
+</div>
+
+
+### （5）文本背景圆角
+
+<span style="background-color:blue; color:white; border-radius: 5px;">使用span的例子</span>
+
+
 
 
 ## 2、Typora支持的图[^1]
