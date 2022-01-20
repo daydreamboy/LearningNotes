@@ -36,7 +36,7 @@ fatal: this operation must be run in a work tree
 
 
 
-### 1. stash
+### (1) stash
 
 格式：`git stash \<subcommand\>`
 
@@ -44,9 +44,9 @@ fatal: this operation must be run in a work tree
 
 用例：
 
-#### (1) 查看stash列表
+#### a. stash list
 
-- git stash list，查看stash列表
+git stash list，查看stash列表
 
 ```shell
 $ git stash list --date=local
@@ -58,7 +58,7 @@ stash@{Tue Apr 3 19:17:27 2018}: On release/180427/master: temp3
 
 
 
-### 2. log
+### (2) log
 
 格式：`git log [<options>] [<revision range>] [[--] <path>...]`
 
@@ -66,7 +66,9 @@ stash@{Tue Apr 3 19:17:27 2018}: On release/180427/master: temp3
 
 用例：
 
-#### (1) 查看某个或多个用户的log[^1]
+#### a.  --author
+
+查看某个或多个用户的log[^1]
 
 ```shell
 $ git log --author='<username>'
@@ -80,7 +82,9 @@ $ git log --author='<email.username@company.com>'
 
 
 
-#### (2) 列出2个tag之间的commit[^14]
+#### b. tagA...tagB & tagA..tagB
+
+列出2个tag之间的commit[^14]
 
 ```shell
 $ git log --pretty=oneline tagA...tagB
@@ -127,7 +131,7 @@ $ git log --pretty=format:"%h%x09%an%x09%ad%x09%s" tagA...tagB
 
 
 
-### 3. diff
+### (3) diff
 
 格式：
 
@@ -198,7 +202,7 @@ https://stackoverflow.com/a/21724628
 
 
 
-### 4. rev-parse
+### (4) rev-parse
 
 格式：`git rev-parse [<options>] <args>...`
 
@@ -232,7 +236,7 @@ $ git rev-parse --show-toplevel
 
 
 
-### 5. config
+### (5) config
 
 格式：`git config [<options>]`
 
@@ -272,7 +276,7 @@ $ git config --system user.name "John Doe"
 
 
 
-### 6. clone
+### (6) clone
 
 
 
@@ -281,6 +285,37 @@ $ git config --system user.name "John Doe"
 ```shell
 $ git clone --recursive https://github.com/DeVaukz/MachO-Explorer
 ```
+
+
+
+### (7) remote
+
+#### a. remote add
+
+
+
+```shell
+$ git remote
+origin
+$ git remote add Aspects https://github.com/steipete/Aspects.git
+$ git remote 
+Aspects
+origin
+```
+
+
+
+#### b. remote show
+
+格式[^17]如下
+
+```shell
+$ git remote show <remote-name>
+```
+
+
+
+
 
 
 
@@ -320,7 +355,7 @@ https://stackoverflow.com/questions/3442874/in-git-how-can-i-write-the-current-c
 
 ## 4、常用git alias
 
-### 1. 配置.gitconfig文件
+### a. 配置.gitconfig文件
 
 在`~/.gitconfig`文件中，找到下面section进行配置[^9]
 
@@ -351,9 +386,7 @@ $ git config --global alias.removeLocalOtherBranch 'branch -d `git branch | grep
 
 
 
-
-
-### 2. 常用git alias示例
+### b. 常用git alias示例
 
 ```properties
 [alias]
@@ -368,9 +401,9 @@ $ git config --global alias.removeLocalOtherBranch 'branch -d `git branch | grep
 
 
 
-## 5、Git使用Tips
+## 5、常见任务
 
-### 1. 修改MacOS默认git[^11]
+### (1) 修改MacOS默认git[^11]
 
 MacOS自带git命令行工具，如下
 
@@ -402,7 +435,7 @@ git version 2.26.1
 
 
 
-### 2. 查找被删除的文件
+### (2) 查找被删除的文件
 
 ​       Git仓库中有文件被其他人删除，但是自己需要找到这个文件。可以使用下面的命令[^12]来找到这个文件commit记录，一般来说，最近一个commit中，这个文件被删除掉了。
 
@@ -427,6 +460,66 @@ $ git log --full-history -- "**/deleted_file_name.*"
 TODO
 
 core.sparsecheckout
+
+
+
+### (3) 删除其他分支
+
+本地删除当前分支以外的其他分支，使用下面的命令
+
+```shell
+$ git branch -d `git branch | grep -v \\* | xargs`
+```
+
+注意
+
+> 该命令不会删除远端分支
+
+
+
+### (4) 复制一个仓库
+
+GitHub上提供fork功能，可以将别人的库复制到自己的名下。但是如果要复制一个仓库（包括提交记录等信息）到GitLab上，则需要自己做一些处理。
+
+主要步骤，如下
+
+* 创建一个remote，关联到GitHub仓库的url
+* 查询GitHub仓库的远端分支
+* 拉取GitHub仓库的远端分支
+
+* 基于GitHub仓库的远端分支，创建新的分支，做修改
+
+举个例子，如下
+
+```shell
+// 1. 创建一个remote
+$ git remote add Aspects https://github.com/steipete/Aspects.git
+$ git remote 
+Aspects
+origin
+// 2. 查询GitHub仓库的远端分支
+$ git remote show Aspects      
+* remote Aspects
+  Fetch URL: https://github.com/steipete/Aspects.git
+  Push  URL: https://github.com/steipete/Aspects.git
+  HEAD branch: master
+  Remote branches:
+    master            new (next fetch will store in remotes/Aspects)
+    peter/alloc-hooks new (next fetch will store in remotes/Aspects)
+    peter/trampolines new (next fetch will store in remotes/Aspects)
+  Local ref configured for 'git push':
+    master pushes to master (local out of date)
+// 3.a 拉取GitHub仓库的远端分支
+$ git pull Aspects master
+
+// 3.b git fetch <remote> <rbranch>:<lbranch>，将远端分支拉取到本地分支[^18]
+$ git fetch Aspects master:temp
+$ git merge temp --allow-unrelated-histories
+```
+
+使用--allow-unrelated-histories选项[^19]，解决代码合并问题
+
+
 
 
 
@@ -458,4 +551,8 @@ core.sparsecheckout
 [^14]:https://stackoverflow.com/questions/5863426/get-commit-list-between-tags-in-git/33579952
 [^15]:https://stackoverflow.com/questions/35286480/how-to-list-commits-directly-between-two-tags
 [^16]:https://stackoverflow.com/questions/1441010/the-shortest-possible-output-from-git-log-containing-author-and-date
+
+[^17]:https://stackoverflow.com/a/15630478
+[^18]:https://stackoverflow.com/a/16095458
+[^19]:https://www.educative.io/edpresso/the-fatal-refusing-to-merge-unrelated-histories-git-error
 

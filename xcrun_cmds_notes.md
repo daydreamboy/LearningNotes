@@ -173,6 +173,7 @@ Mach header
 | lipo -create -output libffi.a ./Debug-iphoneos/libffi.a ./Debug-iphonesimulator/libffi.a | 合并两个架构的二进制文件 |
 | lipo -thin arm64 \<xxx\> -output xxx_arm64 | 二进制文件分拆单个架构 |
 | lipo -archs MyUniversalFramework | 查看二进制的架构 |
+| lipo -remove x86_64 -output <executable.new> \<executable\> | 从Universal架构中移除某个架构 |
 
 
 
