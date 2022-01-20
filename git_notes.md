@@ -147,7 +147,9 @@ git diff [<options>] --no-index [--] <path> <path>
 
 用例：
 
-#### (1) 查看当前分支对应的远程分支是否文件改动（A/D/R）[^3]
+#### a. --diff-filter=ADR
+
+查看当前分支对应的远程分支是否文件改动（A/D/R）[^3]
 
 ```shell
 $ git fetch
@@ -160,7 +162,9 @@ $ git diff --diff-filter=ADR --name-only master origin/master
 
 
 
-#### (2) 查看Staged File列表[^7]
+#### b. --cached --name-status
+
+查看Staged File列表[^7]
 
 Staged File列表，是指准备要提交的文件列表。
 
@@ -210,7 +214,9 @@ https://stackoverflow.com/a/21724628
 
 用例：
 
-#### (1) 查看当前分支[^2]
+#### a. --abbrev-ref HEAD
+
+查看当前分支[^2]
 
 ```shell
 $ git rev-parse --abbrev-ref HEAD
@@ -218,7 +224,9 @@ $ git rev-parse --abbrev-ref HEAD
 
 
 
-#### (2) 查看当前commit[^6]
+#### b. HEAD
+
+查看当前commit[^6]
 
 ```shell
 $ git rev-parse HEAD
@@ -226,7 +234,9 @@ $ git rev-parse HEAD
 
 
 
-#### (3) 查看当前Git根目录路径[^8]
+#### c. --show-toplevel
+
+查看当前Git根目录路径[^8]
 
 ```shell
 $ git rev-parse --show-toplevel
@@ -355,7 +365,7 @@ https://stackoverflow.com/questions/3442874/in-git-how-can-i-write-the-current-c
 
 ## 4、常用git alias
 
-### a. 配置.gitconfig文件
+### (1) 配置.gitconfig文件
 
 在`~/.gitconfig`文件中，找到下面section进行配置[^9]
 
@@ -386,7 +396,7 @@ $ git config --global alias.removeLocalOtherBranch 'branch -d `git branch | grep
 
 
 
-### b. 常用git alias示例
+### (2) 常用git alias示例
 
 ```properties
 [alias]
