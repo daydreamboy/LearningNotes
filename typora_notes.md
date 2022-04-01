@@ -71,6 +71,39 @@ Go to <kbd>System Preferences</kbd> > <kbd>Extensions</kbd> > <kbd>Xcode Source 
 
 
 
+### （6）图片带跳转链接
+
+在markdown中图片有下面形式
+
+* `![](path/to/image)`
+* `<img src="path/to/image">`
+
+
+
+图片带跳转链接，有下面几种形式[^3]
+
+* `[<img src="typora_notes_images/Objects managed by the navigation controller.png">](http://www.google.com)`
+
+
+
+[<img src="typora_notes_images/Objects managed by the navigation controller.png">](http://www.google.com)
+
+
+
+* `[![Foo](typora_notes_images/Objects managed by the navigation controller.png)](http://www.google.com)`
+
+[![Foo](typora_notes_images/Objects managed by the navigation controller.png)](http://www.google.com)
+
+
+
+* `<a href="http://www.google.com">![](typora_notes_images/Objects managed by the navigation controller.png)</a>`
+
+<a href="http://www.google.com">![](typora_notes_images/Objects managed by the navigation controller.png)</a>
+
+
+
+
+
 
 ## 2、Typora支持的图[^1]
 
@@ -339,6 +372,8 @@ pie
 [^1]:https://support.typora.io/Draw-Diagrams-With-Markdown/
 
 [^2]:https://stackoverflow.com/questions/255170/markdown-and-image-alignment
+
+[^3]:https://meta.stackexchange.com/questions/38915/creating-an-image-link-in-markdown-format
 
 
 
