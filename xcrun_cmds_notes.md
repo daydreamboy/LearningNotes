@@ -293,6 +293,23 @@ Mach header
 
 
 
+## 18、swift-demangle
+
+作用：demangle swift的符号
+
+举个例子，如下
+
+```shell
+$ xcrun swift-demangle _TFC9TestSwift15TestASwiftClass21testReturnVoidWithaIdfS0_FCSo6UIViewT_
+_TFC9TestSwift15TestASwiftClass21testReturnVoidWithaIdfS0_FCSo6UIViewT_ ---> TestSwift.TestASwiftClass.testReturnVoidWithaId(TestSwift.TestASwiftClass) -> (__C.UIView) -> ()
+```
+
+
+
+
+
+
+
 
 
 

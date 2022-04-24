@@ -531,6 +531,35 @@ $ git merge temp --allow-unrelated-histories
 
 
 
+### (5) 使用ssh访问GitHub[^20]
+
+GitHub上的git仓库已经废弃https访问的方式，需要使用ssh方式。
+
+需要下面几个步骤
+
+* Mac电脑上生成RSA key
+* 配置config
+* GitHub账号的设置添加public key
+
+举个例子，如下
+
+```shell
+$ cd ~/.ssh
+$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+> Enter a file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
+<id_rsa_gh>
+$ vim ~/.ssh/config
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_rsa_gh
+$ cat ~/.ssh/id_rsa_gh.pub
+```
+
+当生成private key和public key时，可以重新去一个名字，比如id_rsa_gh。然后配置config文件，设置id_rsa_gh的文件路径。
+
+最后查看id_rsa_gh.pub的内容，将这个复制粘贴到GitHub账号的设置中。
+
 
 
 
@@ -565,4 +594,6 @@ $ git merge temp --allow-unrelated-histories
 [^17]:https://stackoverflow.com/a/15630478
 [^18]:https://stackoverflow.com/a/16095458
 [^19]:https://www.educative.io/edpresso/the-fatal-refusing-to-merge-unrelated-histories-git-error
+
+[^20]:https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
 
