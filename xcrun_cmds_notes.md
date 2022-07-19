@@ -306,6 +306,20 @@ _TFC9TestSwift15TestASwiftClass21testReturnVoidWithaIdfS0_FCSo6UIViewT_ ---> Tes
 
 
 
+## 19、dyldinfo
+
+作用：显示在一个可执行文件中dyld所使用的信息
+
+man文档描述，如下
+
+> **dyldinfo** – Displays information used by dyld in an executable
+
+
+
+| Example                             | Task                               |
+| ----------------------------------- | ---------------------------------- |
+| $ xcrun assetutil --info Assets.car | 查看Assets.car的描述(JSON格式)[^2] |
+
 
 
 

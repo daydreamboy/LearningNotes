@@ -297,6 +297,10 @@ ascii命令行工具[^5]，用于查看ASCII表
 
 
 
+### jtool[^9]
+
+安装方法：`brew install --cask jtool`
+
 
 
 
@@ -316,6 +320,8 @@ ascii命令行工具[^5]，用于查看ASCII表
 [^7]:https://stackoverflow.com/questions/55834845/unable-to-install-java8-with-homebrew
 
 [^8]:https://apple.stackexchange.com/questions/410865/are-there-video-players-that-display-milliseconds-on-mac
+
+[^9]:https://formulae.brew.sh/cask/jtool
 
 
 

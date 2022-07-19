@@ -564,6 +564,22 @@ $ cat ~/.ssh/id_rsa_gh.pub
 
 
 
+a. --depth=1
+
+如果git仓库中包含二进制文件
+
+
+
+https://stackoverflow.com/questions/29368837/copy-a-git-repo-without-history
+
+https://stackoverflow.com/questions/31278902/how-to-shallow-clone-a-specific-commit-with-depth-1
+
+
+
+
+
+
+
 
 
 ## References

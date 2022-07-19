@@ -205,6 +205,16 @@ E --> F[End]
         Add another diagram to demo page    : 48h
 ```
 
+甘特图(Gantt diagram)是一种条线的图表，用于显示工程上的日程以及每个工程的耗时。甘特图也显示每个元素的起始时间和结束时间，以及每个工程的摘要信息。
+
+mermaid文档对甘特图的描述[^4]，如下
+
+> A Gantt chart is a type of bar chart, first developed by Karol Adamiecki in 1896, and independently by Henry Gantt in the 1910s, that illustrates a project schedule and the amount of time it would take for any one project to finish. Gantt charts illustrate number of days between the start and finish dates of the terminal elements and summary elements of a project.
+
+
+
+
+
 ####d. 类图 (Class Diagrams)
 
 ```mermaid
@@ -375,5 +385,5 @@ pie
 
 [^3]:https://meta.stackexchange.com/questions/38915/creating-an-image-link-in-markdown-format
 
-
+[^4]:https://mermaid-js.github.io/mermaid/#/gantt
 
