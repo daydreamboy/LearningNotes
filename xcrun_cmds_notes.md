@@ -322,6 +322,68 @@ man文档描述，如下
 
 
 
+## 20、leaks
+
+作用：搜索一个进程泄漏的内存
+
+| Example                                                      | Task                   |
+| ------------------------------------------------------------ | ---------------------- |
+| `$ leaks $(pgrep someProcessName) --ouputGraph Process-$(date +%F-%H:%M:%S).memgraph` | dump某个进程的内存分布 |
+
+说明
+
+> 1. `$(date +%F-%H:%M:%S)`，用于显示时间戳，例如`echo $(date +%F-%H:%M:%S)`
+> 2. `$(pgrep someProcessName)`，用于查找特定进程的pid。如果知道pid，也可以直接填入pid
+> 3. `.memgraph`文件，可以用Xcode打开
+
+
+
+## 21、heap
+
+作用：分析堆内存
+
+| Example                               | Task                         |
+| ------------------------------------- | ---------------------------- |
+| $ heap -z -address=all <xxx.memgraph> | 分析某个memgraph文件的堆对象 |
+
+
+
+## 22、malloc_history
+
+作用：分析某个进程的对象malloc堆栈
+
+| Example                                              | Task                         |
+| ---------------------------------------------------- | ---------------------------- |
+| $ malloc_history <ProcessName> -fullStacks <address> | 分析某个进程的对象malloc堆栈 |
+
+说明
+
+> 使用malloc_history需要满足下面条件，才能看到正确的堆栈
+>
+> 1. 这里ProcessName是正在运行的进程，为了能看到符号，需要运行Debug版本的Mac App
+>
+> 2. address是某个对象的地址。这个地址可以从dump的memgraph文件中来获取。简单来说，如果存在大内存增长，则可以dump两次内存，即增长前和增长后，然后diff出多出哪些对象。最后根据这些对象地址，使用malloc_history来dump出堆栈，从而知道代码哪里出了问题
+>
+> 3. malloc_history需要配置app环境变量，开启Malloc Logging功能
+>
+>    ```shell
+>    export MallocStackLogging=1
+>    export MallocStackLoggingNoCompact=1
+>    export MallocScribble=1
+>    // optional
+>    export MallocPreScribble=1
+>    export MallocCheckHeapStart=1000
+>    export MallocCheckHeapEach=100
+>    
+>    /path/to/xxx.app/Contents/MacOS/xxx
+>    ```
+>
+>    
+
+
+
+
+
 
 
 
