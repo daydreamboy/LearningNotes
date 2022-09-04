@@ -599,6 +599,14 @@ https://stackoverflow.com/questions/31278902/how-to-shallow-clone-a-specific-com
 
 
 
+### (6) 诊断git的ssh连通性
+
+诊断git的ssh连通性[^22]，如下
+
+```shell
+$ ssh -vT git@github.com
+```
+
 
 
 
@@ -637,4 +645,6 @@ https://stackoverflow.com/questions/31278902/how-to-shallow-clone-a-specific-com
 [^20]:https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
 
 [^21]:https://stackoverflow.com/a/41521358
+
+[^22]:https://stackoverflow.com/a/8610435
 
