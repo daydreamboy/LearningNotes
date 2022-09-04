@@ -562,6 +562,29 @@ $ cat ~/.ssh/id_rsa_gh.pub
 
 
 
+说明
+
+> 如果完成上面几步，提示下面没有权限
+>
+> ```shell
+> $ git push
+> ERROR: Permission to xxx/your_repository.git denied to XTShow.
+> fatal: Could not read from remote repository.
+> 
+> Please make sure you have the correct access rights
+> ```
+>
+> 则可以尝试下面的命令[^21]，如下
+>
+> ```shell
+> $ ssh-add ~/.ssh/id_rsa_gh2
+> Identity added: /Users/xxx/.ssh/id_rsa_gh2 (your_email@example.com)
+> ```
+>
+> 
+
+
+
 
 
 a. --depth=1
@@ -612,4 +635,6 @@ https://stackoverflow.com/questions/31278902/how-to-shallow-clone-a-specific-com
 [^19]:https://www.educative.io/edpresso/the-fatal-refusing-to-merge-unrelated-histories-git-error
 
 [^20]:https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
+
+[^21]:https://stackoverflow.com/a/41521358
 
