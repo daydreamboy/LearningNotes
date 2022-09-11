@@ -609,7 +609,49 @@ $ ssh -vT git@github.com
 
 
 
+## 6、git常见报错
 
+### (1) git-ssh: connect to host github.com port 22: Connection timed out
+
+执行git pull时，报下面的错误，如下
+
+```shell
+$ git pull
+ssh: connect to host github.com port 22: Connection timed out
+fatal: Could not read from remote repository.
+```
+
+解决方法[^23]：
+
+* 测试可用性
+
+```shell
+$ ssh -T -p 443 git@ssh.github.com
+The authenticity of host '[ssh.github.com]:443 ([a.b.c.d]:443)' can't be established.
+ED25519 key fingerprint is SHA256:<abcdedfgh...>.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '[ssh.github.com]:443' (ED25519) to the list of known hosts.
+Hi XXX! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+提示Hi XXX! You've successfully authenticated, but GitHub does not provide shell access.说明可用
+
+* 编辑`~/.ssh/config`文件，增加内容，如下
+
+```properties
+Host github.com
+Hostname ssh.github.com
+Port 443
+```
+
+* 再次测试
+
+```
+$ ssh -T git@ssh.github.com
+```
+
+最后git pull应该是成功的。
 
 
 
@@ -647,4 +689,6 @@ $ ssh -vT git@github.com
 [^21]:https://stackoverflow.com/a/41521358
 
 [^22]:https://stackoverflow.com/a/8610435
+
+[^23]:https://www.jianshu.com/p/c3aac5024877
 
