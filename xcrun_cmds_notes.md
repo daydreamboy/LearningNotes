@@ -156,6 +156,14 @@ Mach header
 
 
 
+说明
+
+> nm命令行的实现，Apple已经开源，地址是https://opensource.apple.com/source/clang/clang-703.0.31/src/tools/llvm-nm/
+
+
+
+
+
 ## 5、strings
 
 | example | task |
@@ -271,6 +279,10 @@ Mach header
 | $ c++filt __ZNSs6assignEPKcm <br/>std::string::assign(char const*, unsigned long) | demangle C++的符号                                 |
 | $ xcrun c++filt -_ __ZNK7alibaba3ark17AIMRpcServiceImpl12GetUserAgentEv<br/>alibaba::ark::AIMRpcServiceImpl::GetUserAgent() const | 某些情况下，需要指定`-_`选项过滤符号中的下划线[^3] |
 
+说明
+
+> 1. 有时候可以配合nm使用，例如`nm -m <your c++ library> | c++filt > symbols.txt `
+
 
 
 ## 16、assetutil
@@ -374,7 +386,7 @@ man文档描述，如下
 >    export MallocPreScribble=1
 >    export MallocCheckHeapStart=1000
 >    export MallocCheckHeapEach=100
->    
+>          
 >    /path/to/xxx.app/Contents/MacOS/xxx
 >    ```
 >

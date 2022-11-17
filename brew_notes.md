@@ -95,6 +95,24 @@ $ brew install wget tree jq
 
 
 
+### 6、tap
+
+格式：**brew** **tap** [options] [user**/**repo] [URL]
+
+作用：git clone一个formula仓库
+
+举个例子
+
+```shell
+$ brew tap <your repository name>/taps http://path/to/brew/taps.git
+```
+
+说明
+
+> 如果URL是github上的地址，可以按照这个格式**brew tap** user**/**repo **https://github.com/**user**/homebrew-**repo来命名user和repo。
+
+
+
 
 
 ## 首次安装
