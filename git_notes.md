@@ -36,102 +36,75 @@ fatal: this operation must be run in a work tree
 
 
 
-### (1) stash
+### (1) clone
 
-格式：`git stash \<subcommand\>`
-
-说明：管理本地stash，常用子命令有list
-
-用例：
-
-#### a. stash list
-
-git stash list，查看stash列表
+如果git仓库包含submodule，clone时可以增加`--recursive`选项，将submodule同时clone下来。例如
 
 ```shell
-$ git stash list --date=local
-stash@{Mon Apr 16 15:09:01 2018}: On release/180427/master: temp2
-stash@{Tue Apr 3 19:17:27 2018}: On release/180427/master: temp3
-```
-
-> --date=local，显示存储的时间
-
-
-
-### (2) log
-
-格式：`git log [<options>] [<revision range>] [[--] <path>...]`
-
-说明：查看log
-
-用例：
-
-#### a.  --author
-
-查看某个或多个用户的log[^1]
-
-```shell
-$ git log --author='<username>'
-$ git log --author='<username1>' --author='<username2>'
-$ git log --author='<email.username@company.com>'
+$ git clone --recursive https://github.com/DeVaukz/MachO-Explorer
 ```
 
 
 
-> --author参数，除了可以指定用户名，还可以指定用户的email
+### (2) config
+
+格式：`git config [<options>]`
+
+说明：用于设置和查询git的配置
+
+git的config，分为下面三个级别[^4]
+
+* project，配置存放在git仓库`.git/config`文件中，配置仅对当前git仓库有效
+* global，配置存放在git仓库`~/.gitconfig`文件中，配置对当前用户的所有git仓库有效
+* system，配置存放在git仓库`/etc/gitconfig`文件中，配置对所有用户的所有git仓库有效
 
 
 
-#### b. tagA...tagB & tagA..tagB
-
-列出2个tag之间的commit[^14]
-
-```shell
-$ git log --pretty=oneline tagA...tagB
-$ git log --pretty=oneline tagA..tagB
-```
-
-使用上面的格式，可以列出2个tag之间的commit。
-
-但是`..`和`...`有比较大的区别。
-
-* `..`，从tagA到tagB，不包括哪些commit能reach到tagA，仅包括commit能reach到tagB。如下图
-
-
-
-![](git_notes/git log A..B.jpeg)
-
-
-
-`git log a..b`
-
-> means give me all commits that were made since a, until and including b (or, like the man page puts it "Include commits that are reachable from b but exclude those that are reachable from a"), the three-dot variant
-
-
-
-* `...`，从tagA到tagB，不包括哪些commit既能reach到tagA，有能reach到tagB，仅包括commit能reach到tagA，或者commit能reach到tagB。如下图
-
-![](git_notes/git log A...B.jpeg)
-
-
-
-`git log a...b`
-
-> means "Include commits that are reachable from either a or b but exclude those that are reachable from both", which is a totally different thing.
-
-
-
-`--pretty=oneline`没有时间和作者信息，可以采用自定义格式的方式[^16]，如下
+访问project级别的config配置
 
 ```shell
-$ git log --pretty=format:"%h%x09%an%x09%ad%x09%s" tagA...tagB
+$ cd <git repo>; git config user.name "John Doe" 
+或者
+$ git config --file path/to/<git repo>/.git/config user.name "John Doe" 
 ```
 
 
 
+访问global级别的config配置
+
+```shell
+$ git config --global user.name "John Doe"
+```
 
 
-### (3) diff
+
+访问system级别的config配置
+
+```shell
+$ git config --system user.name "John Doe"
+```
+
+
+
+### (3) fetch
+
+#### a. 强制同步远端的tag
+
+使用下面命令[^24]，如下
+
+```shell
+$ git fetch --tags --force
+```
+
+说明
+
+> 执行git fetch --tags --prune origin，可能会报错“would clobber existing tag”，是因为本地和远端存在同名的tag，出现这种原因可能是远端同名的tag，被删除然后在新的commit上打tag，导致本地和远端有同名的tag，但是对应的commit不一样。使用`--force`选项，强制同步远端的tag
+
+
+
+
+
+### (4) diff
 
 格式：
 
@@ -206,7 +179,82 @@ https://stackoverflow.com/a/21724628
 
 
 
-### (4) rev-parse
+### (5) log
+
+格式：`git log [<options>] [<revision range>] [[--] <path>...]`
+
+说明：查看log
+
+用例：
+
+#### a.  --author
+
+查看某个或多个用户的log[^1]
+
+```shell
+$ git log --author='<username>'
+$ git log --author='<username1>' --author='<username2>'
+$ git log --author='<email.username@company.com>'
+```
+
+
+
+> --author参数，除了可以指定用户名，还可以指定用户的email
+
+
+
+#### b. tagA...tagB & tagA..tagB
+
+列出2个tag之间的commit[^14]
+
+```shell
+$ git log --pretty=oneline tagA...tagB
+$ git log --pretty=oneline tagA..tagB
+```
+
+使用上面的格式，可以列出2个tag之间的commit。
+
+但是`..`和`...`有比较大的区别。
+
+* `..`，从tagA到tagB，不包括哪些commit能reach到tagA，仅包括commit能reach到tagB。如下图
+
+
+
+![](git_notes/git log A..B.jpeg)
+
+
+
+`git log a..b`
+
+> means give me all commits that were made since a, until and including b (or, like the man page puts it "Include commits that are reachable from b but exclude those that are reachable from a"), the three-dot variant
+
+
+
+* `...`，从tagA到tagB，不包括哪些commit既能reach到tagA，有能reach到tagB，仅包括commit能reach到tagA，或者commit能reach到tagB。如下图
+
+![](git_notes/git log A...B.jpeg)
+
+
+
+`git log a...b`
+
+> means "Include commits that are reachable from either a or b but exclude those that are reachable from both", which is a totally different thing.
+
+
+
+`--pretty=oneline`没有时间和作者信息，可以采用自定义格式的方式[^16]，如下
+
+```shell
+$ git log --pretty=format:"%h%x09%an%x09%ad%x09%s" tagA...tagB
+```
+
+
+
+
+
+
+
+### (6) rev-parse
 
 格式：`git rev-parse [<options>] <args>...`
 
@@ -246,58 +294,6 @@ $ git rev-parse --show-toplevel
 
 
 
-### (5) config
-
-格式：`git config [<options>]`
-
-说明：用于设置和查询git的配置
-
-git的config，分为下面三个级别[^4]
-
-* project，配置存放在git仓库`.git/config`文件中，配置仅对当前git仓库有效
-* global，配置存放在git仓库`~/.gitconfig`文件中，配置对当前用户的所有git仓库有效
-* system，配置存放在git仓库`/etc/gitconfig`文件中，配置对所有用户的所有git仓库有效
-
-
-
-访问project级别的config配置
-
-```shell
-$ cd <git repo>; git config user.name "John Doe" 
-或者
-$ git config --file path/to/<git repo>/.git/config user.name "John Doe" 
-```
-
-
-
-访问global级别的config配置
-
-```shell
-$ git config --global user.name "John Doe"
-```
-
-
-
-访问system级别的config配置
-
-```shell
-$ git config --system user.name "John Doe"
-```
-
-
-
-### (6) clone
-
-
-
-如果git仓库包含submodule，clone时可以增加`--recursive`选项，将submodule同时clone下来。例如
-
-```shell
-$ git clone --recursive https://github.com/DeVaukz/MachO-Explorer
-```
-
-
-
 ### (7) remote
 
 #### a. remote add
@@ -324,6 +320,28 @@ $ git remote show <remote-name>
 ```
 
 
+
+
+
+### (8) stash
+
+格式：`git stash \<subcommand\>`
+
+说明：管理本地stash，常用子命令有list
+
+用例：
+
+#### a. stash list
+
+git stash list，查看stash列表
+
+```shell
+$ git stash list --date=local
+stash@{Mon Apr 16 15:09:01 2018}: On release/180427/master: temp2
+stash@{Tue Apr 3 19:17:27 2018}: On release/180427/master: temp3
+```
+
+> --date=local，显示存储的时间
 
 
 
