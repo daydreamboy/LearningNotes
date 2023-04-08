@@ -673,6 +673,24 @@ $ ssh -T git@ssh.github.com
 
 
 
+### (2) 报错WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
+
+执行git pull时，报下面的错误，如下
+
+```shell
+$ git pull
+WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
+...
+```
+
+解决方法[^24]：
+
+```shell
+$ ssh-keygen -R github.com
+```
+
+
+
 ## References
 
 [^1]: https://stackoverflow.com/questions/4259996/how-can-i-view-a-git-log-of-just-one-users-commits 
@@ -709,4 +727,5 @@ $ ssh -T git@ssh.github.com
 [^22]:https://stackoverflow.com/a/8610435
 
 [^23]:https://www.jianshu.com/p/c3aac5024877
+[^24]:https://stackoverflow.com/questions/75830783/warning-remote-host-identification-has-changed-did-github-change-their-rsa
 

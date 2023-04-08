@@ -321,6 +321,10 @@ ascii命令行工具[^5]，用于查看ASCII表
 
 
 
+### ninja
+
+安装方法[^10]：`brew install ninja`
+
 
 
 ## 参考资料
@@ -340,6 +344,8 @@ ascii命令行工具[^5]，用于查看ASCII表
 [^8]:https://apple.stackexchange.com/questions/410865/are-there-video-players-that-display-milliseconds-on-mac
 
 [^9]:https://formulae.brew.sh/cask/jtool
+
+[^10]:https://blog.simplypatrick.com/posts/2012/08-18-ninja-a-small-build-system/
 
 
 
