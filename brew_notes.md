@@ -2,9 +2,9 @@
 
 [TOC]
 
-## 常用命令
+## 1、常用命令
 
-### 1、list
+### (1) list
 
 格式：**brew list** [formula]    
 说明：列出当前版本的formula的安装位置    
@@ -19,7 +19,7 @@ $ brew list chisel
 
 
 
-### 2、info
+### (2) info
 
 格式：**brew info** [formula]    
 说明：列出formula的本地信息（安装版本等）
@@ -47,7 +47,7 @@ Add the following line to ~/.lldbinit to load chisel when Xcode launches:
 
 
 
-### 3、switch
+### (3) switch
 
 格式：**brew** **switch** \<formula\> \<version\>     
 说明：切换formula的版本[^1]
@@ -67,7 +67,7 @@ $ brew list chisel
 
 
 
-### 4、upgrade
+### (4) upgrade
 
 格式：**brew upgrade** \<formula\>
 
@@ -81,7 +81,7 @@ $ brew upgrade io
 
 
 
-### 5、install
+### (5) install
 
 格式：**brew install** \<formula1formula2 ...\>
 
@@ -95,7 +95,7 @@ $ brew install wget tree jq
 
 
 
-### 6、tap
+### (6) tap
 
 格式：**brew** **tap** [options] [user**/**repo] [URL]
 
@@ -115,7 +115,7 @@ $ brew tap <your repository name>/taps http://path/to/brew/taps.git
 
 
 
-## 首次安装
+## 2、首次安装Homebrew
 
 Homebrew是Mac OS X的命令行包管理工具，类似Ubuntu下apt、CentOS下的yum。
 
@@ -135,7 +135,7 @@ $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/maste
 
 
 
-## 基本概念
+## 3、Homebrew基本概念
 
 官方文档上，给下面术语的归纳[^2]，如下
 
@@ -152,7 +152,9 @@ $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/maste
 
 
 
-## 安装结构
+
+
+## 4、安装结构
 
 Homebrew安装位置：/usr/local/Homebrew
 
@@ -164,7 +166,7 @@ Cellar安装位置：/usr/local/Cellar
 
 
 
-## 常用安装包
+## 5、常用安装包
 
 ### trash
 
@@ -248,8 +250,9 @@ $ tree . -L 2 -I node_modules
 └── webpack.config.js
 ```
 
-* -L，只显示两级
+* -L，指定显示的层级
 * -I，忽略特定的文件夹
+* -a，显示所有文件，包括隐藏文件和隐藏文件夹
 
 
 
