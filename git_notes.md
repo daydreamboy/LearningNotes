@@ -627,6 +627,18 @@ $ ssh -vT git@github.com
 
 
 
+### (7) git pull自动更新submodule
+
+如果git仓库添加submodule，默认git pull，不会git clone这个仓库，也不会更新这个submodule。配置下面命令，可以自动更新submodule[^25]
+
+```shell
+$ git config --global submodule.recurse true
+```
+
+
+
+
+
 ## 6、git常见报错
 
 ### (1) git-ssh: connect to host github.com port 22: Connection timed out
@@ -728,4 +740,6 @@ $ ssh-keygen -R github.com
 
 [^23]:https://www.jianshu.com/p/c3aac5024877
 [^24]:https://stackoverflow.com/questions/75830783/warning-remote-host-identification-has-changed-did-github-change-their-rsa
+
+[^25]:https://stackoverflow.com/questions/4611512/is-there-a-way-to-make-git-pull-automatically-update-submodules
 
