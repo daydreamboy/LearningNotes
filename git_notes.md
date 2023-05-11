@@ -394,23 +394,23 @@ https://stackoverflow.com/questions/3442874/in-git-how-can-i-write-the-current-c
     ci = commit -v
 ```
 
-如果.gitconfig文件的格式有问题，执行git --version命名会报错，如下
+如果`.gitconfig`文件的格式有问题，执行git --version命名会报错，如下
 
 
 ```shell
 $ git --version
-fatal: bad config line 15 in file /Users/wesley_chen/.gitconfig
+fatal: bad config line 15 in file ~/.gitconfig
 ```
 
 
 
-由于.gitconfig有特定格式，可以使用git config --global命令进行添加别名。举个例子，如下
+由于`.gitconfig`有特定格式，而且gti版本不同，这个文件的格式可能存在差异。应该使用`git config --global`命令进行配置别名。
+
+举个例子，如下
 
 ```shell
 $ git config --global alias.removeLocalOtherBranch 'branch -d `git branch | grep -v '*' | xargs`'
 ```
-
-
 
 
 
@@ -419,13 +419,15 @@ $ git config --global alias.removeLocalOtherBranch 'branch -d `git branch | grep
 ```properties
 [alias]
     remove_local_other_branch = branch -d `git branch | grep -v \* | xargs`
+    rclone = clone --recurse-submodules -j8
+[alias "submodule"]
+	update = submodule update --init --recursive
 ```
-
-
 
 * remove_local_other_branch，删除非当前分支的其他本地分支[^10]
 
-
+* rclone，clone仓库的的同时，递归clone submodule
+* submodule.update，clone仓库时忘记拉取submodule，可以使用这个命令clone或更新submodule
 
 
 
@@ -637,6 +639,37 @@ $ git config --global submodule.recurse true
 
 
 
+### (8) git clone同时clone submodule
+
+参考这个SO的回答[^26]，有两种方式
+
+* 使用两个命令，如下
+
+  ```shell
+  $ git clone git@xxx.com:yourName/someLibrary.git
+  $ cd someLibrary
+  $ git submodule update --init --recursive
+  ```
+  > `git submodule update --init --recursive`命令需要cd到git仓库下面执行
+  
+* 使用一个命令，如下
+
+  ```shell
+  $ git clone --recurse-submodules -j8 git@xxx.com:yourName/someLibrary.git
+  ```
+  > `-j8`控制同时clone submodule的个数
+
+由于上面两个命令，参数比较多，可以采用git alias方式简化一下。
+
+使用`git config --global`配置git alias，如下
+
+```shell
+$ git config --global alias.rclone 'clone --recurse-submodules -j8'
+$ git config --global alias.submodule.update 'submodule update --init --recursive'
+```
+
+
+
 
 
 ## 6、git常见报错
@@ -743,3 +776,4 @@ $ ssh-keygen -R github.com
 
 [^25]:https://stackoverflow.com/questions/4611512/is-there-a-way-to-make-git-pull-automatically-update-submodules
 
+[^26]:https://stackoverflow.com/questions/3796927/how-do-i-git-clone-a-repo-including-its-submodules
