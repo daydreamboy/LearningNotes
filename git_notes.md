@@ -46,7 +46,22 @@ $ git clone --recursive https://github.com/DeVaukz/MachO-Explorer
 
 
 
-### (2) config
+### (2) commit
+
+#### a. 修改最近提交commit的信息
+
+如果最近一次提交的信息，需要修改。可以执行下面的命令[^27]
+
+```shell
+$ git commit --amend -m "New commit message"
+$ git push --force
+```
+
+> 也可以执行git commit --amend，唤起vim编辑器，基于之前的内容，做更新
+
+
+
+### (3) config
 
 格式：`git config [<options>]`
 
@@ -86,7 +101,7 @@ $ git config --system user.name "John Doe"
 
 
 
-### (3) fetch
+### (4) fetch
 
 #### a. 强制同步远端的tag
 
@@ -104,7 +119,7 @@ $ git fetch --tags --force
 
 
 
-### (4) diff
+### (5) diff
 
 格式：
 
@@ -179,7 +194,7 @@ https://stackoverflow.com/a/21724628
 
 
 
-### (5) log
+### (6) log
 
 格式：`git log [<options>] [<revision range>] [[--] <path>...]`
 
@@ -294,7 +309,7 @@ $ git rev-parse --show-toplevel
 
 
 
-### (7) remote
+### (8) remote
 
 #### a. remote add
 
@@ -323,7 +338,7 @@ $ git remote show <remote-name>
 
 
 
-### (8) stash
+### (9) stash
 
 格式：`git stash \<subcommand\>`
 
@@ -777,3 +792,7 @@ $ ssh-keygen -R github.com
 [^25]:https://stackoverflow.com/questions/4611512/is-there-a-way-to-make-git-pull-automatically-update-submodules
 
 [^26]:https://stackoverflow.com/questions/3796927/how-do-i-git-clone-a-repo-including-its-submodules
+[^27]:https://stackoverflow.com/a/20853093
+
+
+
