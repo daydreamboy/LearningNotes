@@ -21,8 +21,6 @@ $ git --exec-path
 
 ## 2、git子命令
 
-
-
 一般情况下，git子命令都在git仓库中使用，但是不能`.git`文件夹下面使用，否则git子命令不能正常工作。
 
 举个例子，如下
@@ -36,7 +34,49 @@ fatal: this operation must be run in a work tree
 
 
 
-### (1) clone
+### (1) branch
+
+#### a. 删除其他分支
+
+本地删除当前分支以外的其他分支，使用下面的命令
+
+```shell
+$ git branch -d `git branch | grep -v \\* | xargs`
+```
+
+注意
+
+> 该命令不会删除远端分支
+
+
+
+#### b. 查询某个commit在哪些分支上
+
+参考这个SO[^28]的做法，如下
+
+* 检查本地分支
+
+```shell
+$ git branch --contains <commit>
+```
+
+* 检查远程分支
+
+```shell
+$ git branch -r --contains <commit>
+```
+
+如果需要过滤特定的分支，结合grep使用，如下
+
+```shell
+$ git branch -r --contains <commit> | grep -e "someBranch"
+```
+
+
+
+
+
+### (2) clone
 
 如果git仓库包含submodule，clone时可以增加`--recursive`选项，将submodule同时clone下来。例如
 
@@ -46,7 +86,42 @@ $ git clone --recursive https://github.com/DeVaukz/MachO-Explorer
 
 
 
-### (2) commit
+#### a. git clone同时clone submodule
+
+参考这个SO的回答[^26]，有两种方式
+
+* 使用两个命令，如下
+
+  ```shell
+  $ git clone git@xxx.com:yourName/someLibrary.git
+  $ cd someLibrary
+  $ git submodule update --init --recursive
+  ```
+
+  > `git submodule update --init --recursive`命令需要cd到git仓库下面执行
+
+* 使用一个命令，如下
+
+  ```shell
+  $ git clone --recurse-submodules -j8 git@xxx.com:yourName/someLibrary.git
+  ```
+
+  > `-j8`控制同时clone submodule的个数
+
+由于上面两个命令，参数比较多，可以采用git alias方式简化一下。
+
+使用`git config --global`配置git alias，如下
+
+```shell
+$ git config --global alias.rclone 'clone --recurse-submodules -j8'
+$ git config --global alias.submodule.update 'submodule update --init --recursive'
+```
+
+
+
+
+
+### (3) commit
 
 #### a. 修改最近提交commit的信息
 
@@ -61,7 +136,7 @@ $ git push --force
 
 
 
-### (3) config
+### (4) config
 
 格式：`git config [<options>]`
 
@@ -101,7 +176,19 @@ $ git config --system user.name "John Doe"
 
 
 
-### (4) fetch
+#### a. git pull自动更新submodule
+
+如果git仓库添加submodule，默认git pull，不会git clone这个仓库，也不会更新这个submodule。配置下面命令，可以自动更新submodule[^25]
+
+```shell
+$ git config --global submodule.recurse true
+```
+
+
+
+
+
+### (5) fetch
 
 #### a. 强制同步远端的tag
 
@@ -119,7 +206,7 @@ $ git fetch --tags --force
 
 
 
-### (5) diff
+### (6) diff
 
 格式：
 
@@ -194,7 +281,7 @@ https://stackoverflow.com/a/21724628
 
 
 
-### (6) log
+### (7) log
 
 格式：`git log [<options>] [<revision range>] [[--] <path>...]`
 
@@ -269,7 +356,7 @@ $ git log --pretty=format:"%h%x09%an%x09%ad%x09%s" tagA...tagB
 
 
 
-### (6) rev-parse
+### (8) rev-parse
 
 格式：`git rev-parse [<options>] <args>...`
 
@@ -309,7 +396,7 @@ $ git rev-parse --show-toplevel
 
 
 
-### (8) remote
+### (9) remote
 
 #### a. remote add
 
@@ -338,7 +425,7 @@ $ git remote show <remote-name>
 
 
 
-### (9) stash
+### (10) stash
 
 格式：`git stash \<subcommand\>`
 
@@ -508,20 +595,6 @@ core.sparsecheckout
 
 
 
-### (3) 删除其他分支
-
-本地删除当前分支以外的其他分支，使用下面的命令
-
-```shell
-$ git branch -d `git branch | grep -v \\* | xargs`
-```
-
-注意
-
-> 该命令不会删除远端分支
-
-
-
 ### (4) 复制一个仓库
 
 GitHub上提供fork功能，可以将别人的库复制到自己的名下。但是如果要复制一个仓库（包括提交记录等信息）到GitLab上，则需要自己做一些处理。
@@ -644,47 +717,6 @@ $ ssh -vT git@github.com
 
 
 
-### (7) git pull自动更新submodule
-
-如果git仓库添加submodule，默认git pull，不会git clone这个仓库，也不会更新这个submodule。配置下面命令，可以自动更新submodule[^25]
-
-```shell
-$ git config --global submodule.recurse true
-```
-
-
-
-### (8) git clone同时clone submodule
-
-参考这个SO的回答[^26]，有两种方式
-
-* 使用两个命令，如下
-
-  ```shell
-  $ git clone git@xxx.com:yourName/someLibrary.git
-  $ cd someLibrary
-  $ git submodule update --init --recursive
-  ```
-  > `git submodule update --init --recursive`命令需要cd到git仓库下面执行
-  
-* 使用一个命令，如下
-
-  ```shell
-  $ git clone --recurse-submodules -j8 git@xxx.com:yourName/someLibrary.git
-  ```
-  > `-j8`控制同时clone submodule的个数
-
-由于上面两个命令，参数比较多，可以采用git alias方式简化一下。
-
-使用`git config --global`配置git alias，如下
-
-```shell
-$ git config --global alias.rclone 'clone --recurse-submodules -j8'
-$ git config --global alias.submodule.update 'submodule update --init --recursive'
-```
-
-
-
 
 
 ## 6、git常见报错
@@ -794,5 +826,5 @@ $ ssh-keygen -R github.com
 [^26]:https://stackoverflow.com/questions/3796927/how-do-i-git-clone-a-repo-including-its-submodules
 [^27]:https://stackoverflow.com/a/20853093
 
-
+[^28]:https://stackoverflow.com/questions/1419623/how-to-list-branches-that-contain-a-given-commit
 
