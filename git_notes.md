@@ -693,26 +693,35 @@ $ cat ~/.ssh/id_rsa_gh.pub
 
 
 
-
-
-a. --depth=1
-
-如果git仓库中包含二进制文件
-
-
-
-https://stackoverflow.com/questions/29368837/copy-a-git-repo-without-history
-
-https://stackoverflow.com/questions/31278902/how-to-shallow-clone-a-specific-commit-with-depth-1
-
-
-
 ### (6) 诊断git的ssh连通性
 
 诊断git的ssh连通性[^22]，如下
 
 ```shell
 $ ssh -vT git@github.com
+```
+
+
+
+### (7) 克隆仓库中某个commit
+
+如果git仓库用于存放二进制文件，那么有可能因为二进制变化，导致这个仓库的历史版本有不同二进制文件。如果完整clone这个仓库，会发现这个仓库很大，导致下载速度很慢。
+
+如果只需要特定commit的二进制文件下载，则可以考虑只clone仓库中某个commit。
+
+* 总是取仓库最新的二进制文件，这里`<depth>`设置为1即可[^29]
+
+```shell
+$ git clone --depth <depth> -b <branch> <repo_url>
+```
+
+* 获取特定commit的二进制文件[^30]
+
+```shell
+$ git init
+$ git remote add origin <url>
+$ git fetch --depth 1 origin <sha1>
+$ git checkout FETCH_HEAD
 ```
 
 
@@ -828,3 +837,5 @@ $ ssh-keygen -R github.com
 
 [^28]:https://stackoverflow.com/questions/1419623/how-to-list-branches-that-contain-a-given-commit
 
+[^29]:https://stackoverflow.com/questions/29368837/copy-a-git-repo-without-history
+[^30]:https://stackoverflow.com/questions/31278902/how-to-shallow-clone-a-specific-commit-with-depth-1
