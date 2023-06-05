@@ -6,19 +6,17 @@
 
 ## 1、特殊的格式化
 
-### （1）圆形框
+### (1) 圆形框
 
 ```
 <kbd>System Preferences</kbd>
 ```
 
-
-
 Go to <kbd>System Preferences</kbd> > <kbd>Extensions</kbd> > <kbd>Xcode Source Editor</kbd> > select <kbd>LinesSorter</kbd>
 
 
 
-### （2）图片对齐方式[^2]
+### (2) 图片对齐方式[^2]
 
 * 左对齐
 
@@ -36,7 +34,7 @@ Go to <kbd>System Preferences</kbd> > <kbd>Extensions</kbd> > <kbd>Xcode Source 
 
 
 
-### （3）文本前景颜色
+### (3) 文本前景颜色
 
 #### a. 使用span标签
 
@@ -50,7 +48,7 @@ Go to <kbd>System Preferences</kbd> > <kbd>Extensions</kbd> > <kbd>Xcode Source 
 
 
 
-### （4）文本背景颜色
+### (4) 文本背景颜色
 
 #### a. 使用span标签
 
@@ -65,13 +63,52 @@ Go to <kbd>System Preferences</kbd> > <kbd>Extensions</kbd> > <kbd>Xcode Source 
 </div>
 
 
-### （5）文本背景圆角
+### (5) 文本背景圆角
 
 <span style="background-color:blue; color:white; border-radius: 5px;">使用span的例子</span>
 
 
 
-### （6）图片带跳转链接
+### (6) 可以折叠TOC目录
+
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#description">Description</a>
+    </li>
+    <li>
+      <a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#get-the-code">Get the Code</a></li>
+        <li><a href="#build">Build</a></li>
+        <li><a href="#blas-build">BLAS Build</a></li>
+        <li><a href="#prepare-data--run">Prepare Data & Run</a></li>
+        <li><a href="#memorydisk-requirements">Memory/Disk Requirements</a></li>
+        <li><a href="#quantization">Quantization</a></li>
+        <li><a href="#interactive-mode">Interactive mode</a></li>
+        <li><a href="#instruction-mode-with-alpaca">Instruction mode with Alpaca</a></li>
+        <li><a href="#using-gpt4all">Using GPT4All</a></li>
+        <li><a href="#using-pygmalion-7b--metharme-7b">Using Pygmalion 7B & Metharme 7B</a></li>
+        <li><a href="#obtaining-the-facebook-llama-original-model-and-stanford-alpaca-model-data">Obtaining the Facebook LLaMA original model and Stanford Alpaca model data</a></li>
+        <li><a href="#verifying-the-model-files">Verifying the model files</a></li>
+        <li><a href="#seminal-papers-and-background-on-the-models">Seminal papers and background on the models</a></li>
+        <li><a href="#perplexity-measuring-model-quality">Perplexity (measuring model quality)</a></li>
+        <li><a href="#android">Android</a></li>
+        <li><a href="#docker">Docker</a></li>
+      </ul>
+    </li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#coding-guidelines">Coding guidelines</a></li>
+    <li><a href="#docs">Docs</a></li>
+  </ol>
+</details>
+
+代码参考自https://raw.githubusercontent.com/ggerganov/llama.cpp/master/README.md
+
+
+
+### (7) 图片带跳转链接
 
 在markdown中图片有下面形式
 
@@ -83,8 +120,6 @@ Go to <kbd>System Preferences</kbd> > <kbd>Extensions</kbd> > <kbd>Xcode Source 
 图片带跳转链接，有下面几种形式[^3]
 
 * `[<img src="typora_notes_images/Objects managed by the navigation controller.png">](http://www.google.com)`
-
-
 
 [<img src="typora_notes_images/Objects managed by the navigation controller.png">](http://www.google.com)
 
@@ -105,11 +140,18 @@ Go to <kbd>System Preferences</kbd> > <kbd>Extensions</kbd> > <kbd>Xcode Source 
 
 
 
+
+
+
+
+
+
+
+
+
 ## 2、Typora支持的图[^1]
 
-
-
-### （1）时序图 (Sequence Diagrams)
+### (1) 时序图 (Sequence Diagrams)
 
 ```sequence
 Alice->Bob: Hello Bob, how are you?
@@ -123,7 +165,7 @@ Bob-->Alice: I am good thanks!
 
 
 
-### （2）流程图 (Flowcharts)
+### (2) 流程图 (Flowcharts)
 
 ```flow
 st=>start: Start
@@ -140,7 +182,7 @@ cond(no)->op
 
 
 
-### （3）Mermaid
+### (3) Mermaid
 
 Mermaid插件：https://mermaid-js.github.io/mermaid/#/
 
