@@ -330,6 +330,33 @@ ascii命令行工具[^5]，用于查看ASCII表
 
 
 
+### binutils
+
+安装方法：`brew install binutils`
+
+binutils的官方文档是：https://sourceware.org/binutils/
+
+默认安装后，不会添加任何命令行到$PATH中。
+
+参考安装成功后的提示，如下
+
+```shell
+If you need to have binutils first in your PATH, run:
+  echo 'export PATH="/usr/local/opt/binutils/bin:$PATH"' >> ~/.zshrc
+```
+
+由于binutils/bin下面有些命令和系统命令冲突，可以按需添加命令行工具的软链接。
+
+举个例子，只使用addr2line命令行工具，如下
+
+```shell
+$ ln -s /usr/local/Cellar/binutils/2.40/bin/addr2line /usr/local/bin/addr2line
+$ which addr2line                                                             
+/usr/local/bin/addr2line
+```
+
+
+
 ## 参考资料
 
 [^1]: https://stackoverflow.com/a/17103753
