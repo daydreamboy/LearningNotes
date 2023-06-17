@@ -357,6 +357,22 @@ $ which addr2line
 
 
 
+### tokei
+
+安装方法：brew install tokei
+
+tokei的git地址是：https://github.com/XAMPPRocky/tokei，参考这个SO[^11]的推荐
+
+使用方法，如下
+
+```shell
+$ tokei <path/to/folder or file>
+```
+
+
+
+
+
 ## 参考资料
 
 [^1]: https://stackoverflow.com/a/17103753
@@ -376,6 +392,8 @@ $ which addr2line
 [^9]:https://formulae.brew.sh/cask/jtool
 
 [^10]:https://blog.simplypatrick.com/posts/2012/08-18-ninja-a-small-build-system/
+
+[^11]:https://stackoverflow.com/a/60976012
 
 
 

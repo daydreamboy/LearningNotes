@@ -726,6 +726,32 @@ $ git checkout FETCH_HEAD
 
 
 
+### (8) 查看git仓库下所有submodules
+
+git仓库下所有submodules，都配置在`.gitmodules`文件中，可以直接用文本编辑器查看。
+
+另外使用命令也可以查看有哪些submodule[^31]
+
+* 使用git config命令
+
+```shell
+$ git config --file .gitmodules --name-only --get-regexp path
+```
+
+或者
+
+```shell
+$ git config --file .gitmodules --get-regexp path | awk '{ print $2 }'
+```
+
+* 使用git submodule命令
+
+```shell
+$ git submodule status --recursive
+```
+
+
+
 
 
 ## 6、git常见报错
@@ -839,3 +865,5 @@ $ ssh-keygen -R github.com
 
 [^29]:https://stackoverflow.com/questions/29368837/copy-a-git-repo-without-history
 [^30]:https://stackoverflow.com/questions/31278902/how-to-shallow-clone-a-specific-commit-with-depth-1
+[^31]:https://stackoverflow.com/questions/12641469/list-submodules-in-a-git-repository
+
