@@ -208,7 +208,7 @@ man文档描述，如下
 >    export MallocPreScribble=1
 >    export MallocCheckHeapStart=1000
 >    export MallocCheckHeapEach=100
->    
+>       
 >    /path/to/xxx.app/Contents/MacOS/xxx
 >    ```
 >
@@ -310,7 +310,7 @@ man文档描述，如下
 
 ## 20、objdump
 
-objdump查看ELF格式的so库，如下
+objdump查看ELF格式的so库的信息，示例如下
 
 ```shell
 $ objdump -x libhelloNativeLib.so                      
