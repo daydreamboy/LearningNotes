@@ -147,6 +147,15 @@ Go to <kbd>System Preferences</kbd> > <kbd>Extensions</kbd> > <kbd>Xcode Source 
 
 
 
+### (8) 超链接
+
+#### a. 空的超链接
+
+有两种方式，如下
+
+* `[PseudoLink]()`，[PseudoLink]()
+* `[PseudoLink](#)`，[PseudoLink](#)
+
 
 
 ## 2、Typora支持的图[^1]
