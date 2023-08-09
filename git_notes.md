@@ -36,43 +36,7 @@ fatal: this operation must be run in a work tree
 
 ### (1) branch
 
-#### a. 删除其他分支
-
-本地删除当前分支以外的其他分支，使用下面的命令
-
-```shell
-$ git branch -d `git branch | grep -v \\* | xargs`
-```
-
-注意
-
-> 该命令不会删除远端分支
-
-
-
-#### b. 查询某个commit在哪些分支上
-
-参考这个SO[^28]的做法，如下
-
-* 检查本地分支
-
-```shell
-$ git branch --contains <commit>
-```
-
-* 检查远程分支
-
-```shell
-$ git branch -r --contains <commit>
-```
-
-如果需要过滤特定的分支，结合grep使用，如下
-
-```shell
-$ git branch -r --contains <commit> | grep -e "someBranch"
-```
-
-
+TODO
 
 
 
@@ -748,6 +712,44 @@ $ git config --file .gitmodules --get-regexp path | awk '{ print $2 }'
 
 ```shell
 $ git submodule status --recursive
+```
+
+
+
+### (9) 除了当前分支，删除其他分支
+
+本地删除当前分支以外的其他分支，使用下面的命令
+
+```shell
+$ git branch -d `git branch | grep -v \\* | xargs`
+```
+
+注意
+
+> 该命令不会删除远端分支
+
+
+
+### (10) 查询某个commit在哪些分支上
+
+参考这个SO[^28]的做法，如下
+
+* 检查本地分支
+
+```shell
+$ git branch --contains <commit>
+```
+
+* 检查远程分支
+
+```shell
+$ git branch -r --contains <commit>
+```
+
+如果需要过滤特定的分支，结合grep使用，如下
+
+```shell
+$ git branch -r --contains <commit> | grep -e "someBranch"
 ```
 
 
