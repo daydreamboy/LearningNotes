@@ -168,165 +168,15 @@ Cellar安装位置：/usr/local/Cellar
 
 ## 5、常用安装包
 
-### trash
-
-将文件或文件夹移到废纸篓中 
-
-```shell
-$ trash <file/folder>
-```
-
-
-
-删除当前目录下所有文件或目录
-
-```shell
-$ trash *
-```
-
-
-
-### wget
-
-下载工具 
-
-
-
-### java
-
-jdk安装
-
-```shell
-$ brew cask install java
-$ brew cask install java8
-```
-
-
-
-不能安装Java8[^7]
-
-```shell
-$ brew cask install adoptopenjdk/openjdk/adoptopenjdk8
-```
-
-
-
-
-
-### jenv
-
-```shell
-$ brew install jenv
-```
-
-
-
- ~/.zshrc文件，添加下面配置
-
-```shell
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-```
-
-
-
-
-
-### tree
-
-树形显示目录结构 
-
-使用示例
-
-```shell
-$ tree . -L 2 -I node_modules
-.
-├── assets
-│   └── js
-├── dist
-├── index.html
-├── package-lock.json
-├── package.json
-└── webpack.config.js
-```
-
-* -L，指定显示的层级
-* -I，忽略特定的文件夹
-* -a，显示所有文件，包括隐藏文件和隐藏文件夹
-
-
-
-### jq
-
-[jq](https://stedolan.github.io/jq/)，JSON解析命令行工具。使用教程 <https://stedolan.github.io/jq/tutorial/>
-
-
-
-### go2shell
-
-go2shell，在当前选中文件夹打开Terminal。安装方法：`brew cask install go2shell`
-
-
-
-### npm
-
-npm，开发Node.js
-
-
-
-### p7zip
-
-p7zip，7z格式压缩工具[^3]
-
-使用示例
-
-```shell
-$ 7z a "iOS 13.4.simruntime".7z iOS\ 13.4.simruntime
-```
-
-
-
-
-
-### Asset Catalog Tinkerer
-
-Asset Catalog Tinkerer[^4]，查看Assets.car文件中的图片。安装方法：`brew cask install asset-catalog-tinkerer`
-
-
-
-### Hex Fiend
-
-Hex Fiend，二进制查看工具。安装方法：`brew cask install hex-fiend`
-
-
-
 ### ascii
 
 ascii命令行工具[^5]，用于查看ASCII表
 
 
 
-### graphviz[^6]
+### Asset Catalog Tinkerer
 
-命令行绘图工具。安装方法：`brew install graphviz`
-
-
-
-### iina
-
-视频播放工具，可以显示毫秒的进度[^8]。安装方法：`brew install --cask iina`
-
-
-
-### jtool[^9]
-
-安装方法：`brew install --cask jtool`
-
-
-
-### ninja
-
-安装方法[^10]：`brew install ninja`
+Asset Catalog Tinkerer[^4]，查看Assets.car文件中的图片。安装方法：`brew cask install asset-catalog-tinkerer`
 
 
 
@@ -357,6 +207,134 @@ $ which addr2line
 
 
 
+### go2shell
+
+go2shell，在当前选中文件夹打开Terminal。安装方法：`brew cask install go2shell`
+
+
+
+### graphviz[^6]
+
+命令行绘图工具。安装方法：`brew install graphviz`
+
+
+
+### Hex Fiend
+
+Hex Fiend，二进制查看工具。安装方法：`brew cask install hex-fiend`
+
+
+
+### iina
+
+视频播放工具，可以显示毫秒的进度[^8]。安装方法：`brew install --cask iina`
+
+
+
+#### ios-deploy
+
+安装方法：`brew install ios-deploy`
+
+ios-deploy的官方文档是：https://github.com/ios-control/ios-deploy
+
+
+
+### java
+
+jdk安装
+
+```shell
+$ brew cask install java
+$ brew cask install java8
+```
+
+
+
+不能安装Java8[^7]
+
+```shell
+$ brew cask install adoptopenjdk/openjdk/adoptopenjdk8
+```
+
+
+
+### jenv
+
+```shell
+$ brew install jenv
+```
+
+
+
+ ~/.zshrc文件，添加下面配置
+
+```shell
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+```
+
+
+
+### jq
+
+[jq](https://stedolan.github.io/jq/)，JSON解析命令行工具。使用教程 <https://stedolan.github.io/jq/tutorial/>
+
+
+
+### jtool[^9]
+
+安装方法：`brew install --cask jtool`
+
+
+
+### ninja
+
+安装方法[^10]：`brew install ninja`
+
+
+
+### npm
+
+npm，开发Node.js
+
+
+
+### p7zip
+
+p7zip，7z格式压缩工具[^3]
+
+使用示例
+
+```shell
+$ 7z a "iOS 13.4.simruntime".7z iOS\ 13.4.simruntime
+```
+
+
+
+### tree
+
+树形显示目录结构 
+
+使用示例
+
+```shell
+$ tree . -L 2 -I node_modules
+.
+├── assets
+│   └── js
+├── dist
+├── index.html
+├── package-lock.json
+├── package.json
+└── webpack.config.js
+```
+
+* -L，指定显示的层级
+* -I，忽略特定的文件夹
+* -a，显示所有文件，包括隐藏文件和隐藏文件夹
+
+
+
 ### tokei
 
 安装方法：brew install tokei
@@ -368,6 +346,30 @@ tokei的git地址是：https://github.com/XAMPPRocky/tokei，参考这个SO[^11]
 ```shell
 $ tokei <path/to/folder or file>
 ```
+
+
+
+### trash
+
+将文件或文件夹移到废纸篓中 
+
+```shell
+$ trash <file/folder>
+```
+
+
+
+删除当前目录下所有文件或目录
+
+```shell
+$ trash *
+```
+
+
+
+### wget
+
+下载工具 
 
 
 
