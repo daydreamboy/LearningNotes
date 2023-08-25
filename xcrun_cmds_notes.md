@@ -43,8 +43,11 @@
 
 ## 4、dwarfdump
 
+作用：dump和校验DWARF格式的调试信息
+
 | example                                                      | task                                         |
 | ------------------------------------------------------------ | -------------------------------------------- |
+| dwarfdump \<path_to_dSYM>                                    | dump dSYM文件                                |
 | dwarfdump -u \<mach-o file\><br/>dwarfdump --uuid \<path_to_dSYM><br/>dwarfdump --uuid \<path_to_dSYM\>/Contents/Resources/DWARF/\<BinaryName\>[^4] | 查看MachO文件的UUID (实际对应LC_UUID字段[1]) |
 | dwarfdump -u --arch=arm64 \<mach-o file\>                    | 查看MachO文件中特定架构的UUID                |
 
@@ -208,7 +211,7 @@ man文档描述，如下
 >    export MallocPreScribble=1
 >    export MallocCheckHeapStart=1000
 >    export MallocCheckHeapEach=100
->       
+>          
 >    /path/to/xxx.app/Contents/MacOS/xxx
 >    ```
 >
@@ -310,6 +313,12 @@ man文档描述，如下
 
 ## 20、objdump
 
+| example                               | task          |
+| ------------------------------------- | ------------- |
+| objdump --dwarf \<path/to/elf_binary> | 查看DWARF信息 |
+
+
+
 objdump查看ELF格式的so库的信息，示例如下
 
 ```shell
@@ -320,6 +329,8 @@ architecture: x86_64
 start address: 0x0000000000000000
 ...
 ```
+
+
 
 
 
