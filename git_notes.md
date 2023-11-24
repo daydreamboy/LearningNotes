@@ -559,13 +559,13 @@ core.sparsecheckout
 
 
 
-### (4) 复制一个仓库
+### (4) 复制一个仓库到GitLab上
 
 GitHub上提供fork功能，可以将别人的库复制到自己的名下。但是如果要复制一个仓库（包括提交记录等信息）到GitLab上，则需要自己做一些处理。
 
 主要步骤，如下
 
-* 创建一个remote，关联到GitHub仓库的url
+* 在GitLab仓库上，创建一个remote，关联到GitHub仓库的url
 * 查询GitHub仓库的远端分支
 * 拉取GitHub仓库的远端分支
 
@@ -593,6 +593,9 @@ $ git remote show Aspects
     master pushes to master (local out of date)
 // 3.a 拉取GitHub仓库的远端分支
 $ git pull Aspects master
+From github.com:Aspects/Aspects
+ * branch            master     -> FETCH_HEAD
+fatal: refusing to merge unrelated histories
 
 // 3.b git fetch <remote> <rbranch>:<lbranch>，将远端分支拉取到本地分支[^18]
 $ git fetch Aspects master:temp
