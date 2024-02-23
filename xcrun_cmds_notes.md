@@ -211,7 +211,7 @@ man文档描述，如下
 >    export MallocPreScribble=1
 >    export MallocCheckHeapStart=1000
 >    export MallocCheckHeapEach=100
->          
+>                
 >    /path/to/xxx.app/Contents/MacOS/xxx
 >    ```
 >
@@ -245,7 +245,7 @@ man文档描述，如下
 | example                                        | task                                |
 | ---------------------------------------------- | ----------------------------------- |
 | nm -nm helloworld.o                            | 查看.o文件中符号                    |
-| nm -arch=arm64 -m DynamicLibrary \| grep dlsym | 查看二进制文件单个架构中的dlsym符号 |
+| nm -arch arm64 -m DynamicLibrary \| grep dlsym | 查看二进制文件单个架构中的dlsym符号 |
 | nm -g a.out                                    | 忽略所有本地符号（类型t），然后输出 |
 
 * -n，使用numeric顺序排序
@@ -416,6 +416,12 @@ Mach header
 $ xcrun swift-demangle _TFC9TestSwift15TestASwiftClass21testReturnVoidWithaIdfS0_FCSo6UIViewT_
 _TFC9TestSwift15TestASwiftClass21testReturnVoidWithaIdfS0_FCSo6UIViewT_ ---> TestSwift.TestASwiftClass.testReturnVoidWithaId(TestSwift.TestASwiftClass) -> (__C.UIView) -> ()
 ```
+
+
+
+## 24、vmmap
+
+作用：显示某个进程的虚拟内存空间
 
 
 
