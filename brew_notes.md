@@ -231,7 +231,7 @@ Hex Fiend，二进制查看工具。安装方法：`brew cask install hex-fiend`
 
 
 
-#### ios-deploy
+### ios-deploy
 
 安装方法：`brew install ios-deploy`
 
@@ -373,6 +373,50 @@ $ trash *
 
 
 
+## 6、常见问题
+
+### (1) brew执行命令很慢
+
+brew执行命令很慢，要具体问题具体分析。一般执行brew会自动更新brew自身，即更新Homebrew仓库。然后再去下载对应的软件包。有可能卡在更新Homebrew仓库，也有卡在下载软件包。
+
+可以通过下面命令，查看Homebrew仓库当前的源和分支，如下
+
+```shell
+$ brew --version
+Homebrew 4.2.19
+$ brew --repo
+/usr/local/Homebrew
+$ git remote -v
+origin	https://github.com/Homebrew/brew (fetch)
+origin	https://github.com/Homebrew/brew (push)
+$ git branch --show-current
+stable
+```
+
+* 修改Homebrew仓库的源[^12]
+
+```shell
+$ cd "$(brew --repo)"
+$ git remote set-url origin https://github.com/Homebrew/brew.git
+```
+
+* 修改bottles访问地址。这里以zsh为例，修改`~/.zshrc`文件，增加一行，如下
+
+```shell
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
+```
+
+或者
+
+```shell
+$ echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles' >> ~/.zshrc
+$ source ~/.zshrc
+```
+
+上面修改软件包的下载地址。
+
+
+
 
 
 ## 参考资料
@@ -396,6 +440,8 @@ $ trash *
 [^10]:https://blog.simplypatrick.com/posts/2012/08-18-ninja-a-small-build-system/
 
 [^11]:https://stackoverflow.com/a/60976012
+
+[^12]:https://juejin.cn/post/7107489403961868319
 
 
 

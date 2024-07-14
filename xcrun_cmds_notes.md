@@ -41,7 +41,39 @@
 
 
 
-## 4、dwarfdump
+## 4、dsymutil
+
+作用：操作归档的DWARF格式的调试符号文件
+
+| example                                        | task       |
+| ---------------------------------------------- | ---------- |
+| dsymutil -s \<path_to_executable/object files> | dump符号表 |
+|                                                |            |
+|                                                |            |
+
+参考资料：man dsymutil
+
+
+
+* `dsymutil -s`命令。举个例子，如下
+
+```shell
+$ dsymutil -s HelloLLDB 
+----------------------------------------------------------------------
+Symbol table for: 'HelloLLDB' (arm64)
+----------------------------------------------------------------------
+Index    n_strx   n_type             n_sect n_desc n_value
+======== -------- ------------------ ------ ------ ----------------
+[     0] 00001728 0e (     SECT    ) 01     0000   000000010000808c '-[CalculateSymbolAddressInLLDBViewController viewDidLoad]'
+[     1] 00001762 0e (     SECT    ) 01     0000   00000001000080dc '-[SetSourceMapInLLDBViewController viewDidLoad]'
+[     2] 00001792 0e (     SECT    ) 01     0000   0000000100008188 '-[SetSourceMapInLLDBViewController test_use_OC_API]'
+[     3] 000017c6 0e (     SECT    ) 01     0000   000000010000819c '-[SetSourceMapInLLDBViewController test_use_Swift_API]'
+...
+```
+
+
+
+## 5、dwarfdump
 
 作用：dump和校验DWARF格式的调试信息
 
@@ -61,7 +93,7 @@
 
 
 
-## 5、dyldinfo
+## 6、dyldinfo
 
 作用：显示在一个可执行文件中dyld所使用的信息
 
@@ -73,7 +105,7 @@ man文档描述，如下
 
 
 
-## 6、file
+## 7、file
 
 | example          | task                |
 | ---------------- | ------------------- |
@@ -82,7 +114,7 @@ man文档描述，如下
 
 
 
-## 7、heap
+## 8、heap
 
 作用：分析堆内存
 
@@ -92,7 +124,7 @@ man文档描述，如下
 
 
 
-## 8、install\_name\_tool
+## 9、install\_name\_tool
 
 | example                                                      | task                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -100,7 +132,7 @@ man文档描述，如下
 
 
 
-## 9、ld
+## 10、ld
 
 | options                           | meaning                                        | tips                            |
 | --------------------------------- | ---------------------------------------------- | ------------------------------- |
@@ -116,7 +148,7 @@ man文档描述，如下
 
 
 
-## 10、leaks
+## 11、leaks
 
 作用：搜索一个进程泄漏的内存
 
@@ -132,7 +164,7 @@ man文档描述，如下
 
 
 
-## 11、lipo
+## 12、lipo
 
 | example                                                      | task                          |
 | ------------------------------------------------------------ | ----------------------------- |
@@ -144,7 +176,7 @@ man文档描述，如下
 
 
 
-## 12、lldb
+## 13、lldb
 
 | example                    | task         |
 | -------------------------- | ------------ |
@@ -154,7 +186,7 @@ man文档描述，如下
 
 
 
-## 13、simctl
+## 14、simctl
 
 | example                    | task                                     |
 | -------------------------- | ---------------------------------------- |
@@ -166,7 +198,7 @@ man文档描述，如下
 
 
 
-## 14、strings
+## 15、strings
 
 | example | task |
 |---------|------|
@@ -175,7 +207,7 @@ man文档描述，如下
 
 
 
-## 15、strip
+## 16、strip
 
 | example | task |
 |---------|------|
@@ -185,7 +217,7 @@ man文档描述，如下
 
 
 
-## 16、malloc_history
+## 17、malloc_history
 
 作用：分析某个进程的对象malloc堆栈
 
@@ -211,7 +243,7 @@ man文档描述，如下
 >    export MallocPreScribble=1
 >    export MallocCheckHeapStart=1000
 >    export MallocCheckHeapEach=100
->                
+>                   
 >    /path/to/xxx.app/Contents/MacOS/xxx
 >    ```
 >
@@ -219,7 +251,7 @@ man文档描述，如下
 
 
 
-## 17、mdfind
+## 18、mdfind
 
 作用：mdfind是MacOS Spotlight的命令行工具。但是它能比较方便查询UUID对应的dSYM文件路径。
 
@@ -229,7 +261,7 @@ man文档描述，如下
 
 
 
-## 18、momc
+## 19、momc
 
 | example                                                      | task                 |
 | ------------------------------------------------------------ | -------------------- |
@@ -238,7 +270,7 @@ man文档描述，如下
 
 
 
-## 19、nm
+## 20、nm
 
 ### (1) 常见示例
 
@@ -311,7 +343,7 @@ man文档描述，如下
 
 
 
-## 20、objdump
+## 21、objdump
 
 | example                               | task          |
 | ------------------------------------- | ------------- |
@@ -334,7 +366,7 @@ start address: 0x0000000000000000
 
 
 
-## 21、otool
+## 22、otool
 
 ### (1) 常见示例
 
@@ -398,7 +430,7 @@ Mach header
 
 
 
-## 22、size
+## 23、size
 
 | example             | task                         |
 | ------------------- | ---------------------------- |
@@ -406,7 +438,7 @@ Mach header
 
 
 
-## 23、swift-demangle
+## 24、swift-demangle
 
 作用：demangle swift的符号
 
@@ -419,7 +451,7 @@ _TFC9TestSwift15TestASwiftClass21testReturnVoidWithaIdfS0_FCSo6UIViewT_ ---> Tes
 
 
 
-## 24、vmmap
+## 25、vmmap
 
 作用：显示某个进程的虚拟内存空间
 
