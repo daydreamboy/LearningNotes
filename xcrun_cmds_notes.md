@@ -184,40 +184,7 @@ man文档描述，如下
 
 
 
-
-
-## 14、simctl
-
-| example                    | task                                     |
-| -------------------------- | ---------------------------------------- |
-| simctl list                | 查看所有模拟器                           |
-| simctl list \| grep booted | 查看当前启动的模拟器                     |
-| simctl delete unavailable  | 删除当前无效的模拟器（可以节省磁盘空间） |
-
-
-
-
-
-## 15、strings
-
-| example | task |
-|---------|------|
-| strings a.out | 查看可执行文件中可打印的字符串（例如__TEXT,__cstring中字符串） |
-| strings -o a.out | -o显示字符串的文件偏移量，默认是十进制 |
-
-
-
-## 16、strip
-
-| example | task |
-|---------|------|
-| strip -x XXX.framework/XXX | 移除所有local符号，仅保留global符号 |
-
-参考资料：man strip
-
-
-
-## 17、malloc_history
+## 14、malloc_history
 
 作用：分析某个进程的对象malloc堆栈
 
@@ -243,7 +210,7 @@ man文档描述，如下
 >    export MallocPreScribble=1
 >    export MallocCheckHeapStart=1000
 >    export MallocCheckHeapEach=100
->                   
+>                      
 >    /path/to/xxx.app/Contents/MacOS/xxx
 >    ```
 >
@@ -251,7 +218,7 @@ man文档描述，如下
 
 
 
-## 18、mdfind
+## 15、mdfind
 
 作用：mdfind是MacOS Spotlight的命令行工具。但是它能比较方便查询UUID对应的dSYM文件路径。
 
@@ -428,6 +395,14 @@ Mach header
 
 
 
+## 14、simctl
+
+| example                    | task                                     |
+| -------------------------- | ---------------------------------------- |
+| simctl list                | 查看所有模拟器                           |
+| simctl list \| grep booted | 查看当前启动的模拟器                     |
+| simctl delete unavailable  | 删除当前无效的模拟器（可以节省磁盘空间） |
+
 
 
 ## 23、size
@@ -435,6 +410,25 @@ Mach header
 | example             | task                         |
 | ------------------- | ---------------------------- |
 | size -x -l -m a.out | 查看segment以及section的结构 |
+
+
+
+## 15、strings
+
+| example          | task                                                         |
+| ---------------- | ------------------------------------------------------------ |
+| strings a.out    | 查看可执行文件中可打印的字符串（例如__TEXT,__cstring中字符串） |
+| strings -o a.out | -o显示字符串的文件偏移量，默认是十进制                       |
+
+
+
+## 16、strip
+
+| example                    | task                                |
+| -------------------------- | ----------------------------------- |
+| strip -x XXX.framework/XXX | 移除所有local符号，仅保留global符号 |
+
+参考资料：man strip
 
 
 
