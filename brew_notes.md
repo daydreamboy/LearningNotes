@@ -207,6 +207,16 @@ $ which addr2line
 
 
 
+### conan
+
+安装方法：`brew install conan`
+
+conan的官方文档是：https://conan.io/downloads
+
+
+
+
+
 ### go2shell
 
 go2shell，在当前选中文件夹打开Terminal。安装方法：`brew cask install go2shell`
@@ -414,6 +424,36 @@ $ source ~/.zshrc
 ```
 
 上面修改软件包的下载地址。
+
+
+
+### (2) 恢复官方的源
+
+参考[这篇文章](https://www.cnblogs.com/xingnie/p/16276563.html)，如下
+
+```shell
+# 重置 brew.git 为官方源
+$ git -C "$(brew --repo)" remote set-url origin https://github.com/Homebrew/brew.git
+
+# 重置 homebrew-core.git 为官方源
+$ git -C "$(brew --repo homebrew/core)" remote set-url origin https://github.com/Homebrew/homebrew-core.git
+
+# 重置 homebrew-cask.git 为官方源
+$ git -C "$(brew --repo homebrew/cask)" remote set-url origin https://github.com/Homebrew/homebrew-cask
+
+# zsh 注释掉 HOMEBREW_BOTTLE_DOMAIN 配置
+$ vi ~/.zshrc
+# export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+
+# bash 注释掉 HOMEBREW_BOTTLE_DOMAIN 配置
+$ vi ~/.bash_profile
+# export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+
+# 刷新源
+$ brew update
+```
+
+
 
 
 
