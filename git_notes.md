@@ -757,9 +757,15 @@ $ git branch -r --contains <commit> | grep -e "someBranch"
 
 
 
+## 6、`.gitignore`文件的匹配规则
+
+* 以斜杠`/`开头: 表示绝对路径，即相对于Git仓库根目录的路径
 
 
-## 6、git常见报错
+
+
+
+## 7、git常见报错
 
 ### (1) git-ssh: connect to host github.com port 22: Connection timed out
 
