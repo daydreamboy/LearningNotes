@@ -759,9 +759,9 @@ $ git branch -r --contains <commit> | grep -e "someBranch"
 
 ## 6、`.gitignore`文件的匹配规则
 
-* 以斜杠`/`开头: 表示绝对路径，即相对于Git仓库根目录的路径
+* 以斜杠`/`开头：表示绝对路径，即相对于Git仓库根目录的路径
 
-
+* 以`**/`开头：表示任意层级的目录，包括子目录。举个例子：`**/vendor/bundle/`，表示任意层级下面存在两层结构的vendor/bundle，都进行忽略，这里仅将vendor下面的bundle下面的所有文件忽略，但是如果vendor下面，有其他非bundle，则不会忽略（例如vendor/test不会被忽略）
 
 
 
